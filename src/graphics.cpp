@@ -32,6 +32,7 @@ Graphics::Graphics() {
 }
 
 Graphics::~Graphics() {
+    std::cout << "Graphics destroyed" << std::endl;
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
 }
@@ -60,4 +61,6 @@ void Graphics::render(const Game& game){
 
     draw_frame_rate(game.dt);
     SDL_RenderPresent(renderer);
+
+    
 }

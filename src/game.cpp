@@ -8,6 +8,7 @@ Game::Game(){
 }
 
 Game::~Game() {
+    delete graphics;
     SDL_Quit();
 }
 
