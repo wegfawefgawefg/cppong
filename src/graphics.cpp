@@ -54,13 +54,10 @@ void Graphics::draw_frame_rate(float dt) {
     draw_text(fps_str, color, 0, 0);
 }
 
-
 void Graphics::render(const Game& game){ 
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
     draw_frame_rate(game.dt);
     SDL_RenderPresent(renderer);
-
-    
 }
