@@ -1,0 +1,20 @@
+[
+  {
+    "directory": "/home/vega/Coding/Game/cppong/build",
+    "command": "c++ -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -O3 -g -D_REENTRANT -MD -MQ 'main@exe/main.cpp.o' -MF 'main@exe/main.cpp.o.d' -o 'main@exe/main.cpp.o' -c ../src/main.cpp",
+    "file": "../src/main.cpp",
+    "output": "main@exe/main.cpp.o"
+  },
+  {
+    "directory": "/home/vega/Coding/Game/cppong/build",
+    "command": "c++ -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -O3 -g -D_REENTRANT -MD -MQ 'main@exe/game.cpp.o' -MF 'main@exe/game.cpp.o.d' -o 'main@exe/game.cpp.o' -c ../src/game.cpp",
+    "file": "../src/game.cpp",
+    "output": "main@exe/game.cpp.o"
+  },
+  {
+    "directory": "/home/vega/Coding/Game/cppong/build",
+    "command": "c++ -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -O3 -g -D_REENTRANT -MD -MQ 'main@exe/graphics.cpp.o' -MF 'main@exe/graphics.cpp.o.d' -o 'main@exe/graphics.cpp.o' -c ../src/graphics.cpp",
+    "file": "../src/graphics.cpp",
+    "output": "main@exe/graphics.cpp.o"
+  }
+]
