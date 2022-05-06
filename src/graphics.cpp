@@ -4,15 +4,15 @@
 #include "graphics.hpp"
 
 Graphics::Graphics() {
-    std::cout << "Graphics constructor" << std::endl;
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 16);
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 16);
     SDL_GL_SetSwapInterval(0);
 
+    SDL_Init(SDL_INIT_EVERYTHING);
     IMG_Init(IMG_INIT_PNG);
     TTF_Init();
 
-    window = SDL_CreateWindow("Chad's Challenge",
+    window = SDL_CreateWindow("cppong",
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         window_width, window_height,
         SDL_WINDOW_OPENGL);
@@ -32,7 +32,6 @@ Graphics::Graphics() {
 }
 
 Graphics::~Graphics() {
-    std::cout << "Graphics destructor" << std::endl;
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
 }
@@ -55,9 +54,7 @@ void Graphics::draw_frame_rate(float dt) {
 }
 
 
-void Graphics::render(Game& game){ //should probably take in a const ref
-    // std::cout << "Graphics render: " << game.dt << std::endl;
-    std::cout << renderer << std::endl;
+void Graphics::render(const Game& game){ 
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 

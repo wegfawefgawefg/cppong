@@ -28,7 +28,7 @@ class Graphics {
         const SDL_Color color, 
         const int x, const int y);
     void draw_frame_rate(float dt);
-    void render(Game& game);
+    void render(const Game& game);
 };
 
 #endif

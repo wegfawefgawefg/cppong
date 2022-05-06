@@ -4,7 +4,6 @@
 #include "graphics.hpp"
 
 Game::Game(){
-    SDL_Init(SDL_INIT_EVERYTHING);
     graphics = new Graphics();
 }
 
