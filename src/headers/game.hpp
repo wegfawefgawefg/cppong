@@ -1,9 +1,11 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <SDL2/SDL.h>
+#include <vector>
 
+#include <SDL2/SDL.h>
 #include "graphics.hpp"
+#include "entity.hpp"
 
 class Game {
     public:
@@ -12,6 +14,8 @@ class Game {
         bool running = false;
         Uint64 now;
         double dt;
+
+        std::vector<Entity*> entities;
 
 	Game();
     ~Game();

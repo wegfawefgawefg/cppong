@@ -58,6 +58,17 @@ void Graphics::render(const Game& game){
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
+
+    // render all the entities here
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    for (auto& entity : game.entities) {
+        SDL_Rect rect = {int(entity->x), int(entity->y), int(entity->width), int(entity->height)};
+        SDL_RenderFillRect(renderer, &rect);
+        std::cout << "Entity " << entity->id << " at " << entity->x << ", " << entity->y << std::endl;
+    }
+
+
+
     draw_frame_rate(game.dt);
     SDL_RenderPresent(renderer);
 }

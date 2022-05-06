@@ -16,5 +16,11 @@
     "command": "c++ -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -O3 -g -D_REENTRANT -MD -MQ 'main@exe/graphics.cpp.o' -MF 'main@exe/graphics.cpp.o.d' -o 'main@exe/graphics.cpp.o' -c ../src/graphics.cpp",
     "file": "../src/graphics.cpp",
     "output": "main@exe/graphics.cpp.o"
+  },
+  {
+    "directory": "/home/vega/Coding/Game/cppong/build",
+    "command": "c++ -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -O3 -g -D_REENTRANT -MD -MQ 'main@exe/entity.cpp.o' -MF 'main@exe/entity.cpp.o.d' -o 'main@exe/entity.cpp.o' -c ../src/entity.cpp",
+    "file": "../src/entity.cpp",
+    "output": "main@exe/entity.cpp.o"
   }
 ]

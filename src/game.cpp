@@ -2,9 +2,18 @@
 
 #include "game.hpp"
 #include "graphics.hpp"
+#include "entity.hpp"
 
 Game::Game(){
     graphics = new Graphics();
+    // create 10 entities at random positions
+    for(int i = 0; i < 10; i++){
+        entities.push_back(new Entity(
+            float(i) * 100.0,
+            float(i) * 100.0,
+            100.0, 100.0
+        ));
+    }
 }
 
 Game::~Game() {

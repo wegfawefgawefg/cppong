@@ -15,7 +15,8 @@ executable('main',
     sources: [
         'main.cpp',
         'game.cpp',
-        'graphics.cpp'
+        'graphics.cpp',
+        'entity.cpp',
     ],
     include_directories: [
         'headers',
