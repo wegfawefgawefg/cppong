@@ -20,7 +20,7 @@ Graphics::Graphics() {
 
     SDL_RenderSetLogicalSize(renderer, width, height);
 
-    SDL_ShowCursor(SDL_DISABLE);
+    // SDL_ShowCursor(SDL_DISABLE);
     SDL_RaiseWindow(window);
 
     const int font_size = width / 20;
@@ -54,21 +54,30 @@ void Graphics::draw_frame_rate(float dt) {
     draw_text(fps_str, color, 0, 0);
 }
 
+void Graphics::draw_entity_count(int num_entities) {
+    const SDL_Color color = {150, 255, 255, 255};
+    char str[32];
+    sprintf(str, "%d", num_entities);
+    draw_text(str, color, 0, 400);
+}
+
 void Graphics::render(const Game& game){ 
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
 
     // render all the entities here
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     for (auto& entity : game.entities) {
-        SDL_Rect rect = {int(entity->x), int(entity->y), int(entity->width), int(entity->height)};
+        SDL_Rect rect = {
+            int(entity->x - entity->width/2), 
+            int(entity->y - entity->height/2), 
+            int(entity->width), 
+            int(entity->height)};
         SDL_RenderFillRect(renderer, &rect);
-        std::cout << "Entity " << entity->id << " at " << entity->x << ", " << entity->y << std::endl;
     }
 
-
-
     draw_frame_rate(game.dt);
+    draw_entity_count(game.entities.size());
     SDL_RenderPresent(renderer);
 }

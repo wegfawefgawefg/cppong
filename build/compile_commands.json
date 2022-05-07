@@ -22,5 +22,23 @@
     "command": "c++ -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -O3 -g -D_REENTRANT -MD -MQ 'main@exe/entity.cpp.o' -MF 'main@exe/entity.cpp.o.d' -o 'main@exe/entity.cpp.o' -c ../src/entity.cpp",
     "file": "../src/entity.cpp",
     "output": "main@exe/entity.cpp.o"
+  },
+  {
+    "directory": "/home/vega/Coding/Game/cppong/build",
+    "command": "c++ -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -O3 -g -D_REENTRANT -MD -MQ 'main@exe/transient.cpp.o' -MF 'main@exe/transient.cpp.o.d' -o 'main@exe/transient.cpp.o' -c ../src/transient.cpp",
+    "file": "../src/transient.cpp",
+    "output": "main@exe/transient.cpp.o"
+  },
+  {
+    "directory": "/home/vega/Coding/Game/cppong/build",
+    "command": "c++ -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -O3 -g -D_REENTRANT -MD -MQ 'main@exe/emitter.cpp.o' -MF 'main@exe/emitter.cpp.o.d' -o 'main@exe/emitter.cpp.o' -c ../src/emitter.cpp",
+    "file": "../src/emitter.cpp",
+    "output": "main@exe/emitter.cpp.o"
+  },
+  {
+    "directory": "/home/vega/Coding/Game/cppong/build",
+    "command": "c++ -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -O3 -g -D_REENTRANT -MD -MQ 'main@exe/random.cpp.o' -MF 'main@exe/random.cpp.o.d' -o 'main@exe/random.cpp.o' -c ../src/random.cpp",
+    "file": "../src/random.cpp",
+    "output": "main@exe/random.cpp.o"
   }
 ]

@@ -1,19 +1,16 @@
 #include <iostream>
+#include <algorithm>
 
 #include "game.hpp"
 #include "graphics.hpp"
 #include "entity.hpp"
+#include "transient.hpp"
+#include "emitter.hpp"
+#include "random.hpp"
+
 
 Game::Game(){
     graphics = new Graphics();
-    // create 10 entities at random positions
-    for(int i = 0; i < 10; i++){
-        entities.push_back(new Entity(
-            float(i) * 100.0,
-            float(i) * 100.0,
-            100.0, 100.0
-        ));
-    }
 }
 
 Game::~Game() {
@@ -53,12 +50,49 @@ void Game::process_events() {
     if (keys[SDL_SCANCODE_Q]) {
         running = 0;
     } 
+
+    /*if mouse is clicked make a new entity at mouse position*/
+    if(SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)){
+        int x, y;
+        SDL_GetMouseState(&x, &y);
+        for(int i = 0; i < 1; i++){
+            // Entity *new_entity = new Entity(x, y, 5, 5);
+            // entities.push_back(new_entity);
+            const float maxvel = 100;
+            Emitter *new_subentity = new Emitter(
+                float(x), float(y), 
+                frand(1, 5), frand(1, 5),
+                frand(-maxvel, maxvel), frand(-maxvel, maxvel),
+                frand(0.1, 2)
+            );
+            entities.push_back(new_subentity);
+        }
+    }
 }
 
 void Game::update() {
     Uint64 last = now;
     now = SDL_GetPerformanceCounter();
     dt = (double)((now - last) / (double)SDL_GetPerformanceFrequency());
+
+    for (auto& entity : entities) {
+        entity->step(*this);
+    }
+
+    // make a new vector for the entities that are still active
+    std::vector<Entity*> dead_entities;
+    for (auto& entity : entities) {
+        if (!entity->active) {
+            dead_entities.push_back(entity);
+        }
+    }
+    entities.erase(std::remove_if(entities.begin(), entities.end(), [](Entity* entity){
+            return !entity->active;
+        }), entities.end());
+    // delete the dead entities
+    for (auto& entity : dead_entities) {
+        delete entity;
+    }
 }
 
 void Game::render() {

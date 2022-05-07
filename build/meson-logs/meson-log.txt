@@ -1,4 +1,4 @@
-Build started at 2022-05-06T18:50:34.015947
+Build started at 2022-05-07T15:03:39.314592
 Main binary: /usr/bin/python3
 Build Options: -Dbackend=ninja
 Python system: Linux
@@ -20,6 +20,7 @@ Host machine cpu: x86_64
 Target machine cpu family: x86_64
 Target machine cpu: x86_64
 Message: optimization level is 3
+Message: standard: none
 Dependency sdl2 found: YES 2.0.10 (cached)
 Dependency SDL2_ttf found: YES 2.0.15 (cached)
 Dependency SDL2_image found: YES 2.0.5 (cached)
@@ -28,8 +29,8 @@ Build targets in project: 1
 
 Found ninja-1.10.0 at /usr/bin/ninja
 Running compile:
-Working directory:  /home/vega/Coding/Game/cppong/build/meson-private/tmp7893jgiq
-Command line:  c++ /home/vega/Coding/Game/cppong/build/meson-private/tmp7893jgiq/testfile.cpp -o /home/vega/Coding/Game/cppong/build/meson-private/tmp7893jgiq/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive --print-search-dirs 
+Working directory:  /home/vega/Coding/Game/cppong/build/meson-private/tmpnrph7qbr
+Command line:  c++ /home/vega/Coding/Game/cppong/build/meson-private/tmpnrph7qbr/testfile.cpp -o /home/vega/Coding/Game/cppong/build/meson-private/tmpnrph7qbr/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive --print-search-dirs 
 
 Code:
  

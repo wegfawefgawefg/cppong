@@ -28,6 +28,7 @@ class Graphics {
         const SDL_Color color, 
         const int x, const int y);
     void draw_frame_rate(float dt);
+    void draw_entity_count(int num_entities);
     void render(const Game& game);
 };
 

@@ -5,6 +5,7 @@ project('main', 'cpp',
     ],
 )
 message('optimization level is ' + get_option('optimization'))
+message('standard: ' + get_option('cpp_std'))
 
 sdl2_dep = dependency('sdl2')
 sdl2_ttf_dep = dependency('SDL2_ttf')
@@ -17,6 +18,9 @@ executable('main',
         'game.cpp',
         'graphics.cpp',
         'entity.cpp',
+        'transient.cpp',
+        'emitter.cpp',
+        'random.cpp',
     ],
     include_directories: [
         'headers',
