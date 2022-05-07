@@ -20,7 +20,7 @@ Emitter::~Emitter() {
 
 void Emitter::step(Game& game){
     Transient::step(game);
-    if(frand(0, 1) < 0.1){
+    if(frand(0, 1) < 0.2){
         Transient *new_subentity = new Transient(
             float(x), float(y), 
             frand(1, 5), frand(1, 5),

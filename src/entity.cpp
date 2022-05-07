@@ -27,8 +27,10 @@ Entity::~Entity() {
 }
 
 void Entity::step(Game& game){ 
+    const float gravity = 100.0;
     x += vx * game.dt;
     y += vy * game.dt;
+    vy += gravity * game.dt;
 
     // bounce of walls experimentally
     const float width = game.graphics->window_width;
@@ -37,18 +39,18 @@ void Entity::step(Game& game){
     // // bouncing
     if( x < 0){
         x = 0;
-        vx *= -1;
+        vx *= -10;
     } else if (x > width){
         x = width;
-        vx *= -1;
+        vx *= -10;
     }
 
     if( y < 0){
         y = 0;
-        vy *= -1;
+        vy *= -10;
     } else if (y > height){
         y = height;
-        vy *= -1;
+        vy *= -10;
     }
 
     // dissapear if out of bounds

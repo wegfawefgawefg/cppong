@@ -55,7 +55,7 @@ void Game::process_events() {
     if(SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)){
         int x, y;
         SDL_GetMouseState(&x, &y);
-        for(int i = 0; i < 1; i++){
+        for(int i = 0; i < 5; i++){
             // Entity *new_entity = new Entity(x, y, 5, 5);
             // entities.push_back(new_entity);
             const float maxvel = 100;
