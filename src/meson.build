@@ -2,6 +2,7 @@ project('main', 'cpp',
     default_options: [
         'default_library=static',
         'optimization=3',
+        'cpp_std=c++17',
     ],
 )
 message('optimization level is ' + get_option('optimization'))
