@@ -17,6 +17,7 @@ class Entity {
     Entity(float x, float y, float width, float height, float vx, float vy);
     virtual ~Entity();
     virtual void step(Game&);
+    void set_inactive(Game& game);
 };
 
 #endif

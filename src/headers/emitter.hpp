@@ -11,6 +11,7 @@ class Emitter : public Transient {
     Emitter(float x, float y, float width, float height, float vx, float vy, float lifespan);
     ~Emitter();
     void step(Game&);
+    void set_inactive(Game& game);
 };
 
 #endif

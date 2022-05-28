@@ -20,7 +20,10 @@ Emitter::~Emitter() {
 
 void Emitter::step(Game& game){
     Transient::step(game);
-    if(frand(0, 1) < 0.2){
+    if(!active){
+        game.audio->sound_play(1);
+    }
+    if(frand(0, 1) < 0.21){
         Transient *new_subentity = new Transient(
             float(x), float(y), 
             frand(1, 5), frand(1, 5),
@@ -29,4 +32,10 @@ void Emitter::step(Game& game){
         );
         game.entities.push_back(new_subentity);
     }
+}
+
+void Emitter::set_inactive(Game& game){
+    float pan = x / game.graphics->width;
+    game.audio->sound_play_at(1, pan, 0);
+    std::cout << "Emitter set inactive" << std::endl;
 }

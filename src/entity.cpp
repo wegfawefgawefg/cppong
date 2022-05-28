@@ -58,3 +58,7 @@ void Entity::step(Game& game){
     //     active = false;
     // }
 }
+
+void Entity::set_inactive(Game& game){
+    active = false;
+}

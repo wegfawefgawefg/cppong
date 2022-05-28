@@ -11,10 +11,12 @@
 
 Game::Game(){
     graphics = new Graphics();
+    audio = new Audio();
 }
 
 Game::~Game() {
     delete graphics;
+    delete audio;
     SDL_Quit();
 }
 
@@ -55,6 +57,8 @@ void Game::process_events() {
     if(SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)){
         int x, y;
         SDL_GetMouseState(&x, &y);
+        float pan = x / float(graphics->width);
+        audio->sound_play_at(0, pan, 0.0);
         for(int i = 0; i < 5; i++){
             // Entity *new_entity = new Entity(x, y, 5, 5);
             // entities.push_back(new_entity);

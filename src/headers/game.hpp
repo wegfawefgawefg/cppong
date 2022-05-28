@@ -5,11 +5,13 @@
 
 #include <SDL2/SDL.h>
 #include "graphics.hpp"
+#include "audio.hpp"
 #include "entity.hpp"
 
 class Game {
     public:
         Graphics* graphics;
+        Audio* audio;
 
         bool running = false;
         Uint64 now;

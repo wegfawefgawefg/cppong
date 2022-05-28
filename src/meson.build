@@ -22,6 +22,7 @@ executable('main',
         'transient.cpp',
         'emitter.cpp',
         'random.cpp',
+        'audio.cpp',
     ],
     include_directories: [
         'headers',

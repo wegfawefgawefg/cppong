@@ -20,6 +20,8 @@ void Transient::step(Game& game){
     Entity::step(game);
     age += game.dt;
     if(age > lifespan){
-        active = false;
+        // active = false;
+        Entity::set_inactive(game);
     }
 }
+

@@ -12,6 +12,7 @@ class Transient : public Entity {
 
     Transient(float x, float y, float width, float height, float vx, float vy, float lifespan);
     ~Transient();
+
     void step(Game&);
 };
 
