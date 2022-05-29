@@ -4,6 +4,7 @@
 #define ENTITY_H
 
 class Game;
+class Sprite;
 class Entity {
     public:
         int id;
@@ -11,6 +12,7 @@ class Entity {
         float x, y;
         float vx, vy;
         float width, height;
+        // Sprite& sprite;
 
     Entity();
 	Entity(float x, float y, float width, float height);

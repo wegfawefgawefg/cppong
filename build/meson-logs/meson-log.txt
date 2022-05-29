@@ -1,4 +1,4 @@
-Build started at 2022-05-28T12:44:03.432549
+Build started at 2022-05-29T12:08:57.594340
 Main binary: /usr/bin/python3
 Build Options: -Dbackend=ninja
 Python system: Linux
@@ -29,8 +29,8 @@ Build targets in project: 1
 
 Found ninja-1.10.0 at /usr/bin/ninja
 Running compile:
-Working directory:  /tmp/tmplyowndah
-Command line:  c++ /tmp/tmplyowndah/testfile.cpp -o /tmp/tmplyowndah/output.obj -pipe -D_FILE_OFFSET_BITS=64 -c -std=c++17 
+Working directory:  /tmp/tmpthqx55wv
+Command line:  c++ /tmp/tmpthqx55wv/testfile.cpp -o /tmp/tmpthqx55wv/output.obj -pipe -D_FILE_OFFSET_BITS=64 -c -std=c++17 
 
 Code:
  int i = static_cast<int>(0);
@@ -40,8 +40,8 @@ Compiler stderr:
  
 Compiler accepts -std=c++17: YES
 Running compile:
-Working directory:  /home/vega/Coding/Game/cppong/build/meson-private/tmpcb0m_9e3
-Command line:  c++ /home/vega/Coding/Game/cppong/build/meson-private/tmpcb0m_9e3/testfile.cpp -o /home/vega/Coding/Game/cppong/build/meson-private/tmpcb0m_9e3/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive --print-search-dirs 
+Working directory:  /home/vega/Coding/Game/cppong/build/meson-private/tmp778yu1c7
+Command line:  c++ /home/vega/Coding/Game/cppong/build/meson-private/tmp778yu1c7/testfile.cpp -o /home/vega/Coding/Game/cppong/build/meson-private/tmp778yu1c7/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive --print-search-dirs 
 
 Code:
  

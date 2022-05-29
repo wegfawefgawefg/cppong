@@ -46,5 +46,11 @@
     "command": "c++ -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++17 -O3 -g -D_REENTRANT -MD -MQ 'main@exe/audio.cpp.o' -MF 'main@exe/audio.cpp.o.d' -o 'main@exe/audio.cpp.o' -c ../src/audio.cpp",
     "file": "../src/audio.cpp",
     "output": "main@exe/audio.cpp.o"
+  },
+  {
+    "directory": "/home/vega/Coding/Game/cppong/build",
+    "command": "c++ -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++17 -O3 -g -D_REENTRANT -MD -MQ 'main@exe/sprite_resource.cpp.o' -MF 'main@exe/sprite_resource.cpp.o.d' -o 'main@exe/sprite_resource.cpp.o' -c ../src/sprite_resource.cpp",
+    "file": "../src/sprite_resource.cpp",
+    "output": "main@exe/sprite_resource.cpp.o"
   }
 ]

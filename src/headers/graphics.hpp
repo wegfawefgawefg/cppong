@@ -9,6 +9,7 @@
 #include <SDL2/SDL_mixer.h>
 
 class Game;
+class SpriteResource;
 class Graphics {
     public:
         static const int window_width = 1280;
@@ -21,6 +22,8 @@ class Graphics {
         SDL_Renderer *renderer;
         TTF_Font *font; 
 
+        std::vector<SpriteResource> sprite_resources;
+
 	Graphics();
     ~Graphics();
     void draw_text(        
@@ -30,6 +33,7 @@ class Graphics {
     void draw_frame_rate(float dt);
     void draw_entity_count(int num_entities);
     void render(const Game& game);
+    void load_sprite_resources(Graphics* graphics);
 };
 
 #endif

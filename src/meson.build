@@ -23,6 +23,7 @@ executable('main',
         'emitter.cpp',
         'random.cpp',
         'audio.cpp',
+        'sprite_resource.cpp',
     ],
     include_directories: [
         'headers',

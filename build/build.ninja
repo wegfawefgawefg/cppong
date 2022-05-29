@@ -68,7 +68,11 @@ build main@exe/audio.cpp.o: cpp_COMPILER ../src/audio.cpp
  DEPFILE = main@exe/audio.cpp.o.d
  ARGS = -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++17 -O3 -g -D_REENTRANT
 
-build main: cpp_LINKER main@exe/main.cpp.o main@exe/game.cpp.o main@exe/graphics.cpp.o main@exe/entity.cpp.o main@exe/transient.cpp.o main@exe/emitter.cpp.o main@exe/random.cpp.o main@exe/audio.cpp.o | /usr/lib/x86_64-linux-gnu/libSDL2.so /usr/lib/x86_64-linux-gnu/libSDL2_image.so /usr/lib/x86_64-linux-gnu/libSDL2_ttf.so /usr/lib/x86_64-linux-gnu/libSDL2_mixer.so
+build main@exe/sprite_resource.cpp.o: cpp_COMPILER ../src/sprite_resource.cpp
+ DEPFILE = main@exe/sprite_resource.cpp.o.d
+ ARGS = -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++17 -O3 -g -D_REENTRANT
+
+build main: cpp_LINKER main@exe/main.cpp.o main@exe/game.cpp.o main@exe/graphics.cpp.o main@exe/entity.cpp.o main@exe/transient.cpp.o main@exe/emitter.cpp.o main@exe/random.cpp.o main@exe/audio.cpp.o main@exe/sprite_resource.cpp.o | /usr/lib/x86_64-linux-gnu/libSDL2.so /usr/lib/x86_64-linux-gnu/libSDL2_image.so /usr/lib/x86_64-linux-gnu/libSDL2_ttf.so /usr/lib/x86_64-linux-gnu/libSDL2_mixer.so
  LINK_ARGS = -Wl,--as-needed -Wl,--no-undefined -Wl,--start-group /usr/lib/x86_64-linux-gnu/libSDL2.so /usr/lib/x86_64-linux-gnu/libSDL2_image.so /usr/lib/x86_64-linux-gnu/libSDL2_ttf.so /usr/lib/x86_64-linux-gnu/libSDL2_mixer.so -Wl,--end-group
 
 # Test rules
