@@ -1,5 +1,5 @@
 #include "Entity.hpp"
-#include "Random.hpp"
+#include "Utilities.hpp"
 
 Entity* Entity::_instance = NULL;
 

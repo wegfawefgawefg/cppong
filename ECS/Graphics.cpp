@@ -6,6 +6,7 @@ Graphics::Graphics()
 {
     window = nullptr;
     renderer = nullptr;
+    font = nullptr;
 }
 
 Graphics::~Graphics()

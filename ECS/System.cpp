@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <string>
+
 #include "Systems.hpp"
 
 void Systems::addSystem(System* system)

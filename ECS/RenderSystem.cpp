@@ -1,7 +1,8 @@
 #include <iostream>
+
 #include "Systems.hpp"
 #include "Components.hpp"
-#include "Random.hpp"
+#include "Utilities.hpp"
 #include "Entity.hpp"
 
 RenderSystem::RenderSystem(Graphics* graphics)

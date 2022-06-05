@@ -6,8 +6,8 @@
 #include "Graphics.hpp"
 #include "Systems.hpp"
 #include "Components.hpp"
-#include "Random.hpp"
 #include "Entity.hpp"
+#include "Utilities.hpp"
 
 Game::Game()
 {
@@ -87,7 +87,7 @@ void Game::update()
     lastTime = now;
 
     systems->process(deltaTime);
-    fps = 1 / deltaTime;
+    fps = (float)(1.0 / deltaTime);
 }
 
 
