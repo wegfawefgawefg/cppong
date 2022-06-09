@@ -1,10 +1,9 @@
-#include "Game.hpp"
+#include <iostream>
 
-#undef main
+#include "Game.h"
 
-int main()
-{
-    Game game = Game();
+int main() {
+    Game game;
     game.run();
     return 0;
 }
