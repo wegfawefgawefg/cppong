@@ -18,7 +18,9 @@ public:
 
     void playSound(const std::string &name);
 
-    void playSound(const std::string &name, int loops);
+    void playSound(const std::string &name, float pan);
+
+    void playSound(const std::string &name, float pan, int loops);
 
     void stopMusic();
 

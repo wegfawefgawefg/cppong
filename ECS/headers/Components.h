@@ -74,6 +74,7 @@ struct ParticleEmitter
 struct PlaySound
 {
     std::string sound;
+    float pan;
     bool loop;
     bool isPlaying;
 };

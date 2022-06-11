@@ -83,14 +83,22 @@ void Mixer::playMusic(const std::string &name)
 
 void Mixer::playSound(const std::string &name)
 {
-    playSound(name, 0);
+    playSound(name, 0, 0);
 }
 
+void Mixer::playSound(const std::string &name, float pan)
+{
+    playSound(name, pan, 0);
+}
 
-void Mixer::playSound(const std::string &name, int loops)
+void Mixer::playSound(const std::string &name, float pan, int loops)
 {
     currentSound = soundMap[name];
-    Mix_PlayChannel(-1, currentSound, loops);
+    int channel = Mix_PlayChannel(-1, currentSound, loops);
+    if (pan == 0)
+        Mix_SetPanning(channel, 255, 255);
+    else
+        Mix_SetPanning(channel, (Uint8) (255 - pan * 255), (Uint8) (pan * 255));
 }
 
 

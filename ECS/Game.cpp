@@ -22,7 +22,7 @@ void Game::run()
 {
     world.set<flecs::Rest>({});
     world.set_target_fps(120);
-    // world.set<PlayMusic>({"music"});
+    world.set<PlayMusic>({"music"});
 
     // FPS counter
     fpsText = world.entity()
@@ -84,191 +84,165 @@ void Game::setupSystems()
 {
     // update the world grid
     world.system<Position>()
-            .iter([this](flecs::iter it, Position *p)
+            .iter([this](flecs::iter it, Position *position)
                   {
                       grid->clear();
-                      for (Uint8 i: it)
+                      for (Uint8 index: it)
                       {
-
-                          auto *v = it.entity(i).get<Volume>();
-                          if (v != nullptr)
-                          {
-                              grid->add(it.entity(i), *p, *v);
-                          }
+                          auto *volume = it.entity(index).get<Volume>();
+                          if (volume != nullptr)
+                              grid->add(it.entity(index), *position, *volume);
                           else
-                          {
-                              grid->add(it.entity(i), *p, glm::vec2(1, 1));
-                          }
+                              grid->add(it.entity(index), *position, glm::vec2(1, 1));
                       }
                   })
             .add(flecs::PreUpdate);
 
     // System that plays music
     world.system<PlayMusic>()
-            .iter([this](flecs::iter it, PlayMusic *m)
+            .each([this](flecs::iter &it, size_t index, PlayMusic &m)
                   {
-                      if (!m->isPlaying)
+                      if (!m.isPlaying)
                       {
-                          mixer->playMusic(m->music);
-                          m->isPlaying = true;
+                          mixer->playMusic(m.music);
+                          m.isPlaying = true;
                       }
                   });
 
     // System that will spawn particles
     world.system<Position, ParticleEmitter>()
-            .iter([](flecs::iter it, Position *p, ParticleEmitter *pe)
+            .each([](flecs::iter &it, size_t index, Position &position, ParticleEmitter &emitter)
                   {
-                      for (Uint8 i: it)
+                      if (emitter.spawnTimer > 0)
                       {
-                          if (pe[i].spawnTimer > 0)
-                          {
-                              pe[i].spawnTimer -= it.delta_time();
-                              continue;
-                          }
-                          pe[i].spawnTimer = 0;
-                          do
-                          {
-                              // create a new vector based on the emitter's angle
-                              double angle = pe[i].angle;
-                              if (angle == -1)
-                              {
-                                  angle = frand(0, 1) * 360;
-                              }
-                              else
-                              {
-                                  angle = pe[i].angle + frand(-1, 1) * pe[i].angleVariance;
-                              }
-                              // convert angle to radians
-                              angle = (angle * (M_PI / 180));
-                              // create a new velocity vector x and y
-                              auto vy = (float) sin(angle);
-                              auto vx = (float) cos(angle);
-                              auto speed = frand(pe[i].speed, pe[i].speed * pe[i].speedVariance);
-                              // Create a new particle
-                              it.world().entity()
-                                      .add<WindowBound>()
-                                      .add<Particle>()
-                                      .set<Position>({p[i]})
-                                      .set<Velocity>({{vx * speed, vy * speed}})
-                                      .set<Lifespan>({pe[i].lifespan, pe[i].lifespan});
-                              pe[i].spawnTimer += frand(pe[i].spawnRate,
-                                                        pe[i].spawnRate * pe[i].spawnRateVariance);
-                          }
-                          while (pe[i].spawnTimer < it.delta_time());
+                          emitter.spawnTimer -= it.delta_time();
+                          return;
                       }
+                      emitter.spawnTimer = 0;
+                      do
+                      {
+                          // create a new vector based on the emitter's angle
+                          double angle = emitter.angle;
+                          if (angle == -1)
+                          {
+                              angle = frand(0, 1) * 360;
+                          }
+                          else
+                          {
+                              angle = emitter.angle + frand(-1, 1) * emitter.angleVariance;
+                          }
+                          // convert angle to radians
+                          angle = (angle * (M_PI / 180));
+                          // create a new velocity vector x and y
+                          auto vy = (float) sin(angle);
+                          auto vx = (float) cos(angle);
+                          auto speed = frand(emitter.speed, emitter.speed * emitter.speedVariance);
+                          // Create a new particle
+                          it.world().entity()
+                                  .add<WindowBound>()
+                                  .add<Particle>()
+                                  .set<Position>({position})
+                                  .set<Velocity>({{vx * speed, vy * speed}})
+                                  .set<Lifespan>({emitter.lifespan, emitter.lifespan});
+                          emitter.spawnTimer += frand(emitter.spawnRate,
+                                                      emitter.spawnRate * emitter.spawnRateVariance);
+                      }
+                      while (emitter.spawnTimer < it.delta_time());
                   })
             .add(flecs::OnUpdate);
 
     // System that will move entities based on their velocity
     world.system<Position, Velocity>()
-            .iter([](flecs::iter it, Position *p, Velocity *v)
+            .each([this](flecs::iter &it, size_t index, Position &position, Velocity &velocity)
                   {
-                      for (Uint8 i: it)
-                      {
-                          p[i] += v[i] * it.delta_time();
-                      }
+                      position += velocity * it.delta_time();
                   })
             .add(flecs::OnUpdate);
 
-    // System that will move keep entities within the window bounds
-    world.system<Position, Velocity, WindowBound>()
-            .iter([this](flecs::iter it, Position *p, Velocity *v, WindowBound *w)
+    world.system<Position, Velocity, const WindowBound>()
+            .each([this](flecs::iter &it, size_t index, Position &position, Velocity &velocity,
+                         const WindowBound &bound)
                   {
-                      for (Uint8 i: it)
+                      bool bounced = false;
+                      if (position.x < 0)
                       {
-                          bool bounced = false;
-                          if (p[i].x < 0)
-                          {
-                              p[i].x = 0;
-                              v[i].x *= -1;
-                              bounced = true;
-                          }
-                          else if (p[i].x > (float) graphics->getScreenWidth())
-                          {
-                              p[i].x = (float) graphics->getScreenWidth();
-                              v[i].x *= -1;
-                              bounced = true;
-                          }
-                          if (p[i].y < 0)
-                          {
-                              p[i].y = 0;
-                              v[i].y *= -1;
-                              bounced = true;
-                          }
-                          else if (p[i].y > (float) graphics->getScreenHeight())
-                          {
-                              p[i].y = (float) graphics->getScreenHeight();
-                              v[i].y *= -1;
-                              bounced = true;
-                          }
-                          bool isEmitter = it.entity(i).has<ParticleEmitter>();
-                          if (bounced && isEmitter) it.entity(i).set<PlaySound>({"sound"});
+                          position.x = 0;
+                          velocity.x *= -1;
+                          bounced = true;
                       }
+                      else if (position.x > (float) graphics->getScreenWidth())
+                      {
+                          position.x = (float) graphics->getScreenWidth();
+                          velocity.x *= -1;
+                          bounced = true;
+                      }
+                      if (position.y < 0)
+                      {
+                          position.y = 0;
+                          velocity.y *= -1;
+                          bounced = true;
+                      }
+                      else if (position.y > (float) graphics->getScreenHeight())
+                      {
+                          position.y = (float) graphics->getScreenHeight();
+                          velocity.y *= -1;
+                          bounced = true;
+                      }
+                      bool isEmitter = it.entity(index).has<ParticleEmitter>();
+                      if (bounced && isEmitter)
+                      {
+                          float pan = (position.x / (float) graphics->getScreenWidth()) * 2 - 1;
+                          it.entity(index).set<PlaySound>({"sound", pan});
+                      }
+
                   })
             .add(flecs::OnUpdate);
-
-
 
     // System that reduces the lifespan of entities
     world.system<Lifespan>()
-            .iter([this](flecs::iter it, Lifespan *l)
+            .each([](flecs::iter &it, size_t index, Lifespan &lifespan)
                   {
-                      for (Uint8 i: it)
+                      lifespan.time -= it.delta_time();
+                      if (lifespan.time <= 0)
                       {
-                          l[i].time -= it.delta_time();
-                          if (l[i].time <= 0)
-                          {
-                              it.entity(i).add<IsDead>();
-                          }
+                          it.entity(index).add<IsDead>();
                       }
                   })
             .add(flecs::OnUpdate);
 
     // System that will draw text to the screen
     world.system<Position, Text>()
-            .iter([this](flecs::iter it, Position *p, Text *t)
+            .each([this](flecs::iter &it, size_t index, Position &position, Text &text)
                   {
-                      for (Uint8 i: it)
-                      {
-                          graphics->drawText(t[i], p[i]);
-                      }
+                      graphics->drawText(text, position);
                   })
             .add(flecs::OnUpdate);
 
     // System that will draw particles to the screen
-    world.system<Position, Particle>()
-            .iter([this](flecs::iter it, Position *p, Particle *pa)
+    world.system<Position, const Particle>()
+            .each([this](flecs::iter &it, size_t index, Position &position, const Particle &particle)
                   {
-                      for (Uint8 i: it)
-                      {
-                          graphics->drawRect(p[i], (Volume) {{1, 1}}, {255, 255, 255, 255});
-                      }
+                      graphics->drawRect(position, (Volume) {{1, 1}}, {255, 255, 255, 255});
                   })
             .add(flecs::OnUpdate);
 
     // System that plays sounds
     world.system<PlaySound>()
-            .iter([this](flecs::iter it, PlaySound *s)
+            .each([this](flecs::iter &it, size_t index, PlaySound &s)
                   {
-                      for (Uint8 i: it)
+                      if (!s.isPlaying)
                       {
-                          if (!s->isPlaying)
-                          {
-                              mixer->playSound(s->sound);
-                              s->isPlaying = true;
-                              it.entity(i).remove<PlaySound>();
-                          }
+                          mixer->playSound(s.sound, s.pan);
+                          s.isPlaying = true;
+                          it.entity(index).remove<PlaySound>();
                       }
                   });
 
     // System that will remove all dead entities
-    world.system<IsDead>()
-            .iter([](flecs::iter it)
+    world.system<const IsDead>()
+            .each([](flecs::iter it, size_t index, const IsDead &dead)
                   {
-                      for (Uint8 i: it)
-                      {
-                          it.entity(i).destruct();
-                      }
+                      it.entity(index).destruct();
                   })
             .add(flecs::PostUpdate);
 }
