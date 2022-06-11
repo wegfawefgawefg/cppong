@@ -14,6 +14,7 @@ add_executable(
         headers/Components.h
         headers/Game.h
         headers/Graphics.h
+        headers/Grid.h
         headers/Mixer.h
         headers/Utilities.h
         main.cpp
@@ -21,7 +22,7 @@ add_executable(
         Graphics.cpp
         Mixer.cpp
         Utilities.cpp
-)
+        Grid.cpp)
 
 find_package(SDL2 CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE SDL2::SDL2 SDL2::SDL2main SDL2::SDL2-static)
@@ -31,3 +32,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE SDL2::SDL2_ttf)
 
 find_package(sdl2-mixer CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE SDL2::SDL2_mixer)
+
+find_package(glm CONFIG REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE glm::glm)

@@ -95,6 +95,15 @@ void Graphics::present()
 }
 
 
+void Graphics::drawRect(Position position, Volume volume, SDL_Color color)
+{
+    int x = (int) position.x;
+    int y = (int) position.y;
+    int w = (int) volume.x;
+    int h = (int) volume.y;
+    drawRect(x, y, w, h, color);
+}
+
 void Graphics::drawRect(int x, int y, int w, int h, SDL_Color color)
 {
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
@@ -106,6 +115,12 @@ void Graphics::drawRect(int x, int y, int w, int h, SDL_Color color)
 void Graphics::drawText(const char *text, int x, int y, SDL_Color color)
 {
     drawText(text, x, y, color, Align::TOP_LEFT);
+}
+
+void Graphics::drawText(const Text &text, const Position position)
+{
+    drawText(text.value.c_str(), static_cast<int>(position.x), static_cast<int>(position.y), text.color,
+             text.align);
 }
 
 void Graphics::drawText(const char *text, int x, int y, SDL_Color color, Align align)

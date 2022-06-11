@@ -4,8 +4,10 @@
 
 #pragma once
 
+#include <glm/glm.hpp>
 #include "Utilities.h"
 
+using namespace glm;
 
 struct WindowBound
 {
@@ -17,41 +19,33 @@ struct Particle
 };
 
 
-struct Dead
+struct IsDead
 {
 };
 
 
-struct Volume
+struct Volume : vec2
 {
-    float width;
-    float height;
 };
 
-struct Position
+struct Position : vec2
 {
-    float x;
-    float y;
 };
 
 
-struct Velocity
+struct Velocity : vec2
 {
-    float x;
-    float y;
 };
 
 
-struct Acceleration
+struct Acceleration : vec2
 {
-    float x;
-    float y;
 };
 
 
 struct Text
 {
-    std::string text;
+    std::string value;
     SDL_Color color;
     Align align;
 };

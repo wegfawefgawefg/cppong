@@ -7,6 +7,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
+#include "Components.h"
 #include "Utilities.h"
 
 
@@ -25,11 +26,15 @@ public:
 
     [[nodiscard]] int getScreenHeight() const;
 
+    void drawRect(Position position, Volume volume, SDL_Color color);
+
     void drawRect(int x, int y, int w, int h, SDL_Color color);
 
     void drawText(const char *text, int x, int y, SDL_Color color);
 
     void drawText(const char *text, int x, int y, SDL_Color color, Align align);
+
+    void drawText(const Text &text, Position position);
 
 private:
     int screenWidth;

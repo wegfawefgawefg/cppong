@@ -9,6 +9,7 @@
 #include "flecs/flecs.h"
 #include "Graphics.h"
 #include "Mixer.h"
+#include "Grid.h"
 
 class Game
 {
@@ -29,9 +30,10 @@ private:
 
     Graphics *graphics;
     Mixer *mixer;
+    Grid *grid;
 
     bool isRunning = false;
-    Uint64 lastFrameTime = 0;
+    Uint32 lastFrameTime = 0;
     flecs::entity fpsText;
     flecs::world world;
 
