@@ -46,5 +46,5 @@ private:
     SDL_Renderer *renderer;
     TTF_Font *font;
 
-    SDL_Color clearColor = {10, 10, 20, 255};
+    SDL_Color clearColor = {40, 20, 40, 255};
 };

@@ -24,4 +24,4 @@ std::vector<int> getAlignOffsets(Align align, int width, int height);
 
 float frand(float min, float max);
 
-std::vector<std::string> getFilesInDirectory(const std::string &directory);
+std::vector<std::string> getFilesInDirectory(const std::string &directory, const std::string &pattern);

@@ -21,7 +21,7 @@ Mixer::Mixer()
 
     // load assets in the assetPath/music folder
     std::string musicPath = assetPath + "music/";
-    std::vector<std::string> musicFiles = getFilesInDirectory(musicPath);
+    std::vector<std::string> musicFiles = getFilesInDirectory(musicPath, ".wav|.mp3");
 
     for (auto &file: musicFiles)
     {
@@ -39,7 +39,7 @@ Mixer::Mixer()
     }
 
     std::string soundPath = assetPath + "sounds/";
-    std::vector<std::string> soundFiles = getFilesInDirectory(soundPath);
+    std::vector<std::string> soundFiles = getFilesInDirectory(soundPath, ".wav");
     for (auto &file: soundFiles)
     {
         std::string filePath = soundPath + file;

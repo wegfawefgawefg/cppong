@@ -3,6 +3,7 @@
 //
 
 #include <dirent.h>
+#include <sstream>
 #include "Utilities.h"
 
 
@@ -54,29 +55,52 @@ float frand(float min, float max)
     return dist(mt);
 }
 
-std::vector<std::string> getFilesInDirectory(const std::string &directory)
+bool stringEndsWith(std::string *s, std::string *suffix)
+{
+    if (!s || !suffix)
+        return false;
+    size_t sLng = s->length();
+    size_t suffixLng = suffix->length();
+    if (suffixLng > sLng)
+        return false;
+    return s->compare(sLng - suffixLng, suffixLng, *suffix) == 0;
+}
+
+std::vector<std::string> getFilesInDirectory(const std::string &directory, const std::string &pattern)
 {
     std::vector<std::string> files;
-    DIR *dir;
+    DIR *dir = opendir(directory.c_str());
     struct dirent *ent;
-    if ((dir = opendir(directory.c_str())) != nullptr)
+    if (dir == nullptr)
     {
-        try
-        {
-            while ((ent = readdir(dir)) != nullptr)
-            {
-                std::string fileName = ent->d_name;
-                if (fileName != "." && fileName != "..")
-                {
-                    files.push_back(fileName);
-                }
-            }
-        }
-        catch (...)
-        {
-            closedir(dir);
-            throw;
-        }
+        throw std::runtime_error("Failed to open directory: " + directory);
     }
+    // regex pattern for file name
+    std::vector<std::string> patterns;
+    if (pattern.find('|') != std::string::npos)
+    {
+        // split by pipe
+        std::stringstream ss(pattern);
+        std::string item;
+        while (std::getline(ss, item, '|'))
+            patterns.push_back(item);
+    }
+    else
+        patterns.push_back(pattern);
+
+    while ((ent = readdir(dir)) != nullptr)
+    {
+        std::string fileName = ent->d_name;
+        if (fileName == "." || fileName == "..")
+            continue;
+        // if the filename ends with any of the patters, add it to the list
+        for (auto &patt: patterns)
+            if (stringEndsWith(&fileName, &patt))
+            {
+                files.push_back(fileName);
+                break;
+            }
+    }
+    closedir(dir);
     return files;
 }

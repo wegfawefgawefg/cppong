@@ -33,7 +33,7 @@ void Game::run()
     // Bouncing particle emitter
     world.entity()
             .add<WindowBound>()
-            .set<ParticleEmitter>({0.01, 0, 0, -1, 0, 5, 30})
+            .set<ParticleEmitter>({1.0 / 120, 0, 0, -1, 0, 5, 30})
             .set<Position>({{(float) screenWidth / 2, (float) screenHeight / 2}})
             .set<Velocity>({{frand(-2, 2) * 100, frand(-2, 2) * 100}});
 
