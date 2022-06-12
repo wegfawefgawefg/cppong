@@ -190,3 +190,5 @@ Temporary Items
 
 /subprojects/*
 !subprojects/.gitkeep
+
+/builddir/
