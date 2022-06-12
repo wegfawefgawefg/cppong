@@ -4,7 +4,6 @@
 # Build -----------------------------------------------------------------------
 
 ### Output and Cache Directories ###
-/External/
 /Debug/
 /Docs/
 /Release/
@@ -187,3 +186,5 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+/External/flecs/*.[ch]
