@@ -130,8 +130,8 @@ void Graphics::drawText(const char *text, int x, int y, SDL_Color color, Align a
     SDL_FreeSurface(surface);
     int textWidth = surface->w;
     int textHeight = surface->h;
-    std::vector<int> offsets = getAlignOffsets(align, textWidth, textHeight);
-    SDL_Rect rect = {x + offsets[0], y + offsets[1], textWidth, textHeight};
+    glm::vec2 offsets = getAlignOffsets(align, textWidth, textHeight);
+    SDL_Rect rect = {(int)offsets.x, (int)offsets.y, textWidth, textHeight};
     SDL_RenderCopy(renderer, texture, nullptr, &rect);
     SDL_DestroyTexture(texture);
 }

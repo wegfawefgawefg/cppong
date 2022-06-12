@@ -19,6 +19,7 @@ executable('main',
     ],
     include_directories: [
         'headers',
+        'external',
     ],
     dependencies: [
         dependency('sdl2'),
@@ -26,6 +27,5 @@ executable('main',
         dependency('SDL2_image'),
         dependency('SDL2_mixer'),
         dependency('glm', required : true, fallback : ['glm','glm_dep']),
-
     ],
 )
