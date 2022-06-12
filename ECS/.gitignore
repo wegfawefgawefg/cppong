@@ -5,6 +5,7 @@
 
 ### Output and Cache Directories ###
 /Debug/
+/External/
 /Docs/
 /Release/
 /build/
@@ -187,4 +188,5 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-/External/flecs/*.[ch]
+/subprojects/*
+!subprojects/.gitkeep

@@ -1,0 +1,13 @@
+Build started at 2022-06-11T23:08:56.876797
+Main binary: /opt/brew/Cellar/meson/0.62.2/libexec/bin/python3.10
+Build Options: 
+Python system: Darwin
+The Meson build system
+Version: 0.62.2
+Source dir: /Users/kyle/git/cppong/ECS
+Build dir: /Users/kyle/git/cppong/ECS/builddir
+Build type: native build
+Project name: main
+Project version: 0.0.1
+
+meson.build:1:0: ERROR: Value "clang++20" (of type "string") for combo option "C++ language standard to use" is not one of the choices. Possible choices are (as string): "none", "c++98", "c++03", "c++11", "c++14", "c++17", "c++1z", "c++2a", "c++20", "gnu++11", "gnu++14", "gnu++17", "gnu++1z", "gnu++2a", "gnu++20".

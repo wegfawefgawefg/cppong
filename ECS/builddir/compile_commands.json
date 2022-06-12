@@ -1,0 +1,38 @@
+[
+  {
+    "directory": "/Users/kyle/git/cppong/ECS/builddir",
+    "command": "c++ -Imain.p -I. -I.. -I../headers -I../external -I/Users/kyle/git/vcpkg/installed/x64-osx/lib/pkgconfig/../../include/SDL2 -I/Users/kyle/git/vcpkg/installed/x64-osx/lib/pkgconfig/../../include -I/Users/kyle/git/vcpkg/installed/x64-osx/lib/pkgconfig/../../include/libpng16 -I/opt/brew/Cellar/glm/0.9.9.8/include -fcolor-diagnostics -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++17 -O3 -g -D_THREAD_SAFE -MD -MQ main.p/Game.cpp.o -MF main.p/Game.cpp.o.d -o main.p/Game.cpp.o -c ../Game.cpp",
+    "file": "../Game.cpp",
+    "output": "main.p/Game.cpp.o"
+  },
+  {
+    "directory": "/Users/kyle/git/cppong/ECS/builddir",
+    "command": "c++ -Imain.p -I. -I.. -I../headers -I../external -I/Users/kyle/git/vcpkg/installed/x64-osx/lib/pkgconfig/../../include/SDL2 -I/Users/kyle/git/vcpkg/installed/x64-osx/lib/pkgconfig/../../include -I/Users/kyle/git/vcpkg/installed/x64-osx/lib/pkgconfig/../../include/libpng16 -I/opt/brew/Cellar/glm/0.9.9.8/include -fcolor-diagnostics -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++17 -O3 -g -D_THREAD_SAFE -MD -MQ main.p/Graphics.cpp.o -MF main.p/Graphics.cpp.o.d -o main.p/Graphics.cpp.o -c ../Graphics.cpp",
+    "file": "../Graphics.cpp",
+    "output": "main.p/Graphics.cpp.o"
+  },
+  {
+    "directory": "/Users/kyle/git/cppong/ECS/builddir",
+    "command": "c++ -Imain.p -I. -I.. -I../headers -I../external -I/Users/kyle/git/vcpkg/installed/x64-osx/lib/pkgconfig/../../include/SDL2 -I/Users/kyle/git/vcpkg/installed/x64-osx/lib/pkgconfig/../../include -I/Users/kyle/git/vcpkg/installed/x64-osx/lib/pkgconfig/../../include/libpng16 -I/opt/brew/Cellar/glm/0.9.9.8/include -fcolor-diagnostics -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++17 -O3 -g -D_THREAD_SAFE -MD -MQ main.p/Grid.cpp.o -MF main.p/Grid.cpp.o.d -o main.p/Grid.cpp.o -c ../Grid.cpp",
+    "file": "../Grid.cpp",
+    "output": "main.p/Grid.cpp.o"
+  },
+  {
+    "directory": "/Users/kyle/git/cppong/ECS/builddir",
+    "command": "c++ -Imain.p -I. -I.. -I../headers -I../external -I/Users/kyle/git/vcpkg/installed/x64-osx/lib/pkgconfig/../../include/SDL2 -I/Users/kyle/git/vcpkg/installed/x64-osx/lib/pkgconfig/../../include -I/Users/kyle/git/vcpkg/installed/x64-osx/lib/pkgconfig/../../include/libpng16 -I/opt/brew/Cellar/glm/0.9.9.8/include -fcolor-diagnostics -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++17 -O3 -g -D_THREAD_SAFE -MD -MQ main.p/main.cpp.o -MF main.p/main.cpp.o.d -o main.p/main.cpp.o -c ../main.cpp",
+    "file": "../main.cpp",
+    "output": "main.p/main.cpp.o"
+  },
+  {
+    "directory": "/Users/kyle/git/cppong/ECS/builddir",
+    "command": "c++ -Imain.p -I. -I.. -I../headers -I../external -I/Users/kyle/git/vcpkg/installed/x64-osx/lib/pkgconfig/../../include/SDL2 -I/Users/kyle/git/vcpkg/installed/x64-osx/lib/pkgconfig/../../include -I/Users/kyle/git/vcpkg/installed/x64-osx/lib/pkgconfig/../../include/libpng16 -I/opt/brew/Cellar/glm/0.9.9.8/include -fcolor-diagnostics -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++17 -O3 -g -D_THREAD_SAFE -MD -MQ main.p/Mixer.cpp.o -MF main.p/Mixer.cpp.o.d -o main.p/Mixer.cpp.o -c ../Mixer.cpp",
+    "file": "../Mixer.cpp",
+    "output": "main.p/Mixer.cpp.o"
+  },
+  {
+    "directory": "/Users/kyle/git/cppong/ECS/builddir",
+    "command": "c++ -Imain.p -I. -I.. -I../headers -I../external -I/Users/kyle/git/vcpkg/installed/x64-osx/lib/pkgconfig/../../include/SDL2 -I/Users/kyle/git/vcpkg/installed/x64-osx/lib/pkgconfig/../../include -I/Users/kyle/git/vcpkg/installed/x64-osx/lib/pkgconfig/../../include/libpng16 -I/opt/brew/Cellar/glm/0.9.9.8/include -fcolor-diagnostics -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++17 -O3 -g -D_THREAD_SAFE -MD -MQ main.p/Utilities.cpp.o -MF main.p/Utilities.cpp.o.d -o main.p/Utilities.cpp.o -c ../Utilities.cpp",
+    "file": "../Utilities.cpp",
+    "output": "main.p/Utilities.cpp.o"
+  }
+]
