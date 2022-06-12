@@ -192,4 +192,4 @@ subprojects/*
 !subprojects/.gitkeep
 
 builddir/
-!subprojects/.wrap
+!subprojects/*.wrap
