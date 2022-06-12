@@ -153,7 +153,7 @@ void Game::setupSystems()
 
     // System that will move entities based on their velocity
     world.system<Position, Velocity>()
-            .each([this](flecs::iter &it, size_t index, Position &position, Velocity &velocity)
+            .each([](flecs::iter &it, size_t index, Position &position, Velocity &velocity)
                   {
                       position += velocity * it.delta_time();
                   })
