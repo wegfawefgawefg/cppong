@@ -78,9 +78,36 @@ set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "/usr/local/lib" "/Users/kyle/git/cppong/E
 set(CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks")
 set(CMAKE_C_COMPILER_FORCED "1")
 
+# -- Variables for language objc
+set(CMAKE_OBJC_COMPILER "/usr/bin/cc")
+set(CMAKE_OBJC_COMPILER_ID "AppleClang")
+set(CMAKE_OBJC_COMPILER_VERSION "13.1.6.13160021")
+set(CMAKE_OBJC_STANDARD_COMPUTED_DEFAULT "11")
+set(CMAKE_OBJC_EXTENSIONS_COMPUTED_DEFAULT "ON")
+set(CMAKE_OBJC_PLATFORM_ID "Darwin")
+set(CMAKE_AR "/usr/bin/ar")
+set(CMAKE_RANLIB "/usr/bin/ranlib")
+set(CMAKE_LINKER "/usr/bin/ld")
+set(CMAKE_OBJC_COMPILER_LOADED "1")
+set(CMAKE_OBJC_COMPILER_ENV_VAR "OBJC")
+set(CMAKE_OBJC_COMPILER_ID_RUN "1")
+set(CMAKE_OBJC_SOURCE_FILE_EXTENSIONS "m")
+set(CMAKE_OBJC_IGNORE_EXTENSIONS "h" "H" "o" "O")
+set(CMAKE_OBJC_LINKER_PREFERENCE "5")
+set(CMAKE_OBJC_COMPILER_WORKS "TRUE")
+set(CMAKE_OBJC_ABI_COMPILED "TRUE")
+set(CMAKE_OBJC_SIZEOF_DATA_PTR "8")
+set(CMAKE_OBJC_BYTE_ORDER "LITTLE_ENDIAN")
+set(CMAKE_SIZEOF_VOID_P "8")
+set(CMAKE_OBJC_IMPLICIT_INCLUDE_DIRECTORIES "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.1.6/include" "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include" "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include")
+set(CMAKE_OBJC_IMPLICIT_LINK_DIRECTORIES "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib")
+set(CMAKE_OBJC_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks")
+set(CMAKE_OBJC_COMPILER_FORCED "1")
+
 
 # Variables from meson
 set(CMAKE_SIZEOF_VOID_P "8")
 set(CMAKE_CXX_COMPILER "/usr/bin/c++")
 set(CMAKE_C_COMPILER "/usr/bin/cc")
+set(CMAKE_OBJC_COMPILER "/usr/bin/cc")
 

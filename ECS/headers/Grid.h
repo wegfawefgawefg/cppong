@@ -9,7 +9,7 @@
 #include <vector>
 
 #include <glm/glm.hpp>
-#include "flecs/flecs.h"
+#include <flecs.h>
 
 class Grid
 {

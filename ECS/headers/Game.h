@@ -5,8 +5,8 @@
 #pragma once
 
 #include <SDL.h>
+#include <flecs.h>
 
-#include "flecs/flecs.h"
 #include "Graphics.h"
 #include "Mixer.h"
 #include "Grid.h"
@@ -33,7 +33,6 @@ private:
     Grid *grid;
 
     bool isRunning = false;
-    Uint32 lastFrameTime = 0;
     flecs::entity fpsText;
     flecs::world world;
 

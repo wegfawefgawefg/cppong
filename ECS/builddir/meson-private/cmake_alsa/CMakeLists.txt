@@ -1,6 +1,6 @@
 
 cmake_minimum_required(VERSION ${CMAKE_VERSION})
-project(MesonTemp LANGUAGES CXX C)
+project(MesonTemp LANGUAGES C CXX OBJC)
 # fail noisily if attempt to use this file without setting:
 # cmake_minimum_required(VERSION ${CMAKE_VERSION})
 # project(... LANGUAGES ...)
