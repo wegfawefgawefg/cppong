@@ -188,7 +188,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-/subprojects/*
+subprojects/*
 !subprojects/.gitkeep
 
-/builddir/
+builddir/
