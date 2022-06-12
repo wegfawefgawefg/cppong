@@ -7,7 +7,7 @@
 #include "Utilities.h"
 
 
-std::vector<int> getAlignOffsets(Align align, int width, int height)
+glm::vec2 getAlignOffsets(Align align, int width, int height)
 {
     int x = 0;
     int y = 0;
@@ -44,7 +44,7 @@ std::vector<int> getAlignOffsets(Align align, int width, int height)
             y = -height;
             break;
     }
-    return {x, y};
+    return glm::vec2(x, y);
 }
 
 float frand(float min, float max)

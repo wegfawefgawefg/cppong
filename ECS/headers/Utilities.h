@@ -6,6 +6,7 @@
 
 #include <random>
 #include <SDL2/SDL.h>
+#include <glm/glm.hpp>
 
 enum class Align
 {
@@ -20,7 +21,7 @@ enum class Align
     BOTTOM_RIGHT
 };
 
-std::vector<int> getAlignOffsets(Align align, int width, int height);
+glm::vec2 getAlignOffsets(Align align, int width, int height);
 
 float frand(float min, float max);
 
