@@ -4,7 +4,7 @@ project('main',
     default_options: [
         'default_library=static',
         'optimization=3',
-        'cpp_std=c++20',
+        'cpp_std=c++17',
     ]
 )
 
@@ -32,15 +32,15 @@ flecs_dep = flecs_proj.get_variable('flecs_dep')
 
 executable('main',
     sources: [
-        'Game.cpp',
-        'Graphics.cpp',
-        'Grid.cpp',
-        'main.cpp',
-        'Mixer.cpp',
-        'Utilities.cpp',
+        'src/Game.cpp',
+        'src/Graphics.cpp',
+        'src/Grid.cpp',
+        'src/main.cpp',
+        'src/Mixer.cpp',
+        'src/Utilities.cpp',
     ],
     include_directories: [
-        'headers',
+        'src/headers',
     ],
     dependencies: [
         sdl2_dep,
