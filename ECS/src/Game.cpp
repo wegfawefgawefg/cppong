@@ -2,6 +2,8 @@
 // Created by Kyle Dougan on 6/6/22.
 //
 #include <iostream>
+#define _USE_MATH_DEFINES
+#include <cmath>
 
 #include "Game.h"
 #include "Components.h"
@@ -205,7 +207,9 @@ void Game::setupSystems()
     // System that will draw particles to the screen
     world.system<Position, const Particle>()
         .each([this](flecs::iter &it, size_t index, Position &position, const Particle &particle)
-              { graphics->drawRect(position, (Volume){{1, 1}}, {255, 255, 255, 255}); })
+              { 
+                Volume volume = {{1, 1}};
+                graphics->drawRect(position, volume, {255, 255, 255, 255}); })
         .add(flecs::OnUpdate);
 
     // System that plays sounds

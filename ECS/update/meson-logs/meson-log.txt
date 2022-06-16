@@ -1,0 +1,189 @@
+Build started at 2022-06-14T20:16:06.453709
+Main binary: C:\Program Files\Meson\meson.exe
+Build Options: 
+Python system: Windows
+The Meson build system
+Version: 0.55.0
+Source dir: C:\Users\kyle\Documents\git\cppong\ECS
+Build dir: C:\Users\kyle\Documents\git\cppong\ECS\update
+Build type: native build
+None of 'PKG_CONFIG_PATH' are defined in the environment, not changing global flags.
+None of 'PKG_CONFIG_PATH' are defined in the environment, not changing global flags.
+Project name: main
+Project version: 0.0.1
+None of 'CXX' are defined in the environment, not changing global flags.
+None of 'CXXFLAGS' are defined in the environment, not changing global flags.
+None of 'LDFLAGS' are defined in the environment, not changing global flags.
+None of 'CPPFLAGS' are defined in the environment, not changing global flags.
+None of 'CXX_LD' are defined in the environment, not changing global flags.
+Sanity testing C++ compiler: cl
+Is cross compiler: False.
+None of 'CXX_LD' are defined in the environment, not changing global flags.
+Sanity check compiler command line: cl C:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\sanitycheckcpp.cc /FeC:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\sanitycheckcpp.exe /MDd /nologo /showIncludes /link
+Sanity check compile stdout:
+sanitycheckcpp.cc
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command: C:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\sanitycheckcpp.exe
+C++ compiler for the build machine: cl (msvc 19.32.31329)
+C++ linker for the build machine: link link 14.32.31329.0
+None of 'AR' are defined in the environment, not changing global flags.
+None of 'CXX' are defined in the environment, not changing global flags.
+None of 'CXXFLAGS' are defined in the environment, not changing global flags.
+None of 'LDFLAGS' are defined in the environment, not changing global flags.
+None of 'CPPFLAGS' are defined in the environment, not changing global flags.
+None of 'CXX_LD' are defined in the environment, not changing global flags.
+Sanity testing C++ compiler: cl
+Is cross compiler: False.
+None of 'CXX_LD' are defined in the environment, not changing global flags.
+Sanity check compiler command line: cl C:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\sanitycheckcpp.cc /FeC:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\sanitycheckcpp.exe /MDd /nologo /showIncludes /link
+Sanity check compile stdout:
+sanitycheckcpp.cc
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command: C:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\sanitycheckcpp.exe
+C++ compiler for the host machine: cl (msvc 19.32.31329)
+C++ linker for the host machine: link link 14.32.31329.0
+None of 'AR' are defined in the environment, not changing global flags.
+Build machine cpu family: x86
+Build machine cpu: x86
+Host machine cpu family: x86
+Host machine cpu: x86
+Target machine cpu family: x86
+Target machine cpu: x86
+Message: optimization level is 3
+Message: standard: c++17
+
+Executing subproject sdl2 method meson 
+
+None of 'PKG_CONFIG_PATH' are defined in the environment, not changing global flags.
+None of 'PKG_CONFIG_PATH' are defined in the environment, not changing global flags.
+Project name: sdl2
+Project version: 2.0.20
+None of 'CC' are defined in the environment, not changing global flags.
+None of 'CFLAGS' are defined in the environment, not changing global flags.
+None of 'LDFLAGS' are defined in the environment, not changing global flags.
+None of 'CPPFLAGS' are defined in the environment, not changing global flags.
+None of 'CC_LD' are defined in the environment, not changing global flags.
+Sanity testing C compiler: cl
+Is cross compiler: False.
+None of 'CC_LD' are defined in the environment, not changing global flags.
+Sanity check compiler command line: cl C:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\sanitycheckc.c /FeC:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\sanitycheckc.exe /MDd /nologo /showIncludes /link
+Sanity check compile stdout:
+sanitycheckc.c
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command: C:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\sanitycheckc.exe
+C compiler for the build machine: cl (msvc 19.32.31329)
+C linker for the build machine: link link 14.32.31329.0
+None of 'CC' are defined in the environment, not changing global flags.
+None of 'CFLAGS' are defined in the environment, not changing global flags.
+None of 'LDFLAGS' are defined in the environment, not changing global flags.
+None of 'CPPFLAGS' are defined in the environment, not changing global flags.
+None of 'CC_LD' are defined in the environment, not changing global flags.
+Sanity testing C compiler: cl
+Is cross compiler: False.
+None of 'CC_LD' are defined in the environment, not changing global flags.
+Sanity check compiler command line: cl C:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\sanitycheckc.c /FeC:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\sanitycheckc.exe /MDd /nologo /showIncludes /link
+Sanity check compile stdout:
+sanitycheckc.c
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command: C:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\sanitycheckc.exe
+C compiler for the host machine: cl (msvc 19.32.31329)
+C linker for the host machine: link link 14.32.31329.0
+Running compile:
+Working directory:  C:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\tmpvxwm600m
+Command line:  cl C:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\tmpvxwm600m\testfile.c /FoC:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\tmpvxwm600m\output.obj /nologo /showIncludes /c /nologo /showIncludes /c /Od -Wdeclaration-after-statement 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ cl : Command line error D8021 : invalid numeric argument '/Wdeclaration-after-statement'
+
+Compiler for C supports arguments -Wdeclaration-after-statement: NO 
+Running compile:
+Working directory:  C:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\tmpz0zn4edx
+Command line:  cl C:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\tmpz0zn4edx\testfile.c /FoC:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\tmpz0zn4edx\output.obj /nologo /showIncludes /c /nologo /showIncludes /c /Od -Wshadow 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ cl : Command line error D8021 : invalid numeric argument '/Wshadow'
+
+Compiler for C supports arguments -Wshadow: NO 
+Running compile:
+Working directory:  C:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\tmpxosw7x32
+Command line:  cl C:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\tmpxosw7x32\testfile.c /FoC:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\tmpxosw7x32\output.obj /nologo /showIncludes /c /nologo /showIncludes /c /Od -fno-strict-aliasing 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ testfile.c
+
+Compiler stderr:
+ cl : Command line warning D9002 : ignoring unknown option '-fno-strict-aliasing'
+
+Compiler for C supports arguments -fno-strict-aliasing: NO 
+Running compile:
+Working directory:  C:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\tmp8kwkhoqm
+Command line:  cl C:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\tmp8kwkhoqm\testfile.c /FoC:\Users\kyle\Documents\git\cppong\ECS\update\meson-private\tmp8kwkhoqm\output.obj /nologo /showIncludes /c /nologo /showIncludes /c /Od -mpreferred-stack-boundary=2 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ testfile.c
+
+Compiler stderr:
+ cl : Command line warning D9002 : ignoring unknown option '-mpreferred-stack-boundary=2'
+
+Compiler for C supports arguments -mpreferred-stack-boundary=2: NO 
+Pkg-config binary for MachineChoice.HOST is not cached.
+None of 'PKG_CONFIG' are defined in the environment, not changing global flags.
+Pkg-config binary missing from cross or native file, or env var undefined.
+Trying a default Pkg-config fallback at pkg-config
+Found pkg-config: C:\ProgramData\chocolatey\bin\pkg-config.EXE (0.28)
+Determining dependency 'gl' with pkg-config executable 'C:\\ProgramData\\chocolatey\\bin\\pkg-config.EXE'
+PKG_CONFIG_PATH: 
+Called `C:\ProgramData\chocolatey\bin\pkg-config.EXE --modversion gl` -> 1
+
+Run-time dependency gl found: YES
+Pkg-config binary for MachineChoice.HOST is cached.
+Determining dependency 'glesv2' with pkg-config executable 'C:\\ProgramData\\chocolatey\\bin\\pkg-config.EXE'
+PKG_CONFIG_PATH: 
+Called `C:\ProgramData\chocolatey\bin\pkg-config.EXE --modversion glesv2` -> 1
+
+CMake binary for MachineChoice.HOST is not cached
+None of 'CMAKE' are defined in the environment, not changing global flags.
+CMake binary missing from cross or native file, or env var undefined.
+Trying a default CMake fallback at cmake
+Found CMake: C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.EXE (3.22.22040401)
+None of 'CMAKE_PREFIX_PATH' are defined in the environment, not changing global flags.
+Extracting basic cmake information
+Try CMake generator: auto
+None of 'FC' are defined in the environment, not changing global flags.
+Failed to find a fortran compiler for CMake. This might cause CMake to fail.
