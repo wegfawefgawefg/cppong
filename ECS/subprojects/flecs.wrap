@@ -1,7 +1,7 @@
 [wrap-git]
 directory = flecs
 url = https://github.com/SanderMertens/flecs.git
-revision = head
+revision = HEAD
 
 [provide]
 flecs = flecs_dep
