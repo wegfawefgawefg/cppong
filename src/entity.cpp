@@ -39,18 +39,18 @@ void Entity::step(Game& game){
     // // bouncing
     if( x < 0){
         x = 0;
-        vx *= -10;
+        vx *= -1;
     } else if (x > width){
         x = width;
-        vx *= -10;
+        vx *= -1;
     }
 
     if( y < 0){
         y = 0;
-        vy *= -10;
+        vy *= -1;
     } else if (y > height){
         y = height;
-        vy *= -10;
+        vy *= -1;
     }
 
     // dissapear if out of bounds

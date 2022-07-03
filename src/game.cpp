@@ -9,7 +9,7 @@
 #include "random.hpp"
 
 
-Game::Game(){
+Game::Game() {
     graphics = new Graphics();
     audio = new Audio();
 }
@@ -20,7 +20,7 @@ Game::~Game() {
     SDL_Quit();
 }
 
-void Game::run(){
+void Game::run() {
     std::cout << "Game running" << std::endl;
     running = true;
     now = SDL_GetPerformanceCounter();
@@ -54,12 +54,13 @@ void Game::process_events() {
     } 
 
     /*if mouse is clicked make a new entity at mouse position*/
-    if(SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)){
+    if(SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)) {
         int x, y;
         SDL_GetMouseState(&x, &y);
         float pan = x / float(graphics->width);
         audio->sound_play_at(0, pan, 0.0);
-        for(int i = 0; i < 5; i++){
+        int particle_count = frand(5, 50);
+        for(int i = 0; i < particle_count; i++) {
             // Entity *new_entity = new Entity(x, y, 5, 5);
             // entities.push_back(new_entity);
             const float maxvel = 100;
@@ -90,7 +91,7 @@ void Game::update() {
             dead_entities.push_back(entity);
         }
     }
-    entities.erase(std::remove_if(entities.begin(), entities.end(), [](Entity* entity){
+    entities.erase(std::remove_if(entities.begin(), entities.end(), [](Entity* entity) {
             return !entity->active;
         }), entities.end());
     // delete the dead entities

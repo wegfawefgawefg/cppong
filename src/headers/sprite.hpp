@@ -9,16 +9,16 @@
 #include <SDL2/SDL.h>
 
 class SpriteResource;
-class Sprite{
+
+class Sprite {
     public:
+        Sprite(SpriteResource& resource);
+        ~Sprite() = default;
         SpriteResource& resource;
         int anim_index;
         int frame_index;
         float timer;
         float speed;
-
-    Sprite(SpriteResource& resource);
-    ~Sprite();
     // void step(float dt);
     // void randomize_timer();
     // void reset_speed();
@@ -27,6 +27,6 @@ class Sprite{
     // void set_anim(int anim_index);
     // void draw(SDL_Renderer *renderer, int x, int y);
     // void print();
-}
+};
 
 #endif

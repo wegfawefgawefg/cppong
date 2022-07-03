@@ -38,6 +38,9 @@ Graphics::~Graphics() {
     std::cout << "Graphics destroyed" << std::endl;
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    TTF_CloseFont(font);
+    TTF_Quit();
+    IMG_Quit();
 }
 
 void Graphics::draw_text(const char *text, const SDL_Color color, const int x, const int y) {

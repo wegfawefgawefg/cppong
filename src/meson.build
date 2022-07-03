@@ -35,4 +35,3 @@ executable('main',
         sdl2_mixer_dep,
     ],
 )
-

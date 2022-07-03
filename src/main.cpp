@@ -1,7 +1,8 @@
 #include "game.hpp"
 
-int main() {
+int main()
+{
 	Game game = Game();
-    game.run();
+	game.run();
 	return 0;
 }
