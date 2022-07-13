@@ -26,39 +26,61 @@ Entity::Entity( float x, float y, float width, float height, float vx, float vy)
 Entity::~Entity() {
 }
 
-void Entity::step(Game& game){ 
-    const float gravity = 100.0;
-    x += vx * game.dt;
-    y += vy * game.dt;
-    vy += gravity * game.dt;
+void Entity::step(Game& game){
+    if(this->has_physics){
+        x += vx * game.dt;
+        y += vy * game.dt;
+        // const float gravity = 100.0;
+        // vy += gravity * game.dt;
 
-    // bounce of walls experimentally
-    const float width = game.graphics->window_width;
-    const float height = game.graphics->window_height;
+        // bounce of walls experimentally
+        const float width = game.graphics->window_width;
+        const float height = game.graphics->window_height;
 
-    // // bouncing
-    if( x < 0){
-        x = 0;
-        vx *= -1;
-    } else if (x > width){
-        x = width;
-        vx *= -1;
-    }
+        // // bouncing
+        if( x < 0){
+            x = 0;
+            vx *= -1;
+        } else if (x > width){
+            x = width;
+            vx *= -1;
+        }
 
-    if( y < 0){
-        y = 0;
-        vy *= -1;
-    } else if (y > height){
-        y = height;
-        vy *= -1;
+        if( y < 0){
+            y = 0;
+            vy *= -1;
+        } else if (y > height){
+            y = height;
+            vy *= -1;
+        }
     }
 
     // dissapear if out of bounds
     // if( x < 0 || x > width || y < 0 || y > height){
     //     active = false;
     // }
+
+    if(this->transient){
+        age += game.dt;
+        if(age > lifespan){
+            Entity::set_inactive(game);
+        }
+    }
 }
 
 void Entity::set_inactive(Game& game){
     active = false;
+}
+
+void Entity::set_transient(float lifespan){
+    this->transient = true;
+    this->lifespan = lifespan;
+}
+
+void Entity::enable_physics(){
+    this->has_physics = true;
+}
+
+void Entity::disable_physics(){
+    this->has_physics = true;
 }

@@ -1,52 +1,44 @@
 [
-{
-  "directory": "/Users/kyle/git/cppong/build",
-  "command": "/opt/brew/bin/g++-11 -I/Users/kyle/git/cppong/src/headers -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include/SDL2 -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks  -o CMakeFiles/cppong.dir/src/main.cpp.o -c /Users/kyle/git/cppong/src/main.cpp",
-  "file": "/Users/kyle/git/cppong/src/main.cpp"
-},
-{
-  "directory": "/Users/kyle/git/cppong/build",
-  "command": "/opt/brew/bin/g++-11 -I/Users/kyle/git/cppong/src/headers -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include/SDL2 -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks  -o CMakeFiles/cppong.dir/src/audio.cpp.o -c /Users/kyle/git/cppong/src/audio.cpp",
-  "file": "/Users/kyle/git/cppong/src/audio.cpp"
-},
-{
-  "directory": "/Users/kyle/git/cppong/build",
-  "command": "/opt/brew/bin/g++-11 -I/Users/kyle/git/cppong/src/headers -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include/SDL2 -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks  -o CMakeFiles/cppong.dir/src/emitter.cpp.o -c /Users/kyle/git/cppong/src/emitter.cpp",
-  "file": "/Users/kyle/git/cppong/src/emitter.cpp"
-},
-{
-  "directory": "/Users/kyle/git/cppong/build",
-  "command": "/opt/brew/bin/g++-11 -I/Users/kyle/git/cppong/src/headers -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include/SDL2 -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks  -o CMakeFiles/cppong.dir/src/entity.cpp.o -c /Users/kyle/git/cppong/src/entity.cpp",
-  "file": "/Users/kyle/git/cppong/src/entity.cpp"
-},
-{
-  "directory": "/Users/kyle/git/cppong/build",
-  "command": "/opt/brew/bin/g++-11 -I/Users/kyle/git/cppong/src/headers -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include/SDL2 -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks  -o CMakeFiles/cppong.dir/src/game.cpp.o -c /Users/kyle/git/cppong/src/game.cpp",
-  "file": "/Users/kyle/git/cppong/src/game.cpp"
-},
-{
-  "directory": "/Users/kyle/git/cppong/build",
-  "command": "/opt/brew/bin/g++-11 -I/Users/kyle/git/cppong/src/headers -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include/SDL2 -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks  -o CMakeFiles/cppong.dir/src/graphics.cpp.o -c /Users/kyle/git/cppong/src/graphics.cpp",
-  "file": "/Users/kyle/git/cppong/src/graphics.cpp"
-},
-{
-  "directory": "/Users/kyle/git/cppong/build",
-  "command": "/opt/brew/bin/g++-11 -I/Users/kyle/git/cppong/src/headers -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include/SDL2 -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks  -o CMakeFiles/cppong.dir/src/random.cpp.o -c /Users/kyle/git/cppong/src/random.cpp",
-  "file": "/Users/kyle/git/cppong/src/random.cpp"
-},
-{
-  "directory": "/Users/kyle/git/cppong/build",
-  "command": "/opt/brew/bin/g++-11 -I/Users/kyle/git/cppong/src/headers -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include/SDL2 -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks  -o CMakeFiles/cppong.dir/src/sprite_resource.cpp.o -c /Users/kyle/git/cppong/src/sprite_resource.cpp",
-  "file": "/Users/kyle/git/cppong/src/sprite_resource.cpp"
-},
-{
-  "directory": "/Users/kyle/git/cppong/build",
-  "command": "/opt/brew/bin/g++-11 -I/Users/kyle/git/cppong/src/headers -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include/SDL2 -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks  -o CMakeFiles/cppong.dir/src/sprite.cpp.o -c /Users/kyle/git/cppong/src/sprite.cpp",
-  "file": "/Users/kyle/git/cppong/src/sprite.cpp"
-},
-{
-  "directory": "/Users/kyle/git/cppong/build",
-  "command": "/opt/brew/bin/g++-11 -I/Users/kyle/git/cppong/src/headers -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include -isystem /Users/kyle/git/vcpkg/installed/x64-osx/include/SDL2 -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks  -o CMakeFiles/cppong.dir/src/transient.cpp.o -c /Users/kyle/git/cppong/src/transient.cpp",
-  "file": "/Users/kyle/git/cppong/src/transient.cpp"
-}
+  {
+    "directory": "/home/vega/Coding/Game/cppong/build",
+    "command": "c++ -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++17 -O3 -g -D_REENTRANT -MD -MQ 'main@exe/main.cpp.o' -MF 'main@exe/main.cpp.o.d' -o 'main@exe/main.cpp.o' -c ../src/main.cpp",
+    "file": "../src/main.cpp",
+    "output": "main@exe/main.cpp.o"
+  },
+  {
+    "directory": "/home/vega/Coding/Game/cppong/build",
+    "command": "c++ -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++17 -O3 -g -D_REENTRANT -MD -MQ 'main@exe/game.cpp.o' -MF 'main@exe/game.cpp.o.d' -o 'main@exe/game.cpp.o' -c ../src/game.cpp",
+    "file": "../src/game.cpp",
+    "output": "main@exe/game.cpp.o"
+  },
+  {
+    "directory": "/home/vega/Coding/Game/cppong/build",
+    "command": "c++ -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++17 -O3 -g -D_REENTRANT -MD -MQ 'main@exe/graphics.cpp.o' -MF 'main@exe/graphics.cpp.o.d' -o 'main@exe/graphics.cpp.o' -c ../src/graphics.cpp",
+    "file": "../src/graphics.cpp",
+    "output": "main@exe/graphics.cpp.o"
+  },
+  {
+    "directory": "/home/vega/Coding/Game/cppong/build",
+    "command": "c++ -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++17 -O3 -g -D_REENTRANT -MD -MQ 'main@exe/entity.cpp.o' -MF 'main@exe/entity.cpp.o.d' -o 'main@exe/entity.cpp.o' -c ../src/entity.cpp",
+    "file": "../src/entity.cpp",
+    "output": "main@exe/entity.cpp.o"
+  },
+  {
+    "directory": "/home/vega/Coding/Game/cppong/build",
+    "command": "c++ -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++17 -O3 -g -D_REENTRANT -MD -MQ 'main@exe/random.cpp.o' -MF 'main@exe/random.cpp.o.d' -o 'main@exe/random.cpp.o' -c ../src/random.cpp",
+    "file": "../src/random.cpp",
+    "output": "main@exe/random.cpp.o"
+  },
+  {
+    "directory": "/home/vega/Coding/Game/cppong/build",
+    "command": "c++ -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++17 -O3 -g -D_REENTRANT -MD -MQ 'main@exe/audio.cpp.o' -MF 'main@exe/audio.cpp.o.d' -o 'main@exe/audio.cpp.o' -c ../src/audio.cpp",
+    "file": "../src/audio.cpp",
+    "output": "main@exe/audio.cpp.o"
+  },
+  {
+    "directory": "/home/vega/Coding/Game/cppong/build",
+    "command": "c++ -Imain@exe -I. -I../src -I../src/headers -I/usr/include/SDL2 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++17 -O3 -g -D_REENTRANT -MD -MQ 'main@exe/sprite_resource.cpp.o' -MF 'main@exe/sprite_resource.cpp.o.d' -o 'main@exe/sprite_resource.cpp.o' -c ../src/sprite_resource.cpp",
+    "file": "../src/sprite_resource.cpp",
+    "output": "main@exe/sprite_resource.cpp.o"
+  }
 ]
