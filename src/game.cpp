@@ -1,11 +1,14 @@
 #include <iostream>
 #include <algorithm>
 
+#include <glm/glm.hpp>
+#include <glm/ext.hpp>
+
 #include "game.hpp"
 #include "graphics.hpp"
 #include "entity.hpp"
 #include "random.hpp"
-
+#include "utils.hpp"
 
 Game::Game() {
     graphics = new Graphics();
@@ -22,6 +25,7 @@ void Game::run() {
     std::cout << "Game running" << std::endl;
     running = true;
     now = SDL_GetPerformanceCounter();
+
     setup_game();
     while (running) {
         process_events();
@@ -37,30 +41,34 @@ void Game::setup_game() {
     ////////////////    INIT PADDLES    ////////////////
     //  enemy paddle
     Entity *enemy_paddle = new Entity(
-        paddle_width, paddle_height, 
-        paddle_width, paddle_height, 
-        100, 0);
+        glm::vec2(paddle_width, paddle_height), 
+        glm::vec2(paddle_width, paddle_height), 
+        glm::vec2(100, 0)
+    );
     entities.push_back(enemy_paddle);
 
     //  player paddle
     Entity *player_paddle = new Entity(
-        paddle_width, graphics->height-paddle_height + 1, 
-        paddle_width, paddle_height, 
-        1000, 0);
+        glm::vec2(paddle_width, graphics->height-paddle_height + 1), 
+        glm::vec2(paddle_width, paddle_height), 
+        glm::vec2(1000, 0)
+    );
     entities.push_back(player_paddle);
 
     ////////////////    SCORE ZONES    ////////////////
     Entity *enemy_score_zone = new Entity(
-        graphics->width / 2.0, paddle_height / 4.0, 
-        graphics->width, paddle_height / 2.0, 
-        0, 0);
+        glm::vec2(graphics->width / 2.0, paddle_height / 4.0), 
+        glm::vec2(graphics->width, paddle_height / 2.0), 
+        glm::vec2(0, 0)
+    );
     enemy_score_zone->disable_physics();
     entities.push_back(enemy_score_zone);
 
     Entity *player_score_zone = new Entity(
-        graphics->width / 2.0, graphics->height - paddle_height / 4.0 + 1, 
-        graphics->width, paddle_height / 2.0, 
-        0, 0);
+        glm::vec2(graphics->width / 2.0, graphics->height - paddle_height / 4.0 + 1), 
+        glm::vec2(graphics->width, paddle_height / 2.0), 
+        glm::vec2(0, 0)
+    );
     player_score_zone->disable_physics();
     entities.push_back(player_score_zone);
 }
@@ -92,21 +100,19 @@ void Game::process_events() {
         SDL_GetMouseState(&x, &y);
         float pan = x / float(graphics->width);
         audio->sound_play_at(0, pan, 0.0);
-        int particle_count = 50;
+        int particle_count = 10;
         for(int i = 0; i < particle_count; i++) {
-            const float maxvel = 100;
+            const float maxvel = 200;
             Entity *new_entity = new Entity(
-                float(x), float(y), 
-                frand(1, 5), frand(1, 5),
-                frand(-maxvel, maxvel), frand(-maxvel, maxvel)
+                glm::vec2(float(x), float(y)), 
+                glm::vec2(frand(1, 5), frand(1, 5)),
+                glm::diskRand(maxvel)
             );
             float lifespan = frand(0.1, 2);
             new_entity->set_transient(lifespan);
             entities.push_back(new_entity);
         }
     }
-
-
 }
 
 void Game::update() {

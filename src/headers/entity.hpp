@@ -3,6 +3,8 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
+#include <glm/glm.hpp>
+
 class Game;
 class Sprite;
 class Entity {
@@ -11,21 +13,21 @@ class Entity {
         bool active = true; //  entities culled if this is false
 
         bool has_physics = true;
-        float x, y;
-        float vx, vy;
-        float width, height;
+
+        glm::vec2 pos;
+        glm::vec2 vel;
+        glm::vec2 size;
         
         ////    "transient" entities die after a while
         bool transient = false;
         float lifespan = 0.0;
         float age = 0.0;
 
-
         // Sprite& sprite;
 
     Entity();
-	Entity(float x, float y, float width, float height);
-    Entity(float x, float y, float width, float height, float vx, float vy);
+	Entity(glm::vec2 pos, glm::vec2 size);
+    Entity(glm::vec2 pos, glm::vec2 size, glm::vec2 vel);
     virtual ~Entity();
     virtual void step(Game&);
     void set_inactive(Game& game);

@@ -25,6 +25,7 @@ executable('main',
     ],
     include_directories: [
         'headers',
+        'libs',
     ],
     dependencies: [
         sdl2_dep,

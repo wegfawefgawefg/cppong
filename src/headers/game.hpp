@@ -17,10 +17,6 @@ class Game {
         Uint64 now;
         double dt;
 
-        // std::vector<T>::size_type enemy_score_zone;
-        // std::vector<T>::size_type player_score_zone;
-        // std::vector<T>::size_type enemy_paddle;
-        // std::vector<T>::size_type player_paddle;
         std::vector<Entity*> entities;
 
 	Game();

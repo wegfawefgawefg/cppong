@@ -67,6 +67,14 @@ void Graphics::draw_entity_count(int num_entities) {
     draw_text(str, color, 0, 400);
 }
 
+inline bool aabb_intersects(const Entity* a, const Entity* b) {
+    glm::vec2 a_br = a->pos + a->size;
+    glm::vec2 b_br = b->pos + b->size;
+    if(a_br.x < b->pos.x or a->pos.x > b_br.x){ return false; }
+    if(a_br.y < b->pos.y or a->pos.y > b_br.y){ return false; }
+    return true;
+}
+
 void Graphics::render(const Game& game){ 
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
@@ -76,12 +84,31 @@ void Graphics::render(const Game& game){
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     for (auto& entity : game.entities) {
         SDL_Rect rect = {
-            int(entity->x - entity->width/2), 
-            int(entity->y - entity->height/2), 
-            int(entity->width), 
-            int(entity->height)};
+            int(entity->pos.x - entity->size.x / 2), 
+            int(entity->pos.y - entity->size.y / 2), 
+            int(entity->size.x), 
+            int(entity->size.y)};
         SDL_RenderFillRect(renderer, &rect);
     }
+
+    // check intersecting shapes and draw a little red blob on them
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    for (auto& entity : game.entities) {
+        for (auto& against_entity : game.entities) {
+            if(entity->id == against_entity->id){
+                continue;
+            }
+            if(aabb_intersects(entity, against_entity)){
+                SDL_Rect rect = {
+                    int(entity->pos.x), 
+                    int(entity->pos.y), 
+                    5, 5
+                };
+                SDL_RenderFillRect(renderer, &rect);
+            }
+        }
+    }
+
 
     draw_frame_rate(game.dt);
     draw_entity_count(game.entities.size());
