@@ -3,20 +3,22 @@
 #ifndef SOUNDS_H
 #define SOUNDS_H
 
-#include <SDL2/SDL_mixer.h>
+#include <SDL_mixer.h>
 
 // this is c way, please dont use this
-enum SOUND {
+enum SOUND
+{
     SOUND_FIREWORKS_SHOOT,
     SOUND_FIREWORKS_EXPLOSION,
     SOUND_NUM_SOUNDS, // must be last
 };
 
-class Audio {
-    public:
-        std::vector<Mix_Chunk*> sounds;
+class Audio
+{
+public:
+    std::vector<Mix_Chunk *> sounds;
 
-	Audio();
+    Audio();
     ~Audio();
     void audio_pan(int channel, float pan);
     void sound_play_at(int sound, float x, float y);

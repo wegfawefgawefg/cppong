@@ -3,23 +3,24 @@
 
 #include <vector>
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include "graphics.hpp"
 #include "audio.hpp"
 #include "entity.hpp"
 
-class Game {
-    public:
-        Graphics* graphics;
-        Audio* audio;
+class Game
+{
+public:
+    Graphics *graphics;
+    Audio *audio;
 
-        bool running = false;
-        Uint64 now;
-        double dt;
+    bool running = false;
+    Uint64 now;
+    double dt;
 
-        std::vector<Entity*> entities;
+    std::vector<Entity *> entities;
 
-	Game();
+    Game();
     ~Game();
     void run();
     void setup_game();

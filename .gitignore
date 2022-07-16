@@ -34,13 +34,8 @@
 # Build folders
 build/*
 !build/.gitkeep
-
 builddir/*
 !builddir/.gitkeep
-
-# Subprojects folder
-subprojects/*
-!subprojects/.gitkeep
 
 .DS_Store
 .vscode/
