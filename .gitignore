@@ -32,10 +32,11 @@
 *.app
 
 # Build folders
-build/*
+build/**
 !build/.gitkeep
-builddir/*
+builddir/**
 !builddir/.gitkeep
 
 .DS_Store
 .vscode/
+build/.ninja_deps
