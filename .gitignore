@@ -36,6 +36,8 @@ build/**
 !build/.gitkeep
 builddir/**
 !builddir/.gitkeep
+subprojects/**
+!subprojects/.gitkeep
 
 .DS_Store
 .vscode/
