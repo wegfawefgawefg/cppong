@@ -6,7 +6,7 @@
 #include <glm/glm.hpp>
 #include <iostream>
 
-void print_glm_vec2(glm::vec2 p){
+void print_glm_vec2(glm::vec2 p) {
     std::cout << "( " << p.x << ", " << p.y << " )" << std::endl;
 }
 

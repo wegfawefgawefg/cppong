@@ -8,25 +8,25 @@
 class Game;
 class Sprite;
 class Entity {
-    public:
-        int id;
-        bool active = true; //  entities culled if this is false
+public:
+    int id;
+    bool active = true; //  entities culled if this is false
 
-        bool has_physics = true;
+    bool has_physics = true;
 
-        glm::vec2 pos;
-        glm::vec2 vel;
-        glm::vec2 size;
-        
-        ////    "transient" entities die after a while
-        bool transient = false;
-        float lifespan = 0.0;
-        float age = 0.0;
+    glm::vec2 pos;
+    glm::vec2 vel;
+    glm::vec2 size;
 
-        // Sprite& sprite;
+    ////    "transient" entities die after a while
+    bool transient = false;
+    float lifespan = 0.0;
+    float age = 0.0;
+
+    // Sprite& sprite;
 
     Entity();
-	Entity(glm::vec2 pos, glm::vec2 size);
+    Entity(glm::vec2 pos, glm::vec2 size);
     Entity(glm::vec2 pos, glm::vec2 size, glm::vec2 vel);
     virtual ~Entity();
     virtual void step(Game&);

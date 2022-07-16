@@ -43,25 +43,25 @@ Graphics::~Graphics() {
     IMG_Quit();
 }
 
-void Graphics::draw_text(const char *text, const SDL_Color color, const int x, const int y) {
-    SDL_Surface *text_surface = TTF_RenderText_Solid(font, text, color);
-    SDL_Texture *text_texture = SDL_CreateTextureFromSurface(renderer, text_surface);
-    SDL_Rect text_rect = {x, y, text_surface->w, text_surface->h};
+void Graphics::draw_text(const char* text, const SDL_Color color, const int x, const int y) {
+    SDL_Surface* text_surface = TTF_RenderText_Solid(font, text, color);
+    SDL_Texture* text_texture = SDL_CreateTextureFromSurface(renderer, text_surface);
+    SDL_Rect text_rect = { x, y, text_surface->w, text_surface->h };
     SDL_RenderCopy(renderer, text_texture, NULL, &text_rect);
     SDL_FreeSurface(text_surface);
     SDL_DestroyTexture(text_texture);
 }
 
 void Graphics::draw_frame_rate(float dt) {
-    const double fps = 1.0 / dt; 
-    const SDL_Color color = {255, 255, 255, 255};
+    const double fps = 1.0 / dt;
+    const SDL_Color color = { 255, 255, 255, 255 };
     char fps_str[32];
     sprintf(fps_str, "%f", fps);
     draw_text(fps_str, color, 0, 0);
 }
 
 void Graphics::draw_entity_count(int num_entities) {
-    const SDL_Color color = {150, 255, 255, 255};
+    const SDL_Color color = { 150, 255, 255, 255 };
     char str[32];
     sprintf(str, "%d", num_entities);
     draw_text(str, color, 0, 400);
@@ -70,12 +70,12 @@ void Graphics::draw_entity_count(int num_entities) {
 inline bool aabb_intersects(const Entity* a, const Entity* b) {
     glm::vec2 a_br = a->pos + a->size;
     glm::vec2 b_br = b->pos + b->size;
-    if(a_br.x < b->pos.x or a->pos.x > b_br.x){ return false; }
-    if(a_br.y < b->pos.y or a->pos.y > b_br.y){ return false; }
+    if (a_br.x < b->pos.x or a->pos.x > b_br.x) { return false; }
+    if (a_br.y < b->pos.y or a->pos.y > b_br.y) { return false; }
     return true;
 }
 
-void Graphics::render(const Game& game){ 
+void Graphics::render(const Game& game) {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
@@ -101,10 +101,10 @@ void Graphics::render(const Game& game){
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     for (auto& entity : game.entities) {
         SDL_Rect rect = {
-            int(entity->pos.x - entity->size.x / 2), 
-            int(entity->pos.y - entity->size.y / 2), 
-            int(entity->size.x), 
-            int(entity->size.y)};
+            int(entity->pos.x - entity->size.x / 2),
+            int(entity->pos.y - entity->size.y / 2),
+            int(entity->size.x),
+            int(entity->size.y) };
         SDL_RenderFillRect(renderer, &rect);
     }
 
@@ -112,13 +112,13 @@ void Graphics::render(const Game& game){
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
     for (auto& entity : game.entities) {
         for (auto& against_entity : game.entities) {
-            if(entity->id == against_entity->id){
+            if (entity->id == against_entity->id) {
                 continue;
             }
-            if(aabb_intersects(entity, against_entity)){
+            if (aabb_intersects(entity, against_entity)) {
                 SDL_Rect rect = {
-                    int(entity->pos.x), 
-                    int(entity->pos.y), 
+                    int(entity->pos.x),
+                    int(entity->pos.y),
                     5, 5
                 };
                 SDL_RenderFillRect(renderer, &rect);
@@ -134,7 +134,7 @@ void Graphics::render(const Game& game){
 
 void Graphics::load_sprite_resources(
     Graphics* graphics
-){
+) {
     // // load in human sprite
     // int human_sprite_num_anims = 4;
     // int * human_sprite_anim_lengths = malloc(sizeof(int) * 4);
@@ -148,10 +148,10 @@ void Graphics::load_sprite_resources(
     //     128, 128, human_sprite_num_anims, human_sprite_anim_lengths, 0.2);
 
     SpriteResource reticle_sprite_resource = SpriteResource(
-        graphics->renderer, 
+        graphics->renderer,
         "assets/images/crosshair025.png",
-        64, 64, 
-        std::vector<int>{1}, 
+        64, 64,
+        std::vector<int>{1},
         0.2);
 
     graphics->sprite_resources.push_back(reticle_sprite_resource);

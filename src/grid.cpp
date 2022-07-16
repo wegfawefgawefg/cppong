@@ -1,6 +1,6 @@
 #include "grid.hpp"
 
-Grid::Grid(glm::vec2 pos, glm::vec2 size, float cell_size){
+Grid::Grid(glm::vec2 pos, glm::vec2 size, float cell_size) {
     this->pos = pos;
     this->size = size;
     this->cell_size = cell_size;
@@ -10,11 +10,11 @@ Grid::Grid(glm::vec2 pos, glm::vec2 size, float cell_size){
 
     this->width = w;
     this->height = h;
-    
+
     std::vector<std::vector<std::vector<Entity*>>> grid;
-    for(auto ih = 0; ih <= h; ih++){
+    for (auto ih = 0; ih <= h; ih++) {
         std::vector<std::vector<Entity*>> row;
-        for(auto iw = 0; iw <= w; iw++){
+        for (auto iw = 0; iw <= w; iw++) {
             std::vector<Entity*> cell;
             row.push_back(cell);
         }
@@ -28,8 +28,7 @@ Grid::Grid(glm::vec2 pos, glm::vec2 size, float cell_size){
 
 // function to clear the grid
 
-Grid::~Grid() {
-}
+Grid::~Grid() {}
 
 // void add_entity(Entity* entity);
 // void remove_entity(Entity* entity);
