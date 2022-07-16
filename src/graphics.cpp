@@ -149,7 +149,7 @@ void Graphics::render(const Game& game) {
             SDL_Rect rect = {
                     int(entity->pos.x),
                     int(entity->pos.y),
-                    5, 5
+                    2, 2
             };
             SDL_RenderFillRect(renderer, &rect);
         }

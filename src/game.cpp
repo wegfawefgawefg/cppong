@@ -47,7 +47,7 @@ void Game::build_grid() {
     for (auto e : this->entities) {
         this->grid->insert_entity(e);
     }
-    std::cout << this->grid->num_entities << std::endl;
+    // std::cout << this->grid->num_entities << std::endl;
 }
 
 void Game::setup_game() {
@@ -58,7 +58,7 @@ void Game::setup_game() {
     ////////////////    INIT PADDLES    ////////////////
     //  enemy paddle
     Entity* enemy_paddle = new Entity(
-        glm::vec2(paddle_width, paddle_height),
+        glm::vec2(0, paddle_height / 2.0),
         glm::vec2(paddle_width, paddle_height),
         glm::vec2(100, 0)
     );
@@ -67,7 +67,7 @@ void Game::setup_game() {
 
     //  player paddle
     Entity* player_paddle = new Entity(
-        glm::vec2(paddle_width, graphics->height - paddle_height + 1),
+        glm::vec2(0, graphics->height - paddle_height - paddle_height / 2.0 + 1),
         glm::vec2(paddle_width, paddle_height),
         glm::vec2(1000, 0)
     );
@@ -75,7 +75,7 @@ void Game::setup_game() {
 
     ////////////////    SCORE ZONES    ////////////////
     Entity* enemy_score_zone = new Entity(
-        glm::vec2(graphics->width / 2.0, paddle_height / 4.0),
+        glm::vec2(0.0, 0.0),
         glm::vec2(graphics->width, paddle_height / 2.0),
         glm::vec2(0, 0)
     );
@@ -83,7 +83,7 @@ void Game::setup_game() {
     add_entity(enemy_score_zone);
 
     Entity* player_score_zone = new Entity(
-        glm::vec2(graphics->width / 2.0, graphics->height - paddle_height / 4.0 + 1),
+        glm::vec2(0, graphics->height - paddle_height / 2.0 + 1),
         glm::vec2(graphics->width, paddle_height / 2.0),
         glm::vec2(0, 0)
     );
@@ -152,7 +152,7 @@ void Game::process_events() {
         SDL_GetMouseState(&x, &y);
         float pan = x / float(graphics->width);
         audio->sound_play_at(0, pan, 0.0);
-        int particle_count = 10;
+        int particle_count = 100;
         for (int i = 0; i < particle_count; i++) {
             const float maxvel = 200;
             Entity* new_entity = new Entity(

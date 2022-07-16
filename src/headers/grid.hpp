@@ -31,6 +31,7 @@ public:
     glm::vec2 get_br();
     // void remove_entity(Entity* entity);
     std::vector<Entity*> query(glm::vec2 tl, glm::vec2 br);
+    void print();
     // void square_query(glm::vec2 center, float width);
     // void move(Entity* entity);
 };

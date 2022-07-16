@@ -5,6 +5,16 @@
 #include "grid.hpp"
 #include "utils.hpp"
 
+void Grid::print() {
+    print_glm_vec2(this->pos);
+    print_glm_vec2(this->size);
+    std::cout <<
+        "cell_size: " << this->cell_size << ", " <<
+        "width: " << this->width << ", " <<
+        "height: " << this->height << ", " <<
+        std::endl;
+}
+
 Grid::Grid(glm::vec2 pos, glm::vec2 size, float cell_size) {
     this->pos = pos;
     this->size = size;
@@ -16,14 +26,6 @@ Grid::Grid(glm::vec2 pos, glm::vec2 size, float cell_size) {
 
     this->width = w;
     this->height = h;
-
-    print_glm_vec2(pos);
-    print_glm_vec2(size);
-    std::cout <<
-        "cell_size: " << cell_size << ", " <<
-        "width: " << w << ", " <<
-        "height: " << h << ", " <<
-        std::endl;
 
     std::vector<std::vector<std::vector<Entity*>>> grid;
     for (auto ih = 0; ih <= h; ih++) {

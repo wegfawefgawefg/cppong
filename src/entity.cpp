@@ -36,8 +36,7 @@ void Entity::step(Game& game) {
             pos.x = 0;
             vel.x *= -1;
         }
-        else if (pos.x > width) {
-            pos.x = width;
+        else if (get_br().x > width) {
             vel.x *= -1;
         }
 
@@ -45,8 +44,7 @@ void Entity::step(Game& game) {
             pos.y = 0;
             vel.y *= -1;
         }
-        else if (pos.y > height) {
-            pos.y = height;
+        else if (get_br().y > height) {
             vel.y *= -1;
         }
     }
