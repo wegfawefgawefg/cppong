@@ -41,4 +41,3 @@ subprojects/**
 
 .DS_Store
 .vscode/
-build/.ninja_deps
