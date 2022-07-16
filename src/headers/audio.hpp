@@ -6,17 +6,15 @@
 #include <SDL_mixer.h>
 
 // this is c way, please dont use this
-enum SOUND
-{
+enum SOUND {
     SOUND_FIREWORKS_SHOOT,
     SOUND_FIREWORKS_EXPLOSION,
     SOUND_NUM_SOUNDS, // must be last
 };
 
-class Audio
-{
-public:
-    std::vector<Mix_Chunk *> sounds;
+class Audio {
+    public:
+    std::vector<Mix_Chunk*> sounds;
 
     Audio();
     ~Audio();
