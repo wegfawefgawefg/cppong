@@ -34,12 +34,24 @@ void Game::run() {
     }
 }
 
+void Game::add_entity(Entity* e) {
+    this->entities.push_back(e);
+}
+
+void Game::build_grid() {
+    this->grid = new Grid(
+        glm::vec2(0.0, 0.0),
+        glm::vec2(graphics->width, graphics->height),
+        20.0f
+    );
+    for (auto e : this->entities) {
+        this->grid->insert_entity(e);
+    }
+    std::cout << this->grid->num_entities << std::endl;
+}
+
 void Game::setup_game() {
-    // this->grid = new Grid(
-    //     glm::vec2(0.0, 0.0),
-    //     glm::vec2(graphics->width, graphics->height),
-    //     500.0f
-    // );
+    build_grid();
     float paddle_width = graphics->width / 4.0;
     float paddle_height = graphics->height / 16.0;
 
@@ -50,7 +62,8 @@ void Game::setup_game() {
         glm::vec2(paddle_width, paddle_height),
         glm::vec2(100, 0)
     );
-    entities.push_back(enemy_paddle);
+    // entities.push_back(enemy_paddle);
+    add_entity(enemy_paddle);
 
     //  player paddle
     Entity* player_paddle = new Entity(
@@ -58,7 +71,7 @@ void Game::setup_game() {
         glm::vec2(paddle_width, paddle_height),
         glm::vec2(1000, 0)
     );
-    entities.push_back(player_paddle);
+    add_entity(player_paddle);
 
     ////////////////    SCORE ZONES    ////////////////
     Entity* enemy_score_zone = new Entity(
@@ -67,7 +80,7 @@ void Game::setup_game() {
         glm::vec2(0, 0)
     );
     enemy_score_zone->disable_physics();
-    entities.push_back(enemy_score_zone);
+    add_entity(enemy_score_zone);
 
     Entity* player_score_zone = new Entity(
         glm::vec2(graphics->width / 2.0, graphics->height - paddle_height / 4.0 + 1),
@@ -75,7 +88,42 @@ void Game::setup_game() {
         glm::vec2(0, 0)
     );
     player_score_zone->disable_physics();
-    entities.push_back(player_score_zone);
+    add_entity(player_score_zone);
+}
+
+void Game::initialize_grid_bounds_checking_entities() {
+    Entity* test_entity = new Entity(
+        glm::vec2(graphics->width / 2.0, graphics->height / 2.0),
+        glm::vec2(10.0, 1.0),
+        glm::vec2(0, 0)
+    );
+    test_entity->disable_physics();
+    add_entity(test_entity);
+
+    Entity* out_of_bounds_test_entity = new Entity(
+        glm::vec2(graphics->width, graphics->height),
+        glm::vec2(10.0, 1.0),
+        glm::vec2(0, 0)
+    );
+    out_of_bounds_test_entity->disable_physics();
+    add_entity(test_entity);
+
+    Entity* tl_partially_out_of_bounds_test_entity = new Entity(
+        glm::vec2(-10, -10),
+        glm::vec2(100.0, 100.0),
+        glm::vec2(0, 0)
+    );
+    tl_partially_out_of_bounds_test_entity->disable_physics();
+    add_entity(tl_partially_out_of_bounds_test_entity);
+
+
+    Entity* br_partially_out_of_bounds_test_entity = new Entity(
+        glm::vec2(graphics->width - 50, graphics->height - 50),
+        glm::vec2(100.0, 100.0),
+        glm::vec2(0, 0)
+    );
+    br_partially_out_of_bounds_test_entity->disable_physics();
+    add_entity(br_partially_out_of_bounds_test_entity);
 }
 
 void Game::process_events() {
@@ -119,15 +167,7 @@ void Game::process_events() {
     }
 }
 
-void Game::update() {
-    Uint64 last = now;
-    now = SDL_GetPerformanceCounter();
-    dt = (double)((now - last) / (double)SDL_GetPerformanceFrequency());
-
-    for (auto& entity : entities) {
-        entity->step(*this);
-    }
-
+void Game::clear_inactive_entities() {
     // make a new vector for the entities that are still active
     std::vector<Entity*> dead_entities;
     for (auto& entity : entities) {
@@ -142,6 +182,18 @@ void Game::update() {
     for (auto& entity : dead_entities) {
         delete entity;
     }
+}
+
+void Game::update() {
+    Uint64 last = now;
+    now = SDL_GetPerformanceCounter();
+    dt = (double)((now - last) / (double)SDL_GetPerformanceFrequency());
+
+    build_grid();
+    for (auto& entity : entities) {
+        entity->step(*this);
+    }
+    clear_inactive_entities();
 }
 
 void Game::render() {

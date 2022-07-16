@@ -80,3 +80,7 @@ void Entity::enable_physics() {
 void Entity::disable_physics() {
     this->has_physics = true;
 }
+
+glm::vec2 Entity::get_br() {
+    return this->pos + this->size;
+}

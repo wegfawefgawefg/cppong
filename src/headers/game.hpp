@@ -21,7 +21,7 @@ public:
     double dt;
 
     std::vector<Entity*> entities;
-    // Grid grid;
+    Grid* grid;
 
     Game();
     ~Game();
@@ -30,6 +30,17 @@ public:
     void process_events();
     void update();
     void render();
+
+    void clear_inactive_entities();
+    void build_grid();
+    void add_entity(Entity* e);
+    // void remove_entity()
+
+    // debug
+    void initialize_grid_bounds_checking_entities();
+
+
 };
 
 #endif
+

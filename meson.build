@@ -23,6 +23,7 @@ executable('main',
         'src/audio.cpp',
         'src/sprite_resource.cpp',
         'src/grid.cpp',
+        'src/utils.cpp',
     ],
     include_directories: [
         'src/headers',

@@ -80,29 +80,34 @@ void Graphics::render(const Game& game) {
     SDL_RenderClear(renderer);
 
     // render grid here
-    // SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-    // float start_x = game.grid->pos.x;
-    // float cell_size = game.grid->cell_size;
-    // glm::vec2 cursor = glm::vec2(game.grid->pos.x, game.grid->pos.y); 
-    // for( auto y = 0; y < game.grid->width; y++){
-    //     for( auto y = 0; y < game.grid->height; y++){
-    //         cursor.x += cell_size;
-    //         SDL_Rect rect = {
-    //             int(cursor.x), int(cursor.y)
-    //             int(cursor.x + cell_size), int(cursor.y + cell_size)
-    //         };
-    //         SDL_RenderFillRect(renderer, &rect);
-    //     }
-    //     cursor.x = start_x;
-    //     cursor.y += cell_size;
-    // }
+    SDL_SetRenderDrawColor(renderer, 0, 0, 100, 150);
+    float start_x = game.grid->pos.x;
+    float cell_size = game.grid->cell_size;
+    glm::vec2 cursor = glm::vec2(game.grid->pos.x, game.grid->pos.y);
+    for (auto y = 0; y < game.grid->height; y++) {
+        for (auto x = 0; x < game.grid->width; x++) {
+            SDL_Rect rect = {
+                int(cursor.x), int(cursor.y),
+                int(cell_size), int(cell_size)
+            };
+            if (game.grid->has_entities(x, y)) {
+                SDL_RenderFillRect(renderer, &rect);
+            }
+            else {
+                SDL_RenderDrawRect(renderer, &rect);
+            }
+            cursor.x += cell_size;
+        }
+        cursor.x = start_x;
+        cursor.y += cell_size;
+    }
 
     // render all the entities here
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     for (auto& entity : game.entities) {
         SDL_Rect rect = {
-            int(entity->pos.x - entity->size.x / 2),
-            int(entity->pos.y - entity->size.y / 2),
+            int(entity->pos.x),
+            int(entity->pos.y),
             int(entity->size.x),
             int(entity->size.y) };
         SDL_RenderFillRect(renderer, &rect);

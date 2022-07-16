@@ -34,6 +34,8 @@ public:
     void set_transient(float lifespan);
     void disable_physics();
     void enable_physics();
+
+    glm::vec2 get_br();
 };
 
 #endif
