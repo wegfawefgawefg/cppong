@@ -17,6 +17,7 @@ class Grid {
 public:
     glm::vec2 pos;
     glm::vec2 size;
+    glm::vec2 br;
     float cell_size;
     int width, height;
     int num_entities = 0;
@@ -29,7 +30,7 @@ public:
     bool has_entities(int x, int y);
     glm::vec2 get_br();
     // void remove_entity(Entity* entity);
-    // void query(glm::vec2 tl, glm::vec2 br);
+    std::vector<Entity*> query(glm::vec2 tl, glm::vec2 br);
     // void square_query(glm::vec2 center, float width);
     // void move(Entity* entity);
 };

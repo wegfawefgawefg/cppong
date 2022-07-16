@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <vector>
 
 #include "grid.hpp"
 #include "utils.hpp"
@@ -8,6 +9,7 @@ Grid::Grid(glm::vec2 pos, glm::vec2 size, float cell_size) {
     this->pos = pos;
     this->size = size;
     this->cell_size = cell_size;
+    this->br = pos + size;
 
     int w = static_cast<int>(ceil(size.x / cell_size));
     int h = static_cast<int>(ceil(size.y / cell_size));
@@ -37,8 +39,9 @@ Grid::Grid(glm::vec2 pos, glm::vec2 size, float cell_size) {
 
 Grid::~Grid() {}
 
-glm::vec2 Grid::get_br() {
-    return this->pos + this->size;
+inline glm::vec2 Grid::get_br() {
+    // return this->pos + this->size;
+    return this->br;
 }
 
 void Grid::insert_entity(Entity* e) {
@@ -66,14 +69,8 @@ void Grid::insert_entity(Entity* e) {
     glm::vec2 e_cl_tl = glm::max(e->pos, this->pos);
     glm::vec2 e_cl_br = glm::min(e_br, g_br);
 
-    // get tl of entity, and br
     GridCoord tl = Grid::get_cell_coords(e_cl_tl);
     GridCoord br = Grid::get_cell_coords(e_cl_br);
-    // clamp coords to grid bounds
-    // tl.x = std::max(float(tl.x), this->pos.x);
-    // tl.y = std::max(float(tl.y), this->pos.y);
-    // br.x = std::min(float(br.x), int(this->pos.x + this->size.x));
-    // br.y = std::min(float(br.y), int(this->pos.y + this->size.y));
 
     for (int y = tl.y; y <= br.y; y += 1) {
         for (int x = tl.x; x <= br.x; x += 1) {
@@ -85,8 +82,6 @@ void Grid::insert_entity(Entity* e) {
 GridCoord Grid::get_cell_coords(glm::vec2 p) {
     glm::vec2 s = p - this->pos;
     GridCoord c;
-    // c.x = fmod(s.x, this->cell_size);
-    // c.y = fmod(s.y, this->cell_size);
     c.x = s.x / this->cell_size;
     c.y = s.y / this->cell_size;
     return c;
@@ -102,6 +97,25 @@ bool Grid::has_entities(int x, int y) {
     }
 }
 
+std::vector<Entity*> Grid::query(glm::vec2 qtl, glm::vec2 qbr) {
+    glm::vec2 tlc = glm::max(qtl, this->pos);
+    glm::vec2 brc = glm::min(qbr, this->get_br());
+
+    GridCoord tl = Grid::get_cell_coords(tlc);
+    GridCoord br = Grid::get_cell_coords(brc);
+
+    std::vector<Entity*> hits;
+    for (int y = tl.y; y <= br.y; y += 1) {
+        for (int x = tl.x; x <= br.x; x += 1) {
+            std::vector<Entity*> cell = this->grid[y][x];
+            for (auto e : cell) {
+                hits.push_back(e);
+            }
+        }
+    }
+    return hits;
+}
+
 // helper function to get the tl and br of a rect given coordinates
 
 // helper function to get the x and y coordinates of a given rectangle
@@ -111,7 +125,6 @@ bool Grid::has_entities(int x, int y) {
 
 // void add_entity(Entity* entity);
 // void remove_entity(Entity* entity);
-// void query(glm::vec2 tl, glm::vec2 br);
 // void square_query(glm::vec2 center, float width);
 // void move(Entity* entity);
 
