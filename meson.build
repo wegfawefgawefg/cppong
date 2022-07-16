@@ -15,17 +15,18 @@ sdl2_mixer_dep = dependency('SDL2_mixer')
 
 executable('main', 
     sources: [
-        'main.cpp',
-        'game.cpp',
-        'graphics.cpp',
-        'entity.cpp',
-        'random.cpp',
-        'audio.cpp',
-        'sprite_resource.cpp',
+        'src/main.cpp',
+        'src/game.cpp',
+        'src/graphics.cpp',
+        'src/entity.cpp',
+        'src/random.cpp',
+        'src/audio.cpp',
+        'src/sprite_resource.cpp',
+        'src/grid.cpp',
     ],
     include_directories: [
-        'headers',
-        'libs',
+        'src/headers',
+        'src/libs',
     ],
     dependencies: [
         sdl2_dep,

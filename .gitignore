@@ -32,7 +32,10 @@
 *.app
 
 # Build folders
-build
-builddir
+build/*
+!build/.gitkeep
+builddir/*
+!builddir/.gitkeep
 
 .DS_Store
+.vscode/

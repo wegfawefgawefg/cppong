@@ -6,19 +6,20 @@
 #include <vector>
 #include <string>
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 class SpriteResource;
 
-class Sprite {
-    public:
-        Sprite(SpriteResource& resource);
-        ~Sprite() = default;
-        SpriteResource& resource;
-        int anim_index;
-        int frame_index;
-        float timer;
-        float speed;
+class Sprite
+{
+public:
+    Sprite(SpriteResource &resource);
+    ~Sprite() = default;
+    SpriteResource &resource;
+    int anim_index;
+    int frame_index;
+    float timer;
+    float speed;
     // void step(float dt);
     // void randomize_timer();
     // void reset_speed();

@@ -1,6 +1,4 @@
-
 #include "grid.hpp"
-
 
 Grid::Grid(glm::vec2 pos, glm::vec2 size, float cell_size){
     this->pos = pos;
