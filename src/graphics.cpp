@@ -79,6 +79,24 @@ void Graphics::render(const Game& game){
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
+    // render grid here
+
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    float start_x = game.grid->pos.x;
+    float cell_size = game.grid->cell_size;
+    glm::vec2 cursor = glm::vec2(game.grid->pos.x, game.grid->pos.y); 
+    for( auto y = 0; y < game.grid->width; y++){
+        for( auto y = 0; y < game.grid->height; y++){
+            cursor.x += cell_size;
+            SDL_Rect rect = {
+                int(cursor.x), int(cursor.y)
+                int(cursor.x + cell_size), int(cursor.y + cell_size)
+            };
+            SDL_RenderFillRect(renderer, &rect);
+        }
+        cursor.x = start_x;
+        cursor.y += cell_size;
+    }
 
     // render all the entities here
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
@@ -126,7 +144,7 @@ void Graphics::load_sprite_resources(
     // human_sprite_anim_lengths[2] = 4;
     // human_sprite_anim_lengths[3] = 4;
     // struct Sprite_resource *human_sprite_resource = sprite_resource_new(
-    //     game->renderer, 
+    //     game.renderer, 
     //     "assets/images/Minifantasy_Dungeon_Assets/Animations/Human/Minifantasy_CreaturesHumanBaseWalk.png"
     //     128, 128, human_sprite_num_anims, human_sprite_anim_lengths, 0.2);
 

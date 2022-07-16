@@ -35,6 +35,11 @@ void Game::run() {
 }
 
 void Game::setup_game() {
+    this->grid = new Grid(
+        glm::vec2(0.0, 0.0),
+        glm::vec2(graphics->width, graphics->height),
+        500.0f
+    );
     float paddle_width = graphics->width / 4.0;
     float paddle_height = graphics->height / 16.0;
 

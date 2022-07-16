@@ -7,6 +7,7 @@
 #include "graphics.hpp"
 #include "audio.hpp"
 #include "entity.hpp"
+#include "grid.hpp"
 
 class Game {
     public:
@@ -18,6 +19,7 @@ class Game {
         double dt;
 
         std::vector<Entity*> entities;
+        Grid grid;
 
 	Game();
     ~Game();
