@@ -3,7 +3,7 @@
 #include "sprite_resource.hpp"
 
 SpriteResource::SpriteResource(
-    SDL_Renderer *renderer, 
+    SDL_Renderer* renderer,
     std::string path,
     int width, int height,
     std::vector<int> anims_num_frames,
@@ -21,7 +21,7 @@ SpriteResource::SpriteResource(
     height = height;
 
     int longest_anim_length = 0;
-    for (auto &an_anim_length : anims_num_frames) {
+    for (auto& an_anim_length : anims_num_frames) {
         if (an_anim_length > longest_anim_length) {
             longest_anim_length = an_anim_length;
         }
@@ -33,7 +33,6 @@ SpriteResource::SpriteResource(
     frame_duration = frame_duration;
 }
 
-SpriteResource::~SpriteResource() {
-}
+SpriteResource::~SpriteResource() {}
 
 

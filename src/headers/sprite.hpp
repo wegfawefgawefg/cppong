@@ -13,9 +13,9 @@ class SpriteResource;
 class Sprite
 {
 public:
-    Sprite(SpriteResource &resource);
+    Sprite(SpriteResource& resource);
     ~Sprite() = default;
-    SpriteResource &resource;
+    SpriteResource& resource;
     int anim_index;
     int frame_index;
     float timer;

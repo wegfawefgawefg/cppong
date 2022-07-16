@@ -12,8 +12,9 @@ enum SOUND {
     SOUND_NUM_SOUNDS, // must be last
 };
 
-class Audio {
-    public:
+class Audio
+{
+public:
     std::vector<Mix_Chunk*> sounds;
 
     Audio();

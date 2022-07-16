@@ -12,7 +12,7 @@
 class SpriteResource
 {
 public:
-    SDL_Texture *texture;
+    SDL_Texture* texture;
     int base_width;
     int base_height;
     int width;
@@ -23,7 +23,7 @@ public:
     float frame_duration;
 
     SpriteResource(
-        SDL_Renderer *renderer,
+        SDL_Renderer* renderer,
         std::string path,
         int width, int height,
         std::vector<int> anims_num_frames,

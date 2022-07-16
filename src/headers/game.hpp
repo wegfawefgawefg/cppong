@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef GAME_H
 #define GAME_H
 
@@ -7,18 +9,19 @@
 #include "graphics.hpp"
 #include "audio.hpp"
 #include "entity.hpp"
+#include "grid.hpp"
 
-class Game
-{
+class Game {
 public:
-    Graphics *graphics;
-    Audio *audio;
+    Graphics* graphics;
+    Audio* audio;
 
     bool running = false;
     Uint64 now;
     double dt;
 
-    std::vector<Entity *> entities;
+    std::vector<Entity*> entities;
+    // Grid grid;
 
     Game();
     ~Game();

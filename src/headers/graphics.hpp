@@ -19,22 +19,22 @@ public:
     static const int width = 1280;
     static const int height = 720;
 
-    SDL_Window *window;
-    SDL_Renderer *renderer;
-    TTF_Font *font;
+    SDL_Window* window;
+    SDL_Renderer* renderer;
+    TTF_Font* font;
 
     std::vector<SpriteResource> sprite_resources;
 
     Graphics();
     ~Graphics();
     void draw_text(
-        const char *text,
+        const char* text,
         const SDL_Color color,
         const int x, const int y);
     void draw_frame_rate(float dt);
     void draw_entity_count(int num_entities);
-    void render(const Game &game);
-    void load_sprite_resources(Graphics *graphics);
+    void render(const Game& game);
+    void load_sprite_resources(Graphics* graphics);
 };
 
 #endif

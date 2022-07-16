@@ -18,7 +18,7 @@ Audio::Audio() {
 
     // loop through vector and load each file
     for (auto& sound_file : sound_files) {
-        Mix_Chunk *sound = Mix_LoadWAV(sound_file.c_str());
+        Mix_Chunk* sound = Mix_LoadWAV(sound_file.c_str());
         if (sound == NULL) {
             printf("Mix_LoadWAV: %s\n", Mix_GetError());
             return;
@@ -44,7 +44,7 @@ Audio::~Audio() {
 void Audio::audio_pan(int channel, float pan) {
     pan = std::min(std::max(pan, 0.0f), 1.0f);
     int pan_int = int(pan * 255.0);
-    Mix_SetPanning(channel, 255-pan_int, pan_int);
+    Mix_SetPanning(channel, 255 - pan_int, pan_int);
 };
 
 void Audio::sound_play_at(int sound, float x, float y) {

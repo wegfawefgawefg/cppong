@@ -22,6 +22,7 @@ executable('main',
         'src/random.cpp',
         'src/audio.cpp',
         'src/sprite_resource.cpp',
+        'src/grid.cpp',
     ],
     include_directories: [
         'src/headers',
