@@ -22,7 +22,7 @@ Entity::~Entity() {}
 
 void Entity::step(Game& game) {
     if (this->has_physics) {
-        pos += +vel * float(game.dt);
+        pos += vel * float(game.dt);
         // vel *= 0.99;
         // const float gravity = 100.0;
         // vel.y += gravity * game.dt;
@@ -82,3 +82,13 @@ void Entity::disable_physics() {
 glm::vec2 Entity::get_br() {
     return this->pos + this->size;
 }
+
+bool Entity::intersects(Entity* b) {
+    glm::vec2 a_br = this->get_br();
+    glm::vec2 b_br = b->get_br();
+    if (a_br.x < b->pos.x || this->pos.x > b_br.x) { return false; }
+    if (a_br.y < b->pos.y || this->pos.y > b_br.y) { return false; }
+    return true;
+}
+
+void Entity::collide(Entity* entity) {}

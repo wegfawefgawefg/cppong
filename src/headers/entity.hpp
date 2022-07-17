@@ -34,8 +34,8 @@ public:
     void set_transient(float lifespan);
     void disable_physics();
     void enable_physics();
-
+    void collide(Entity* entity);
     glm::vec2 get_br();
+    bool intersects(Entity* b);
 };
-
 #endif

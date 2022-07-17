@@ -34,6 +34,7 @@ public:
     void clear_inactive_entities();
     void build_grid();
     void add_entity(Entity* e);
+    void process_collisions();
     // void remove_entity()
 
     // debug

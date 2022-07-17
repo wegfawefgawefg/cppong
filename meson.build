@@ -3,6 +3,10 @@ project('main', 'cpp',
         'default_library=static',
         'optimization=3',
         'cpp_std=c++17',
+        'Warn=true',
+        # 'Wpedantic=true',
+        # 'Werror=true',
+        'warning_level=3'
     ],
 )
 message('optimization level is ' + get_option('optimization'))
@@ -24,6 +28,7 @@ executable('main',
         'src/sprite_resource.cpp',
         'src/grid.cpp',
         'src/utils.cpp',
+        'src/ball.cpp'
     ],
     include_directories: [
         'src/headers',

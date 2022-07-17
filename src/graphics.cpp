@@ -67,14 +67,6 @@ void Graphics::draw_entity_count(int num_entities) {
     draw_text(str, color, 0, 400);
 }
 
-inline bool aabb_intersects(const Entity* a, const Entity* b) {
-    glm::vec2 a_br = a->pos + a->size;
-    glm::vec2 b_br = b->pos + b->size;
-    if (a_br.x < b->pos.x or a->pos.x > b_br.x) { return false; }
-    if (a_br.y < b->pos.y or a->pos.y > b_br.y) { return false; }
-    return true;
-}
-
 void Graphics::render(const Game& game) {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
@@ -140,7 +132,7 @@ void Graphics::render(const Game& game) {
             if (entity->id == against_entity->id) {
                 continue;
             }
-            if (aabb_intersects(entity, against_entity)) {
+            if (entity->intersects(against_entity)) {
                 intersected = true;
                 break;
             }

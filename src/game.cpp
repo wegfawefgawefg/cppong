@@ -9,6 +9,7 @@
 #include "entity.hpp"
 #include "random.hpp"
 #include "utils.hpp"
+#include "ball.hpp"
 
 Game::Game() {
     graphics = new Graphics();
@@ -50,6 +51,21 @@ void Game::build_grid() {
     // std::cout << this->grid->num_entities << std::endl;
 }
 
+void Game::process_collisions() {
+    for (auto& entity : this->entities) {
+        std::vector<Entity*> hits = this->grid->query(entity->pos, entity->get_br());
+        for (Entity* against_entity : hits) {
+            if (entity->id == against_entity->id) {
+                continue;
+            }
+            if (entity->intersects(against_entity)) {
+                entity->collide(against_entity);
+                against_entity->collide(entity);
+            }
+        }
+    }
+}
+
 void Game::setup_game() {
     build_grid();
     float paddle_width = graphics->width / 4.0;
@@ -67,7 +83,7 @@ void Game::setup_game() {
 
     //  player paddle
     Entity* player_paddle = new Entity(
-        glm::vec2(0, graphics->height - paddle_height - paddle_height / 2.0 + 1),
+        glm::vec2(0, graphics->height - paddle_height - paddle_height / 2.0),
         glm::vec2(paddle_width, paddle_height),
         glm::vec2(1000, 0)
     );
@@ -76,14 +92,14 @@ void Game::setup_game() {
     ////////////////    SCORE ZONES    ////////////////
     Entity* enemy_score_zone = new Entity(
         glm::vec2(0.0, 0.0),
-        glm::vec2(graphics->width, paddle_height / 2.0),
+        glm::vec2(graphics->width, paddle_height / 2.0 - 2),
         glm::vec2(0, 0)
     );
     enemy_score_zone->disable_physics();
     add_entity(enemy_score_zone);
 
     Entity* player_score_zone = new Entity(
-        glm::vec2(0, graphics->height - paddle_height / 2.0 + 1),
+        glm::vec2(0, graphics->height - paddle_height / 2.0 + 2),
         glm::vec2(graphics->width, paddle_height / 2.0),
         glm::vec2(0, 0)
     );
@@ -152,16 +168,16 @@ void Game::process_events() {
         SDL_GetMouseState(&x, &y);
         float pan = x / float(graphics->width);
         audio->sound_play_at(0, pan, 0.0);
-        int particle_count = 100;
+        int particle_count = 1;
         for (int i = 0; i < particle_count; i++) {
-            const float maxvel = 200;
-            Entity* new_entity = new Entity(
+            // const float maxvel = 200;
+            Ball* new_entity = new Ball(
                 glm::vec2(float(x), float(y)),
-                glm::vec2(frand(1, 5), frand(1, 5)),
-                glm::diskRand(maxvel)
+                glm::vec2(20.0f, 20.0f)
+                // glm::diskRand(maxvel)
             );
-            float lifespan = frand(0.1, 2);
-            new_entity->set_transient(lifespan);
+            // float lifespan = frand(0.1, 2);
+            // new_entity->set_transient(lifespan);
             entities.push_back(new_entity);
         }
     }
@@ -193,6 +209,7 @@ void Game::update() {
     for (auto& entity : entities) {
         entity->step(*this);
     }
+    process_collisions();
     clear_inactive_entities();
 }
 
