@@ -67,7 +67,7 @@ void Graphics::draw_entity_count(int num_entities) {
     draw_text(str, color, 0, 400);
 }
 
-void Graphics::render(const Game& game) {
+void Graphics::render(Game& game) {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
@@ -149,8 +149,32 @@ void Graphics::render(const Game& game) {
 
     draw_frame_rate(game.dt);
     draw_entity_count(game.entities.size());
+    draw_scores(game);
     SDL_RenderPresent(renderer);
 }
+
+void Graphics::draw_scores(Game& game) {
+    int quarterw = game.graphics->width / 8;
+    int quarterh = game.graphics->height / 8;
+
+    // draw player score
+    {
+        const SDL_Color color = { 0, 255, 0, 255 };
+        char fps_str[32];
+        sprintf(fps_str, "%i", game.player_score);
+        draw_text(fps_str, color, quarterw, quarterh);
+    }
+
+    // draw enemy score
+    {
+        const SDL_Color color = { 255, 0, 0, 255 };
+        char fps_str[32];
+        sprintf(fps_str, "%i", game.enemy_score);
+        draw_text(fps_str, color,
+            game.graphics->width - quarterw, quarterh);
+    }
+}
+
 
 void Graphics::load_sprite_resources(
     Graphics* graphics

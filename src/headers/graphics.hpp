@@ -33,7 +33,8 @@ public:
         const int x, const int y);
     void draw_frame_rate(float dt);
     void draw_entity_count(int num_entities);
-    void render(const Game& game);
+    void draw_scores(Game& game);
+    void render(Game& game);
     void load_sprite_resources(Graphics* graphics);
 };
 

@@ -23,6 +23,12 @@ public:
     std::vector<Entity*> entities;
     Grid* grid;
 
+    int player_score = 0;
+    int enemy_score = 0;
+
+    static constexpr float TIME_BETWEEN_BALLS = 2.0f;
+    float time_since_last_ball = TIME_BETWEEN_BALLS;
+
     Game();
     ~Game();
     void run();

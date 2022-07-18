@@ -10,6 +10,8 @@
 #include "random.hpp"
 #include "utils.hpp"
 #include "ball.hpp"
+#include "paddle.hpp"
+#include "score_zone.hpp"
 
 Game::Game() {
     graphics = new Graphics();
@@ -58,9 +60,10 @@ void Game::process_collisions() {
             if (entity->id == against_entity->id) {
                 continue;
             }
-            if (entity->intersects(against_entity)) {
-                entity->collide(against_entity);
-                against_entity->collide(entity);
+            int direction = entity->intersects(against_entity);
+            if (direction) {
+                entity->collide(*this, against_entity, direction);
+                against_entity->collide(*this, entity, direction);
             }
         }
     }
@@ -73,7 +76,7 @@ void Game::setup_game() {
 
     ////////////////    INIT PADDLES    ////////////////
     //  enemy paddle
-    Entity* enemy_paddle = new Entity(
+    Paddle* enemy_paddle = new Paddle(
         glm::vec2(0, paddle_height / 2.0),
         glm::vec2(paddle_width, paddle_height),
         glm::vec2(100, 0)
@@ -81,27 +84,27 @@ void Game::setup_game() {
     // entities.push_back(enemy_paddle);
     add_entity(enemy_paddle);
 
-    //  player paddle
-    Entity* player_paddle = new Entity(
-        glm::vec2(0, graphics->height - paddle_height - paddle_height / 2.0),
-        glm::vec2(paddle_width, paddle_height),
-        glm::vec2(1000, 0)
-    );
-    add_entity(player_paddle);
+    // //  player paddle
+    // Entity* player_paddle = new Paddle(
+    //     glm::vec2(0, graphics->height - paddle_height - paddle_height / 2.0),
+    //     glm::vec2(paddle_width, paddle_height),
+    //     glm::vec2(1000, 0)
+    // );
+    // add_entity(player_paddle);
 
     ////////////////    SCORE ZONES    ////////////////
-    Entity* enemy_score_zone = new Entity(
+    Entity* enemy_score_zone = new ScoreZone(
         glm::vec2(0.0, 0.0),
         glm::vec2(graphics->width, paddle_height / 2.0 - 2),
-        glm::vec2(0, 0)
+        1
     );
     enemy_score_zone->disable_physics();
     add_entity(enemy_score_zone);
 
-    Entity* player_score_zone = new Entity(
+    Entity* player_score_zone = new ScoreZone(
         glm::vec2(0, graphics->height - paddle_height / 2.0 + 2),
         glm::vec2(graphics->width, paddle_height / 2.0),
-        glm::vec2(0, 0)
+        0
     );
     player_score_zone->disable_physics();
     add_entity(player_score_zone);
@@ -166,15 +169,15 @@ void Game::process_events() {
     if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)) {
         int x, y;
         SDL_GetMouseState(&x, &y);
-        float pan = x / float(graphics->width);
-        audio->sound_play_at(0, pan, 0.0);
+        // float pan = x / float(graphics->width);
+        // audio->sound_play_at(0, pan, 0.0);
         int particle_count = 1;
         for (int i = 0; i < particle_count; i++) {
             // const float maxvel = 200;
             Ball* new_entity = new Ball(
                 glm::vec2(float(x), float(y)),
-                glm::vec2(20.0f, 20.0f)
-                // glm::diskRand(maxvel)
+                glm::vec2(20.0f, 20.0f),
+                glm::diskRand(400.0)
             );
             // float lifespan = frand(0.1, 2);
             // new_entity->set_transient(lifespan);
@@ -205,12 +208,23 @@ void Game::update() {
     now = SDL_GetPerformanceCounter();
     dt = (double)((now - last) / (double)SDL_GetPerformanceFrequency());
 
+    this->time_since_last_ball -= dt;
+    if (this->time_since_last_ball <= 0) {
+        Ball* new_entity = new Ball(
+            glm::vec2(this->graphics->width / 2.0, this->graphics->height / 2.0),
+            glm::vec2(20.0f, 20.0f),
+            glm::diskRand(400.0)
+        );
+        entities.push_back(new_entity);
+        this->time_since_last_ball = Game::TIME_BETWEEN_BALLS;
+    }
+
     build_grid();
+    process_collisions();
+    clear_inactive_entities();
     for (auto& entity : entities) {
         entity->step(*this);
     }
-    process_collisions();
-    clear_inactive_entities();
 }
 
 void Game::render() {

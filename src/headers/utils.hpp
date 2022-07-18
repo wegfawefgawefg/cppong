@@ -6,5 +6,6 @@
 #include <glm/glm.hpp>
 
 void print_glm_vec2(glm::vec2 p);
+enum Direction { None, Top, Bottom, Left, Right };
 
 #endif

@@ -12,6 +12,7 @@ Entity::Entity(glm::vec2 pos, glm::vec2 size) : Entity() {
     this->pos = pos;
     this->size = size;
     this->vel = glm::vec2(0.0, 0.0);
+    this->acc = glm::vec2(0.0, 0.0);
 }
 
 Entity::Entity(glm::vec2 pos, glm::vec2 size, glm::vec2 vel) : Entity(pos, size) {
@@ -20,40 +21,25 @@ Entity::Entity(glm::vec2 pos, glm::vec2 size, glm::vec2 vel) : Entity(pos, size)
 
 Entity::~Entity() {}
 
-void Entity::step(Game& game) {
+void Entity::bounce(Game* game, Entity* against) {
+
+}
+
+void Entity::step_physics(Game& game) {
     if (this->has_physics) {
+        vel += acc * float(game.dt);
+        this->vel.x = std::min(Entity::MAX_SPEED, this->vel.x);
+        this->vel.y = std::min(Entity::MAX_SPEED, this->vel.y);
         pos += vel * float(game.dt);
-        // vel *= 0.99;
-        // const float gravity = 100.0;
-        // vel.y += gravity * game.dt;
-
-        // bounce of walls experimentally
-        const float width = game.graphics->window_width;
-        const float height = game.graphics->window_height;
-
-        // // bouncing
-        if (pos.x < 0) {
-            pos.x = 0;
-            vel.x *= -1;
-        }
-        else if (get_br().x > width) {
-            vel.x *= -1;
-        }
-
-        if (pos.y < 0) {
-            pos.y = 0;
-            vel.y *= -1;
-        }
-        else if (get_br().y > height) {
-            vel.y *= -1;
-        }
     }
+    this->acc = glm::vec2(0.0, 0.0);
+}
 
-    // dissapear if out of bounds
-    if (pos.x < 0 || pos.x > game.graphics->width || pos.y < 0 || pos.y > game.graphics->height) {
-        active = false;
-    }
-
+void Entity::step(Game& game) {
+    // // dissapear if out of bounds
+    // if (pos.x < 0 || pos.x > game.graphics->width || pos.y < 0 || pos.y > game.graphics->height) {
+    //     active = false;
+    // }
     if (this->transient) {
         age += game.dt;
         if (age > lifespan) {
@@ -82,13 +68,49 @@ void Entity::disable_physics() {
 glm::vec2 Entity::get_br() {
     return this->pos + this->size;
 }
-
-bool Entity::intersects(Entity* b) {
-    glm::vec2 a_br = this->get_br();
-    glm::vec2 b_br = b->get_br();
-    if (a_br.x < b->pos.x || this->pos.x > b_br.x) { return false; }
-    if (a_br.y < b->pos.y || this->pos.y > b_br.y) { return false; }
-    return true;
+glm::vec2 Entity::get_center() {
+    return this->pos + this->size / 2.0f;
 }
 
-void Entity::collide(Entity* entity) {}
+
+int Entity::intersects(Entity* b) {
+    glm::vec2 a_br = this->get_br();
+    glm::vec2 b_br = b->get_br();
+
+    float b_collision = b_br.y - this->pos.y;
+    float t_collision = a_br.y - b->pos.y;
+    float l_collision = a_br.x - b->pos.x;
+    float r_collision = b_br.x - this->pos.x;
+
+    if (    //  top collision
+        t_collision < b_collision &&
+        t_collision < l_collision &&
+        t_collision < r_collision) {
+        return 1;
+    }
+    if (    //  bottom collision
+        b_collision < t_collision &&
+        b_collision < l_collision &&
+        b_collision < r_collision) {
+        return 2;
+    }
+    if (    //  left collision
+        l_collision < r_collision &&
+        l_collision < t_collision &&
+        l_collision < b_collision) {
+        return 3;
+    }
+    if (    //  right collision
+        r_collision < l_collision &&
+        r_collision < t_collision &&
+        r_collision < b_collision) {
+
+        return 4;
+    }
+
+    // if (a_br.x < b->pos.x || this->pos.x > b_br.x) { return false; }
+    // if (a_br.y < b->pos.y || this->pos.y > b_br.y) { return false; }
+    return 0;
+}
+
+void Entity::collide(Game& game, Entity* entity, int direction) {}

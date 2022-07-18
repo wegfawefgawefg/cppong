@@ -28,7 +28,9 @@ executable('main',
         'src/sprite_resource.cpp',
         'src/grid.cpp',
         'src/utils.cpp',
-        'src/ball.cpp'
+        'src/ball.cpp',
+        'src/paddle.cpp',
+        'src/score_zone.cpp'
     ],
     include_directories: [
         'src/headers',

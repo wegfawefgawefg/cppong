@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <set> 
 
 #include "grid.hpp"
 #include "utils.hpp"
@@ -107,11 +108,15 @@ std::vector<Entity*> Grid::query(glm::vec2 qtl, glm::vec2 qbr) {
     GridCoord br = Grid::get_cell_coords(brc);
 
     std::vector<Entity*> hits;
+    std::set<int, std::greater<int>> ids;
     for (int y = tl.y; y <= br.y; y += 1) {
         for (int x = tl.x; x <= br.x; x += 1) {
             std::vector<Entity*> cell = this->grid[y][x];
             for (auto e : cell) {
-                hits.push_back(e);
+                if (ids.count(e->id) == 0) {
+                    hits.push_back(e);
+                }
+                ids.insert(e->id);
             }
         }
     }
