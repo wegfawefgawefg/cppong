@@ -172,12 +172,14 @@ void Game::process_events() {
         // float pan = x / float(graphics->width);
         // audio->sound_play_at(0, pan, 0.0);
         int particle_count = 1;
+        glm::vec2 mouse = glm::vec2(float(x), float(y));
         for (int i = 0; i < particle_count; i++) {
             // const float maxvel = 200;
+
             Ball* new_entity = new Ball(
-                glm::vec2(float(x), float(y)),
+                mouse + glm::diskRand(50.0f) - glm::diskRand(50.0f),
                 glm::vec2(20.0f, 20.0f),
-                glm::diskRand(400.0)
+                glm::diskRand(400.0f)
             );
             // float lifespan = frand(0.1, 2);
             // new_entity->set_transient(lifespan);
