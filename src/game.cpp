@@ -77,11 +77,10 @@ void Game::setup_game() {
     ////////////////    INIT PADDLES    ////////////////
     //  enemy paddle
     Paddle* enemy_paddle = new Paddle(
-        glm::vec2(0, paddle_height / 2.0),
+        glm::vec2(1, paddle_height / 2.0),
         glm::vec2(paddle_width, paddle_height),
         glm::vec2(100, 0)
     );
-    // entities.push_back(enemy_paddle);
     add_entity(enemy_paddle);
 
     // //  player paddle

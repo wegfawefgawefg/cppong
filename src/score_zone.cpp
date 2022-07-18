@@ -13,6 +13,7 @@ ScoreZone::~ScoreZone() {}
 void ScoreZone::step(Game& game) {}
 void ScoreZone::collide(Game& game, Entity* entity, int direction) {
     Ball* ball = static_cast<Ball*>(entity);
+    // i think paddle is somehow considered as a ball
     if (ball) {
         if (this->team == 0) {
             game.player_score += 1;
@@ -21,8 +22,8 @@ void ScoreZone::collide(Game& game, Entity* entity, int direction) {
             game.enemy_score += 1;
         }
         entity->set_inactive(game);
+        float pan = entity->pos.x / float(game.graphics->width);
+        game.audio->sound_play_at(1, pan, 0.0);
     }
     // play a bonk sound of course
-    float pan = entity->pos.x / float(game.graphics->width);
-    game.audio->sound_play_at(1, pan, 0.0);
 }
