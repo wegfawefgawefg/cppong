@@ -22,6 +22,7 @@ void ScoreZone::collide(Game& game, Entity* entity, int direction) {
         }
         entity->set_inactive(game);
     }
-    // increment the score
     // play a bonk sound of course
+    float pan = entity->pos.x / float(game.graphics->width);
+    game.audio->sound_play_at(1, pan, 0.0);
 }
