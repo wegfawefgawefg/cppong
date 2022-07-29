@@ -224,16 +224,16 @@ void Game::update() {
     now = SDL_GetPerformanceCounter();
     dt = (double)((now - last) / (double)SDL_GetPerformanceFrequency());
 
-    // this->time_since_last_ball -= dt;
-    // if (this->time_since_last_ball <= 0) {
-    //     Ball* new_entity = new Ball(
-    //         glm::vec2(this->graphics->width / 2.0, this->graphics->height / 2.0),
-    //         glm::vec2(20.0f, 20.0f),
-    //         glm::diskRand(400.0)
-    //     );
-    //     entities.push_back(new_entity);
-    //     this->time_since_last_ball = Game::TIME_BETWEEN_BALLS;
-    // }
+    this->time_since_last_ball -= dt;
+    if (this->time_since_last_ball <= 0) {
+        Ball* new_entity = new Ball(
+            glm::vec2(this->graphics->width / 2.0, this->graphics->height / 2.0),
+            glm::vec2(20.0f, 20.0f),
+            glm::diskRand(400.0)
+        );
+        entities.push_back(new_entity);
+        this->time_since_last_ball = Game::TIME_BETWEEN_BALLS;
+    }
 
     build_grid();
     process_collisions();

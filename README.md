@@ -15,6 +15,9 @@ architecting and compilation exercise
 - sprites
 - sprite animations
 - couple different types of ballzzz
+- fix wall bouncing logic
+- add another bounce impulse function for non entities
+- add a bounce for square colliding somehow, like bounce at the intersection point?
 
 ### look into
 

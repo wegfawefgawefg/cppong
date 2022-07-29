@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #include "ball.hpp"
 #include "paddle.hpp"
 #include "game.hpp"
@@ -36,7 +38,7 @@ void Ball::step(Game& game) {
 
     if (bounce) {
         float pan = this->pos.x / float(game.graphics->width);
-        game.audio->sound_play_at(3, pan, 0.0);
+        game.audio->sound_play_at(2, pan, 0.0);
     }
 }
 void Ball::collide(Game& game, Entity* entity) {
@@ -44,7 +46,8 @@ void Ball::collide(Game& game, Entity* entity) {
         // std::cout << "ball col: " << this->id << std::endl;
         Entity::bounce_away_from(entity);
         float pan = entity->pos.x / float(game.graphics->width);
-        game.audio->sound_play_at(2, pan, 0.0);
+        int sound = 3 + rand() % 4; // 3 - 6 inclusive random int
+        game.audio->sound_play_at(sound, pan, 0.0);
     }
     if (static_cast<Paddle*>(entity)) {
         // if (direction == Direction::Bottom || direction == Direction::Top) {
