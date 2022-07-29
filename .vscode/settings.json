@@ -54,5 +54,6 @@
     "queue": "cpp",
     "iomanip": "cpp",
     "set": "cpp"
-  }
+},
+"cmake.configureOnOpen": true
 }

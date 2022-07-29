@@ -28,8 +28,8 @@ void Entity::bounce(Game* game, Entity* against) {
 void Entity::step_physics(Game& game) {
     if (this->has_physics) {
         vel += acc * float(game.dt);
-        this->vel.x = std::min(Entity::MAX_SPEED, this->vel.x);
-        this->vel.y = std::min(Entity::MAX_SPEED, this->vel.y);
+        this->vel.x = std::max(-Entity::MAX_SPEED, std::min(Entity::MAX_SPEED, this->vel.x));
+        this->vel.y = std::max(-Entity::MAX_SPEED, std::min(Entity::MAX_SPEED, this->vel.y));
         pos += vel * float(game.dt);
     }
     this->acc = glm::vec2(0.0, 0.0);
@@ -73,7 +73,17 @@ glm::vec2 Entity::get_center() {
 }
 
 
-int Entity::intersects(Entity* b) {
+bool Entity::intersects(Entity* b) {
+    glm::vec2 a_br = this->get_br();
+    glm::vec2 b_br = b->get_br();
+
+    if (a_br.x < b->pos.x || this->pos.x > b_br.x) { return false; }
+    if (a_br.y < b->pos.y || this->pos.y > b_br.y) { return false; }
+    return true;
+}
+
+/*
+int Entity::sided_intersects(Entity* b) {
     glm::vec2 a_br = this->get_br();
     glm::vec2 b_br = b->get_br();
 
@@ -108,9 +118,16 @@ int Entity::intersects(Entity* b) {
         return 4;
     }
 
-    // if (a_br.x < b->pos.x || this->pos.x > b_br.x) { return false; }
-    // if (a_br.y < b->pos.y || this->pos.y > b_br.y) { return false; }
     return 0;
 }
+*/
 
-void Entity::collide(Game& game, Entity* entity, int direction) {}
+void Entity::collide(Game& game, Entity* entity) {}
+
+void Entity::bounce_away_from(Entity* b) {
+    float bounce_impulse = 10000.0;
+    glm::vec2 a_c = this->get_center();
+    glm::vec2 b_c = b->get_center();
+    glm::vec2 dif = a_c - b_c;
+    this->acc += glm::normalize(dif) * bounce_impulse;
+}

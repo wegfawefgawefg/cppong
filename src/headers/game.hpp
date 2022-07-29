@@ -45,7 +45,7 @@ public:
 
     // debug
     void initialize_grid_bounds_checking_entities();
-
+    void initialize_collision_testing_entities();
 
 };
 

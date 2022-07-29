@@ -107,45 +107,29 @@ void Graphics::render(Game& game) {
 
     // check intersecting shapes and draw a little red blob on them
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-    //  brute force
+
+    // //  using the SID
     // for (auto& entity : game.entities) {
-    //     for (auto& against_entity : game.entities) {
+    //     std::vector<Entity*> hits = game.grid->query(entity->pos, entity->get_br());
+    //     bool intersected = false;
+    //     for (auto& against_entity : hits) {
     //         if (entity->id == against_entity->id) {
     //             continue;
     //         }
-    //         if (aabb_intersects(entity, against_entity)) {
-    //             SDL_Rect rect = {
-    //                 int(entity->pos.x),
-    //                 int(entity->pos.y),
-    //                 5, 5
-    //             };
-    //             SDL_RenderFillRect(renderer, &rect);
+    //         if (entity->intersects(against_entity)) {
+    //             intersected = true;
+    //             break;
     //         }
     //     }
+    //     if (intersected) {
+    //         SDL_Rect rect = {
+    //                 int(entity->pos.x),
+    //                 int(entity->pos.y),
+    //                 2, 2
+    //         };
+    //         SDL_RenderFillRect(renderer, &rect);
+    //     }
     // }
-
-    //  using the SID
-    for (auto& entity : game.entities) {
-        std::vector<Entity*> hits = game.grid->query(entity->pos, entity->get_br());
-        bool intersected = false;
-        for (auto& against_entity : hits) {
-            if (entity->id == against_entity->id) {
-                continue;
-            }
-            if (entity->intersects(against_entity)) {
-                intersected = true;
-                break;
-            }
-        }
-        if (intersected) {
-            SDL_Rect rect = {
-                    int(entity->pos.x),
-                    int(entity->pos.y),
-                    2, 2
-            };
-            SDL_RenderFillRect(renderer, &rect);
-        }
-    }
 
     draw_frame_rate(game.dt);
     draw_entity_count(game.entities.size());

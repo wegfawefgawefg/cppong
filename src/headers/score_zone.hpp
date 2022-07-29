@@ -10,10 +10,10 @@ class Game;
 class Sprite;
 class ScoreZone : public Entity {
 public:
-    int team = 0;
+    int team = 0; // 0 is player for now
     ScoreZone(glm::vec2 pos, glm::vec2 size, int team);
     virtual ~ScoreZone();
     virtual void step(Game& game);
-    void collide(Game& game, Entity* entity, int direction);
+    void collide(Game& game, Entity* entity);
 };
 #endif

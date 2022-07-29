@@ -3,9 +3,6 @@ project('main', 'cpp',
         'default_library=static',
         'optimization=3',
         'cpp_std=c++17',
-        'Warn=true',
-        # 'Wpedantic=true',
-        # 'Werror=true',
         'warning_level=3'
     ],
 )
@@ -30,7 +27,8 @@ executable('main',
         'src/utils.cpp',
         'src/ball.cpp',
         'src/paddle.cpp',
-        'src/score_zone.cpp'
+        'src/score_zone.cpp',
+        'src/test_entity.cpp'
     ],
     include_directories: [
         'src/headers',

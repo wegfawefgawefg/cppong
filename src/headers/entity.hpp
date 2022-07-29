@@ -12,7 +12,7 @@ public:
     int id;
     bool active = true; //  entities culled if this is false
 
-    static constexpr float MAX_SPEED = 50.0f;
+    static constexpr float MAX_SPEED = 2000.0f;
     bool has_physics = true;
 
     glm::vec2 pos;
@@ -38,10 +38,12 @@ public:
     void set_transient(float lifespan);
     void disable_physics();
     void enable_physics();
-    virtual void collide(Game& game, Entity* entity, int direction);
+    virtual void collide(Game& game, Entity* entity);
     glm::vec2 get_br();
     glm::vec2 get_center();
-    int intersects(Entity* b);
+    bool intersects(Entity* b);
+    void bounce_away_from(Entity* b);
+
 
     // friend bool operator< (const Entity& left, const Point2D& right);
 };

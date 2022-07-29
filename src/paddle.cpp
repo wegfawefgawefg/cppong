@@ -27,6 +27,7 @@ void Paddle::step(Game& game) {
     }
     Entity::step_physics(game);
 }
-void Paddle::collide(Game& game, Entity* entity, int direction) {
+void Paddle::collide(Game& game, Entity* entity) {
     // play a bonk sound of course
+    std::cout << "paddle collision" << std::endl;
 }

@@ -12,6 +12,10 @@ Audio::Audio() {
 
     // vector of strings
     std::vector<std::string> sound_files = {
+        "assets/sounds/player_score.wav",
+        "assets/sounds/enemy_score.wav",
+        "assets/sounds/ball_ball_bounce.wav",
+        "assets/sounds/ball_wall_bounce.wav",
         "assets/sounds/fireworks_shoot.wav",
         "assets/sounds/fireworks_explosion.wav",
     };

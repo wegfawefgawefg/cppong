@@ -12,6 +12,7 @@
 #include "ball.hpp"
 #include "paddle.hpp"
 #include "score_zone.hpp"
+#include "test_entity.hpp"
 
 Game::Game() {
     graphics = new Graphics();
@@ -50,7 +51,6 @@ void Game::build_grid() {
     for (auto e : this->entities) {
         this->grid->insert_entity(e);
     }
-    // std::cout << this->grid->num_entities << std::endl;
 }
 
 void Game::process_collisions() {
@@ -60,10 +60,8 @@ void Game::process_collisions() {
             if (entity->id == against_entity->id) {
                 continue;
             }
-            int direction = entity->intersects(against_entity);
-            if (direction) {
-                entity->collide(*this, against_entity, direction);
-                against_entity->collide(*this, entity, direction);
+            if (entity->intersects(against_entity)) {
+                entity->collide(*this, against_entity);
             }
         }
     }
@@ -75,13 +73,13 @@ void Game::setup_game() {
     float paddle_height = graphics->height / 16.0;
 
     ////////////////    INIT PADDLES    ////////////////
-    //  enemy paddle
-    Paddle* enemy_paddle = new Paddle(
-        glm::vec2(1, paddle_height / 2.0),
-        glm::vec2(paddle_width, paddle_height),
-        glm::vec2(100, 0)
-    );
-    add_entity(enemy_paddle);
+    // //  enemy paddle
+    // Paddle* enemy_paddle = new Paddle(
+    //     glm::vec2(1, paddle_height / 2.0),
+    //     glm::vec2(paddle_width, paddle_height),
+    //     glm::vec2(100, 0)
+    // );
+    // add_entity(enemy_paddle);
 
     // //  player paddle
     // Entity* player_paddle = new Paddle(
@@ -95,7 +93,7 @@ void Game::setup_game() {
     Entity* enemy_score_zone = new ScoreZone(
         glm::vec2(0.0, 0.0),
         glm::vec2(graphics->width, paddle_height / 2.0 - 2),
-        1
+        0
     );
     enemy_score_zone->disable_physics();
     add_entity(enemy_score_zone);
@@ -103,10 +101,28 @@ void Game::setup_game() {
     Entity* player_score_zone = new ScoreZone(
         glm::vec2(0, graphics->height - paddle_height / 2.0 + 2),
         glm::vec2(graphics->width, paddle_height / 2.0),
-        0
+        1
     );
     player_score_zone->disable_physics();
     add_entity(player_score_zone);
+
+}
+
+void Game::initialize_collision_testing_entities() {
+    glm::vec2 half = glm::vec2(graphics->width / 2.0, graphics->height / 2.0);
+    TestEntity* t1 = new TestEntity(
+        glm::vec2(half.x, half.y),
+        glm::vec2(20, 20)
+    );
+    // t1->disable_physics();
+    add_entity(t1);
+
+    TestEntity* t2 = new TestEntity(
+        glm::vec2(half.x + 21, half.y),
+        glm::vec2(20, 20)
+    );
+    // t2->disable_physics();
+    add_entity(t2);
 }
 
 void Game::initialize_grid_bounds_checking_entities() {
@@ -178,7 +194,7 @@ void Game::process_events() {
             Ball* new_entity = new Ball(
                 mouse + glm::diskRand(50.0f) - glm::diskRand(50.0f),
                 glm::vec2(20.0f, 20.0f),
-                glm::diskRand(400.0f)
+                glm::circularRand(400.0f)
             );
             // float lifespan = frand(0.1, 2);
             // new_entity->set_transient(lifespan);
@@ -188,7 +204,6 @@ void Game::process_events() {
 }
 
 void Game::clear_inactive_entities() {
-    // make a new vector for the entities that are still active
     std::vector<Entity*> dead_entities;
     for (auto& entity : entities) {
         if (!entity->active) {
@@ -209,16 +224,16 @@ void Game::update() {
     now = SDL_GetPerformanceCounter();
     dt = (double)((now - last) / (double)SDL_GetPerformanceFrequency());
 
-    this->time_since_last_ball -= dt;
-    if (this->time_since_last_ball <= 0) {
-        Ball* new_entity = new Ball(
-            glm::vec2(this->graphics->width / 2.0, this->graphics->height / 2.0),
-            glm::vec2(20.0f, 20.0f),
-            glm::diskRand(400.0)
-        );
-        entities.push_back(new_entity);
-        this->time_since_last_ball = Game::TIME_BETWEEN_BALLS;
-    }
+    // this->time_since_last_ball -= dt;
+    // if (this->time_since_last_ball <= 0) {
+    //     Ball* new_entity = new Ball(
+    //         glm::vec2(this->graphics->width / 2.0, this->graphics->height / 2.0),
+    //         glm::vec2(20.0f, 20.0f),
+    //         glm::diskRand(400.0)
+    //     );
+    //     entities.push_back(new_entity);
+    //     this->time_since_last_ball = Game::TIME_BETWEEN_BALLS;
+    // }
 
     build_grid();
     process_collisions();

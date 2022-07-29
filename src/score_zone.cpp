@@ -4,6 +4,7 @@
 #include "random.hpp"
 #include "utils.hpp"
 #include "ball.hpp"
+#include "paddle.hpp"
 
 ScoreZone::ScoreZone(glm::vec2 pos, glm::vec2 size, int team)
     : Entity::Entity(pos, size) {
@@ -11,10 +12,14 @@ ScoreZone::ScoreZone(glm::vec2 pos, glm::vec2 size, int team)
 }
 ScoreZone::~ScoreZone() {}
 void ScoreZone::step(Game& game) {}
-void ScoreZone::collide(Game& game, Entity* entity, int direction) {
-    Ball* ball = static_cast<Ball*>(entity);
-    // i think paddle is somehow considered as a ball
+void ScoreZone::collide(Game& game, Entity* entity) {
+    // Paddle* maybe_paddle = static_cast<Paddle*>(entity);
+    // if (maybe_paddle) {
+    //     std::cout << "it was a paddle" << std::endl;
+    // }
+    Ball* ball = dynamic_cast<Ball*>(entity);
     if (ball) {
+        ball->set_inactive(game);
         if (this->team == 0) {
             game.player_score += 1;
         }
@@ -22,8 +27,15 @@ void ScoreZone::collide(Game& game, Entity* entity, int direction) {
             game.enemy_score += 1;
         }
         entity->set_inactive(game);
+
+
         float pan = entity->pos.x / float(game.graphics->width);
-        game.audio->sound_play_at(1, pan, 0.0);
+        if (this->team == 0) {
+            game.audio->sound_play_at(0, pan, 0.0);
+        }
+        else {
+            game.audio->sound_play_at(1, pan, 0.0);
+        }
     }
     // play a bonk sound of course
 }
