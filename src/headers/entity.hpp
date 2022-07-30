@@ -39,6 +39,7 @@ public:
     void disable_physics();
     void enable_physics();
     virtual void collide(Game& game, Entity* entity);
+    void add_force(glm::vec2 force);
     glm::vec2 get_br();
     glm::vec2 get_center();
     bool intersects(Entity* b);
