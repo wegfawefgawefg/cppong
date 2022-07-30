@@ -36,6 +36,10 @@ void ScoreZone::collide(Game& game, Entity* entity) {
         else {
             game.audio->sound_play_at(1, pan, 0.0);
         }
+
+        glm::vec2 dir = this->get_center() - game.camera->get_center();
+        glm::vec2 f = -dir * 200.0f;
+        game.camera->add_force(f);
     }
     // play a bonk sound of course
 }

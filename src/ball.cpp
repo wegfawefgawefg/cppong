@@ -21,12 +21,20 @@ void Ball::step(Game& game) {
         glm::vec2 to_the_left = this->get_center() + glm::vec2(-1.0, 0.0);
         bounce_away_from_position(to_the_left);
         bounce = true;
+
+        glm::vec2 dir = this->get_center() - game.camera->get_center();
+        glm::vec2 f = -dir * 200.0f;
+        game.camera->add_force(f);
     }
     else if (get_br().x > width) {
         this->pos.x = width - this->size.x;
         glm::vec2 to_the_right = this->get_center() + glm::vec2(1.0, 0.0);
         bounce_away_from_position(to_the_right);
         bounce = true;
+
+        glm::vec2 dir = this->get_center() - game.camera->get_center();
+        glm::vec2 f = -dir * 200.0f;
+        game.camera->add_force(f);
     }
 
     if (bounce) {

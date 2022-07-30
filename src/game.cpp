@@ -23,7 +23,7 @@ Game::Game() {
     glm::vec2 dims = glm::vec2(this->graphics->width, this->graphics->height);
     this->camera = new Camera(glm::vec2(0.0f, 0.0f), dims);
     this->camera->set_center(dims / 2.0f);
-    // this->camera->pin_center_to_position(this->graphics->get_center());
+    this->camera->pin_center_to_position(this->graphics->get_center());
 }
 
 Game::~Game() {
@@ -258,6 +258,7 @@ void Game::update() {
     for (auto& entity : entities) {
         entity->step(*this);
     }
+    this->camera->step(*this);
     sequencer->step(*this);
 }
 

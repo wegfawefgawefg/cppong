@@ -19,6 +19,7 @@ architecting and compilation exercise
   |- i think likely done with some line point intersection shit
 - virtual resolution
 - camera that can move and shit
+- fix right and left bouncing
 
 ### look into
 

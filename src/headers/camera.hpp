@@ -31,9 +31,11 @@ public:
     void pin_center_to_position(glm::vec2 p);
     void set_center(glm::vec2 p);
 
+
     bool contains(glm::vec2 p);
     bool contains_box(glm::vec2 tl, glm::vec2 br);
-    void bounce_away_from_position(glm::vec2 p);
 
+    void bounce_away_from_position(glm::vec2 p);
+    void add_force(glm::vec2 f);
 };
 #endif

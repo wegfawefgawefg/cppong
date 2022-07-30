@@ -1,7 +1,10 @@
 #include <iostream>
 #include <random>
 
+#include <cmath>
+
 #include "camera.hpp"
+#include "game.hpp"
 
 Camera::Camera(glm::vec2 pos, glm::vec2 size) {
     this->pos = pos;
@@ -12,7 +15,26 @@ Camera::Camera(glm::vec2 pos, glm::vec2 size) {
 
 Camera::~Camera() {}
 
-void Camera::step(Game& game) {}
+void Camera::add_force(glm::vec2 f) {
+    this->acc += f;
+}
+
+void Camera::step(Game& game) {
+    if (this->pinned) {
+        float pin_return_force = 1000.0f;
+        glm::vec2 d = this->pin_pos - this->get_center();
+        // float mag = pow(glm::length(d), 2);
+        // this->acc += mag;
+        this->acc += d * pin_return_force;
+        // this->vel.x = std::max(-Entity::MAX_SPEED, std::min(Entity::MAX_SPEED, this->vel.x));
+        // this->vel.y = std::max(-Entity::MAX_SPEED, std::min(Entity::MAX_SPEED, this->vel.y));
+        this->vel += this->acc * float(game.dt);
+        this->vel *= 0.70;
+        this->pos += this->vel * float(game.dt);
+    }
+
+    this->acc = glm::vec2(0.0, 0.0);
+}
 
 glm::vec2 Camera::get_br() {
     return this->pos + this->size;
