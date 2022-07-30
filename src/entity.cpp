@@ -37,7 +37,7 @@ void Entity::step_physics(Game& game) {
 
 void Entity::step(Game& game) {
     // // dissapear if out of bounds
-    // if (pos.x < 0 || pos.x > game.graphics->width || pos.y < 0 || pos.y > game.graphics->height) {
+    // if (pos.x < 0 || pos.x > game.graphics->dims.x || pos.y < 0 || pos.y > game.graphics->dims.y) {
     //     active = false;
     // }
     if (this->transient) {

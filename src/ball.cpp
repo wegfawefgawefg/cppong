@@ -11,8 +11,8 @@ Ball::~Ball() {}
 void Ball::step(Game& game) {
     Entity::step_physics(game);
     // bounce of walls experimentally
-    const float width = game.graphics->width;
-    const float height = game.graphics->height;
+    const float width = game.graphics->dims.x;
+    const float height = game.graphics->dims.y;
 
     // // bouncing
     bool bounce = false;
@@ -28,7 +28,7 @@ void Ball::step(Game& game) {
         game.camera->add_force(f);
     }
     else if (get_br().x > width) {
-        this->pos.x = width - this->size.x + 1;
+        this->pos.x = width - this->size.x - 1;
         this->vel.x *= -1;
         glm::vec2 to_the_right = this->get_center() + glm::vec2(1.0, 0.0);
         bounce_away_from_position(to_the_right);
@@ -40,15 +40,25 @@ void Ball::step(Game& game) {
     }
 
     if (bounce) {
-        float pan = this->pos.x / float(game.graphics->width);
+        float pan = this->pos.x / float(game.graphics->dims.x);
         game.audio->sound_play_at(2, pan, 0.0);
+    }
+
+    // quick bounds check
+    float too_far = 10.0;
+    if (this->pos.x < -too_far ||
+        this->pos.x > game.graphics->dims.x + too_far ||
+        this->pos.y < -too_far ||
+        this->pos.y > game.graphics->dims.y + too_far
+    ) {
+        this->set_inactive(game);
     }
 }
 void Ball::collide(Game& game, Entity* entity) {
     if (dynamic_cast<Ball*>(entity)) {
         // std::cout << "ball col: " << this->id << std::endl;
         Entity::bounce_away_from(entity);
-        float pan = entity->pos.x / float(game.graphics->width);
+        float pan = entity->pos.x / float(game.graphics->dims.x);
         int sound = 3 + rand() % 4; // 3 - 6 inclusive random int
         game.audio->sound_play_at(sound, pan, 0.0);
     }

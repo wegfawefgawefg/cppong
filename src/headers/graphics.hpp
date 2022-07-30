@@ -14,13 +14,14 @@ class SpriteResource;
 class Graphics
 {
 public:
-    static const int window_width = 1280;
-    static const int window_height = 720;
+    // static const int window_width = 1280;
+    // static const int window_height = 720;
 
-    static const int width = 240;//160;//640;//1280;
-    static const int height = 160;//144;//360;//720;
+    glm::vec2 window_dims = glm::vec2(1280, 720);
 
-    glm::vec2 dims = glm::vec2(240, 160); // gba
+    // glm::vec2 dims = glm::vec2(240, 160); // gba
+    glm::vec2 dims = glm::vec2(160, 144); // gb
+    // glm::vec2 dims = window_dims; // native
 
     SDL_Window* window;
     SDL_Renderer* renderer;

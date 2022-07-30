@@ -19,16 +19,16 @@ Graphics::Graphics() {
 
     window = SDL_CreateWindow("cppong",
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-        window_width, window_height,
+        int(window_dims.x), int(window_dims.y),
         SDL_WINDOW_OPENGL);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-    SDL_RenderSetLogicalSize(renderer, width, height);
+    SDL_RenderSetLogicalSize(renderer, int(this->dims.x), int(this->dims.y));
 
     // SDL_ShowCursor(SDL_DISABLE);
     SDL_RaiseWindow(window);
 
-    const int font_size = width / 20;
+    const int font_size = int(this->dims.x) / 20;
     font = TTF_OpenFont("./assets/font/FreeSans.ttf", font_size);
     if (font == NULL) {
         std::cout << "Failed to load font: " << TTF_GetError() << std::endl;
@@ -72,7 +72,7 @@ void Graphics::draw_entity_count(int num_entities) {
 }
 
 glm::vec2 Graphics::get_center() {
-    return glm::vec2(float(this->width), float(this->height)) / 2.0f;
+    return this->dims / 2.0f;
 }
 
 void Graphics::render(Game& game) {
@@ -210,8 +210,8 @@ void Graphics::render_collision_flags(Game& game) {
 }
 
 void Graphics::draw_scores(Game& game) {
-    int quarterw = game.graphics->width / 8;
-    int quarterh = game.graphics->height / 8;
+    int quarterw = game.graphics->dims.x / 8;
+    int quarterh = game.graphics->dims.y / 8;
 
     // draw player score
     {
@@ -227,7 +227,7 @@ void Graphics::draw_scores(Game& game) {
         char fps_str[32];
         sprintf(fps_str, "%i", game.enemy_score);
         draw_text(fps_str, color,
-            game.graphics->width - quarterw, quarterh);
+            game.graphics->dims.x - quarterw, quarterh);
     }
 }
 

@@ -20,7 +20,7 @@ Game::Game() {
     this->graphics = new Graphics();
     this->audio = new Audio();
     this->sequencer = new Sequencer();
-    glm::vec2 dims = glm::vec2(this->graphics->width, this->graphics->height);
+    glm::vec2 dims = glm::vec2(this->graphics->dims.x, this->graphics->dims.y);
     this->camera = new Camera(glm::vec2(0.0f, 0.0f), dims);
     this->camera->set_center(dims / 2.0f);
     this->camera->pin_center_to_position(this->graphics->get_center());
@@ -52,7 +52,7 @@ void Game::add_entity(Entity* e) {
 void Game::build_grid() {
     this->grid = new Grid(
         glm::vec2(0.0, 0.0),
-        glm::vec2(graphics->width, graphics->height),
+        glm::vec2(graphics->dims.x, graphics->dims.y),
         20.0f
     );
     for (auto e : this->entities) {
@@ -76,8 +76,8 @@ void Game::process_collisions() {
 
 void Game::setup_game() {
     build_grid();
-    float paddle_width = graphics->width / 4.0;
-    float paddle_height = graphics->height / 16.0;
+    float paddle_width = graphics->dims.x / 4.0;
+    float paddle_height = graphics->dims.y / 16.0;
 
     ////////////////    INIT PADDLES    ////////////////
     // //  enemy paddle
@@ -90,7 +90,7 @@ void Game::setup_game() {
 
     // //  player paddle
     // Entity* player_paddle = new Paddle(
-    //     glm::vec2(0, graphics->height - paddle_height - paddle_height / 2.0),
+    //     glm::vec2(0, graphics->dims.y - paddle_height - paddle_height / 2.0),
     //     glm::vec2(paddle_width, paddle_height),
     //     glm::vec2(1000, 0)
     // );
@@ -99,15 +99,15 @@ void Game::setup_game() {
     ////////////////    SCORE ZONES    ////////////////
     Entity* enemy_score_zone = new ScoreZone(
         glm::vec2(0.0, 0.0),
-        glm::vec2(graphics->width, paddle_height / 2.0 - 2),
+        glm::vec2(graphics->dims.x, paddle_height / 2.0 - 2),
         0
     );
     enemy_score_zone->disable_physics();
     add_entity(enemy_score_zone);
 
     Entity* player_score_zone = new ScoreZone(
-        glm::vec2(0, graphics->height - paddle_height / 2.0 + 2),
-        glm::vec2(graphics->width, paddle_height / 2.0),
+        glm::vec2(0, graphics->dims.y - paddle_height / 2.0 + 2),
+        glm::vec2(graphics->dims.x, paddle_height / 2.0),
         1
     );
     player_score_zone->disable_physics();
@@ -116,7 +116,7 @@ void Game::setup_game() {
 }
 
 void Game::initialize_collision_testing_entities() {
-    glm::vec2 half = glm::vec2(graphics->width / 2.0, graphics->height / 2.0);
+    glm::vec2 half = glm::vec2(graphics->dims.x / 2.0, graphics->dims.y / 2.0);
     TestEntity* t1 = new TestEntity(
         glm::vec2(half.x, half.y),
         glm::vec2(20, 20)
@@ -134,7 +134,7 @@ void Game::initialize_collision_testing_entities() {
 
 void Game::initialize_grid_bounds_checking_entities() {
     Entity* test_entity = new Entity(
-        glm::vec2(graphics->width / 2.0, graphics->height / 2.0),
+        glm::vec2(graphics->dims.x / 2.0, graphics->dims.y / 2.0),
         glm::vec2(10.0, 1.0),
         glm::vec2(0, 0)
     );
@@ -142,7 +142,7 @@ void Game::initialize_grid_bounds_checking_entities() {
     add_entity(test_entity);
 
     Entity* out_of_bounds_test_entity = new Entity(
-        glm::vec2(graphics->width, graphics->height),
+        glm::vec2(graphics->dims.x, graphics->dims.y),
         glm::vec2(10.0, 1.0),
         glm::vec2(0, 0)
     );
@@ -159,7 +159,7 @@ void Game::initialize_grid_bounds_checking_entities() {
 
 
     Entity* br_partially_out_of_bounds_test_entity = new Entity(
-        glm::vec2(graphics->width - 50, graphics->height - 50),
+        glm::vec2(graphics->dims.x - 50, graphics->dims.y - 50),
         glm::vec2(100.0, 100.0),
         glm::vec2(0, 0)
     );
@@ -169,10 +169,8 @@ void Game::initialize_grid_bounds_checking_entities() {
 glm::vec2 Game::get_mouse_pos() {
     int x, y;
     SDL_GetMouseState(&x, &y);
-    return glm::vec2(
-        float(x) / this->graphics->window_width * this->graphics->width,
-        float(y) / this->graphics->window_height * this->graphics->height
-    );
+    glm::vec2 m = glm::vec2(float(x), float(y));
+    return m / this->graphics->window_dims * this->graphics->dims;
 }
 
 void Game::process_events() {
@@ -199,7 +197,7 @@ void Game::process_events() {
 
     /*if mouse is clicked make a new entity at mouse position*/
     if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)) {
-        // float pan = x / float(graphics->width);
+        // float pan = x / graphics->dims.x;
         // audio->sound_play_at(0, pan, 0.0);
         int particle_count = 1;
         for (int i = 0; i < particle_count; i++) {
@@ -244,7 +242,7 @@ void Game::update() {
     this->time_since_last_ball -= dt;
     if (this->time_since_last_ball <= 0) {
         Ball* new_entity = new Ball(
-            glm::vec2(this->graphics->width / 2.0, this->graphics->height / 2.0),
+            glm::vec2(this->graphics->dims.x / 2.0, this->graphics->dims.y / 2.0),
             glm::vec2(5.0f, 5.0f),
             glm::diskRand(400.0)
         );

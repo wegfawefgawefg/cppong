@@ -29,7 +29,7 @@ void ScoreZone::collide(Game& game, Entity* entity) {
         entity->set_inactive(game);
 
 
-        float pan = entity->pos.x / float(game.graphics->width);
+        float pan = entity->pos.x / float(game.graphics->dims.x);
         if (this->team == 0) {
             game.audio->sound_play_at(0, pan, 0.0);
         }

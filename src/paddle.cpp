@@ -23,7 +23,7 @@ void Paddle::step(Game& game) {
         this->vel.x = std::copysign(200.0, this->target.x - this->pos.x);
     }
     else {
-        this->target.x = frand(0, float(game.graphics->width) - this->size.x);
+        this->target.x = frand(0, float(game.graphics->dims.x) - this->size.x);
     }
     Entity::step_physics(game);
 }
