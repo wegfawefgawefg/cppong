@@ -71,15 +71,22 @@ void Graphics::draw_entity_count(int num_entities) {
     draw_text(str, color, 0, 400);
 }
 
+glm::vec2 Graphics::get_center() {
+    return glm::vec2(float(this->width), float(this->height)) / 2.0f;
+}
+
 void Graphics::render(Game& game) {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
+    glm::vec2 cam_offset = game.camera->get_center() - this->get_center();
+
     // render grid here
     SDL_SetRenderDrawColor(renderer, 0, 0, 100, 150);
-    float start_x = game.grid->pos.x;
+    float start_x = game.grid->pos.x - cam_offset.x;
     float cell_size = game.grid->cell_size;
-    glm::vec2 cursor = glm::vec2(game.grid->pos.x, game.grid->pos.y);
+    glm::vec2 cursor = glm::vec2(start_x, game.grid->pos.y);
+    cursor.y -= cam_offset.y;
     for (auto y = 0; y < game.grid->height; y++) {
         for (auto x = 0; x < game.grid->width; x++) {
             SDL_Rect rect = {
@@ -101,20 +108,14 @@ void Graphics::render(Game& game) {
     // render all the entities here
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     for (auto& entity : game.entities) {
-        SDL_Rect rect = {
-            int(entity->pos.x),
-            int(entity->pos.y),
-            int(entity->size.x),
-            int(entity->size.y) };
-        SDL_RenderFillRect(renderer, &rect);
+        this->draw_rect(entity->pos - cam_offset, entity->size);
     }
 
-
     // this->render_collision_flags(game);
-    glm::vec2 dims = glm::vec2(this->width, this->height);
-    glm::vec2 p = dims / 2.0f;
-    glm::vec2 m = game.get_mouse_pos();
-    this->draw_plane(p, m - p);
+    // glm::vec2 dims = glm::vec2(this->width, this->height);
+    // glm::vec2 p = dims / 2.0f;
+    // glm::vec2 m = game.get_mouse_pos();
+    // this->draw_plane(p, m - p);
 
     draw_frame_rate(game.dt);
     draw_entity_count(game.entities.size());
@@ -161,7 +162,6 @@ void Graphics::draw_plane(glm::vec2 p, glm::vec2 dir) {
     float length = 400;
     glm::vec2 right_most = p + right * length;
     glm::vec2 left_most = p + left * length;
-    glm::vec2 tail = p - normal * length;
     this->draw_line(p, right_most);
     this->draw_line(p, left_most);
 

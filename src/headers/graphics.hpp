@@ -38,6 +38,7 @@ public:
     void render(Game& game);
     void load_sprite_resources(Graphics* graphics);
     void render_collision_flags(Game& game);
+    glm::vec2 get_center();
 
     //  primitives
     void draw_plane(glm::vec2 p, glm::vec2 dir);

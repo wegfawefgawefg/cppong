@@ -29,7 +29,8 @@ executable('main',
         'src/paddle.cpp',
         'src/score_zone.cpp',
         'src/test_entity.cpp',
-        'src/sequencer.cpp'
+        'src/sequencer.cpp',
+        'src/camera.cpp'
     ],
     include_directories: [
         'src/headers',

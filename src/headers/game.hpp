@@ -11,6 +11,7 @@
 #include "sequencer.hpp"
 #include "entity.hpp"
 #include "grid.hpp"
+#include "camera.hpp"
 
 class Game {
 public:

@@ -14,11 +14,16 @@
 #include "score_zone.hpp"
 #include "test_entity.hpp"
 #include "sequencer.hpp"
+#include "camera.hpp"
 
 Game::Game() {
     this->graphics = new Graphics();
     this->audio = new Audio();
     this->sequencer = new Sequencer();
+    glm::vec2 dims = glm::vec2(this->graphics->width, this->graphics->height);
+    this->camera = new Camera(glm::vec2(0.0f, 0.0f), dims);
+    this->camera->set_center(dims / 2.0f);
+    // this->camera->pin_center_to_position(this->graphics->get_center());
 }
 
 Game::~Game() {
@@ -190,12 +195,13 @@ void Game::process_events() {
         running = 0;
     }
 
+    glm::vec2 mouse = get_mouse_pos();
+
     /*if mouse is clicked make a new entity at mouse position*/
     if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)) {
         // float pan = x / float(graphics->width);
         // audio->sound_play_at(0, pan, 0.0);
         int particle_count = 1;
-        glm::vec2 mouse = get_mouse_pos();
         for (int i = 0; i < particle_count; i++) {
             // const float maxvel = 200;
 
@@ -209,6 +215,9 @@ void Game::process_events() {
             entities.push_back(new_entity);
         }
     }
+
+    // this->camera->set_center(mouse);
+
 }
 
 void Game::clear_inactive_entities() {
