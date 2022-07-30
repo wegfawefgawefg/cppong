@@ -13,10 +13,12 @@
 #include "paddle.hpp"
 #include "score_zone.hpp"
 #include "test_entity.hpp"
+#include "sequencer.hpp"
 
 Game::Game() {
-    graphics = new Graphics();
-    audio = new Audio();
+    this->graphics = new Graphics();
+    this->audio = new Audio();
+    this->sequencer = new Sequencer();
 }
 
 Game::~Game() {
@@ -222,7 +224,7 @@ void Game::clear_inactive_entities() {
 void Game::update() {
     Uint64 last = now;
     now = SDL_GetPerformanceCounter();
-    dt = (double)((now - last) / (double)SDL_GetPerformanceFrequency());
+    this->dt = (double)((now - last) / (double)SDL_GetPerformanceFrequency());
 
     this->time_since_last_ball -= dt;
     if (this->time_since_last_ball <= 0) {
@@ -241,6 +243,7 @@ void Game::update() {
     for (auto& entity : entities) {
         entity->step(*this);
     }
+    sequencer->step(*this);
 }
 
 void Game::render() {

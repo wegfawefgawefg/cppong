@@ -15,12 +15,22 @@ Audio::Audio() {
         "assets/sounds/player_score.wav",
         "assets/sounds/enemy_score.wav",
         "assets/sounds/ball_wall_bounce.wav",
+
         "assets/sounds/ball_ball_bounce_1.wav",
         "assets/sounds/ball_ball_bounce_2.wav",
         "assets/sounds/ball_ball_bounce_3.wav",
         "assets/sounds/ball_ball_bounce_4.wav",
+
+        "assets/sounds/base1.wav",
+        "assets/sounds/drone1.wav",
+        "assets/sounds/drone2.wav",
+        "assets/sounds/gtar1.wav",
+        "assets/sounds/gtar2.wav",
+
         "assets/sounds/fireworks_shoot.wav",
         "assets/sounds/fireworks_explosion.wav",
+
+        "assets/sounds/pong.wav",
     };
 
     // loop through vector and load each file

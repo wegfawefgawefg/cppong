@@ -6,9 +6,7 @@ architecting and compilation exercise
 
 <!-- - entity collisions triggered efficiently -->
 
-- fix the issue of collisions triggering multiple times due to duplicates being returned from grid queries (now 2 instead of 4, using sets. idk whats causing this bug)
 - convert all those pointers into refs pls...
-- figure out why paddles kill themself
 - fixed time step?
 - controls or some shit lel
 - main menu
@@ -18,6 +16,7 @@ architecting and compilation exercise
 - fix wall bouncing logic
 - add another bounce impulse function for non entities
 - add a bounce for square colliding somehow, like bounce at the intersection point?
+  |- i think likely done with some line point intersection shit
 
 ### look into
 

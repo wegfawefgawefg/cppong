@@ -8,6 +8,7 @@
 #include <SDL.h>
 #include "graphics.hpp"
 #include "audio.hpp"
+#include "sequencer.hpp"
 #include "entity.hpp"
 #include "grid.hpp"
 
@@ -15,6 +16,7 @@ class Game {
 public:
     Graphics* graphics;
     Audio* audio;
+    Sequencer* sequencer;
 
     bool running = false;
     Uint64 now;
