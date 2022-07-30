@@ -17,6 +17,7 @@ public:
     Graphics* graphics;
     Audio* audio;
     Sequencer* sequencer;
+    Camera* camera;
 
     bool running = false;
     Uint64 now;
@@ -44,6 +45,9 @@ public:
     void add_entity(Entity* e);
     void process_collisions();
     // void remove_entity()
+
+    //  util
+    glm::vec2 get_mouse_pos();
 
     // debug
     void initialize_grid_bounds_checking_entities();

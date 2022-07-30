@@ -43,6 +43,9 @@ public:
     glm::vec2 get_center();
     bool intersects(Entity* b);
     void bounce_away_from(Entity* b);
+    void bounce_away_from_position(glm::vec2 p);
+
+
 
 
     // friend bool operator< (const Entity& left, const Point2D& right);
