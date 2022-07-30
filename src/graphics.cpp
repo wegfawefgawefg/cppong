@@ -105,6 +105,13 @@ void Graphics::render(Game& game) {
         cursor.y += cell_size;
     }
 
+    //  render entity shadows
+    int bright = 100;
+    SDL_SetRenderDrawColor(renderer, bright, bright, bright, 255);
+    for (auto& entity : game.entities) {
+        glm::vec2 shadow_offset = -glm::normalize(entity->vel) * 3.0f;//* (entity->size / 4.0f);
+        this->draw_rect(entity->pos - cam_offset + shadow_offset, entity->size);
+    }
     // render all the entities here
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     for (auto& entity : game.entities) {
