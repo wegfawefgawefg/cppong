@@ -20,8 +20,9 @@ public:
     glm::vec2 window_dims = glm::vec2(1280, 720);
 
     // glm::vec2 dims = glm::vec2(240, 160); // gba
-    glm::vec2 dims = glm::vec2(160, 144); // gb
+    // glm::vec2 dims = glm::vec2(160, 144); // gb
     // glm::vec2 dims = window_dims; // native
+    glm::vec2 dims = window_dims / 2.0f; // half native
 
     SDL_Window* window;
     SDL_Renderer* renderer;

@@ -4,8 +4,6 @@ architecting and compilation exercise
 
 ## doin
 
-<!-- - entity collisions triggered efficiently -->
-
 - convert all those pointers into refs pls...
 - fixed time step?
 - controls or some shit lel
@@ -13,13 +11,8 @@ architecting and compilation exercise
 - sprites
 - sprite animations
 - couple different types of ballzzz
-- fix wall bouncing logic
-- add another bounce impulse function for non entities
 - add a bounce for square colliding somehow, like bounce at the intersection point?
   |- i think likely done with some line point intersection shit
-- virtual resolution
-- camera that can move and shit
-- fix right and left bouncing
 
 ### look into
 

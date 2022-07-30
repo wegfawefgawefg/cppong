@@ -76,7 +76,7 @@ void Game::process_collisions() {
 
 void Game::setup_game() {
     build_grid();
-    float paddle_width = graphics->dims.x / 4.0;
+    // float paddle_width = graphics->dims.x / 4.0;
     float paddle_height = graphics->dims.y / 16.0;
 
     ////////////////    INIT PADDLES    ////////////////

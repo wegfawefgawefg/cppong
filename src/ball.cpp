@@ -12,7 +12,7 @@ void Ball::step(Game& game) {
     Entity::step_physics(game);
     // bounce of walls experimentally
     const float width = game.graphics->dims.x;
-    const float height = game.graphics->dims.y;
+    // const float height = game.graphics->dims.y;
 
     // // bouncing
     bool bounce = false;
