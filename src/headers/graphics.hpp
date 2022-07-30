@@ -20,6 +20,8 @@ public:
     static const int width = 240;//160;//640;//1280;
     static const int height = 160;//144;//360;//720;
 
+    glm::vec2 dims = glm::vec2(240, 160); // gba
+
     SDL_Window* window;
     SDL_Renderer* renderer;
     TTF_Font* font;

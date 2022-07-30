@@ -132,7 +132,7 @@ void Entity::bounce_away_from(Entity* b) {
 }
 
 void Entity::bounce_away_from_position(glm::vec2 p) {
-    float bounce_impulse = 40000.0;
+    float bounce_impulse = 1000.0;
     glm::vec2 a_c = this->get_center();
     glm::vec2 dif = a_c - p;
     this->add_force(glm::normalize(dif) * bounce_impulse);
