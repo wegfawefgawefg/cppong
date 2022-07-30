@@ -7,6 +7,7 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>
+#include <glm/glm.hpp>
 
 class Game;
 class SpriteResource;
@@ -16,8 +17,8 @@ public:
     static const int window_width = 1280;
     static const int window_height = 720;
 
-    static const int width = 1280;
-    static const int height = 720;
+    static const int width = 240;//160;//640;//1280;
+    static const int height = 160;//144;//360;//720;
 
     SDL_Window* window;
     SDL_Renderer* renderer;
@@ -36,6 +37,14 @@ public:
     void draw_scores(Game& game);
     void render(Game& game);
     void load_sprite_resources(Graphics* graphics);
+    void render_collision_flags(Game& game);
+
+    //  primitives
+    void draw_plane(glm::vec2 p, glm::vec2 dir);
+    void draw_rect(glm::vec2 pos, glm::vec2 size);
+    void draw_centered_rect(glm::vec2 pos, glm::vec2 size);
+    void draw_line(glm::vec2 p1, glm::vec2 p2);
+
 };
 
 #endif

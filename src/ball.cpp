@@ -11,28 +11,21 @@ Ball::~Ball() {}
 void Ball::step(Game& game) {
     Entity::step_physics(game);
     // bounce of walls experimentally
-    const float width = game.graphics->window_width;
-    const float height = game.graphics->window_height;
+    const float width = game.graphics->width;
+    const float height = game.graphics->height;
 
     // // bouncing
     bool bounce = false;
     if (pos.x < 0) {
         pos.x = 0;
-        vel.x *= -1;
+        glm::vec2 to_the_left = this->get_center() + glm::vec2(-1.0, 0.0);
+        bounce_away_from_position(to_the_left);
         bounce = true;
     }
     else if (get_br().x > width) {
-        vel.x *= -1;
-        bounce = true;
-    }
-
-    if (pos.y < 0) {
-        pos.y = 0;
-        vel.y *= -1;
-        bounce = true;
-    }
-    else if (get_br().y > height) {
-        vel.y *= -1;
+        this->pos.x = width - this->size.x;
+        glm::vec2 to_the_right = this->get_center() + glm::vec2(1.0, 0.0);
+        bounce_away_from_position(to_the_right);
         bounce = true;
     }
 

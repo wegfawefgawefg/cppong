@@ -161,6 +161,14 @@ void Game::initialize_grid_bounds_checking_entities() {
     br_partially_out_of_bounds_test_entity->disable_physics();
     add_entity(br_partially_out_of_bounds_test_entity);
 }
+glm::vec2 Game::get_mouse_pos() {
+    int x, y;
+    SDL_GetMouseState(&x, &y);
+    return glm::vec2(
+        float(x) / this->graphics->window_width * this->graphics->width,
+        float(y) / this->graphics->window_height * this->graphics->height
+    );
+}
 
 void Game::process_events() {
     SDL_Event event;
@@ -184,19 +192,17 @@ void Game::process_events() {
 
     /*if mouse is clicked make a new entity at mouse position*/
     if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)) {
-        int x, y;
-        SDL_GetMouseState(&x, &y);
         // float pan = x / float(graphics->width);
         // audio->sound_play_at(0, pan, 0.0);
         int particle_count = 1;
-        glm::vec2 mouse = glm::vec2(float(x), float(y));
+        glm::vec2 mouse = get_mouse_pos();
         for (int i = 0; i < particle_count; i++) {
             // const float maxvel = 200;
 
             Ball* new_entity = new Ball(
-                mouse + glm::diskRand(50.0f) - glm::diskRand(50.0f),
-                glm::vec2(20.0f, 20.0f),
-                glm::circularRand(400.0f)
+                mouse + glm::diskRand(10.0f) - glm::diskRand(10.0f),
+                glm::vec2(5.0f, 5.0f),
+                glm::circularRand(200.0f)
             );
             // float lifespan = frand(0.1, 2);
             // new_entity->set_transient(lifespan);
@@ -230,7 +236,7 @@ void Game::update() {
     if (this->time_since_last_ball <= 0) {
         Ball* new_entity = new Ball(
             glm::vec2(this->graphics->width / 2.0, this->graphics->height / 2.0),
-            glm::vec2(20.0f, 20.0f),
+            glm::vec2(5.0f, 5.0f),
             glm::diskRand(400.0)
         );
         entities.push_back(new_entity);

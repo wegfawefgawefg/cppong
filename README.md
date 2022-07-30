@@ -17,6 +17,8 @@ architecting and compilation exercise
 - add another bounce impulse function for non entities
 - add a bounce for square colliding somehow, like bounce at the intersection point?
   |- i think likely done with some line point intersection shit
+- virtual resolution
+- camera that can move and shit
 
 ### look into
 
