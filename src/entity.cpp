@@ -195,3 +195,10 @@ void Entity::animate_four_way_walk() {
         }
     }
 }
+
+void Entity::enable_input_listening() {
+    this->listens_to_inputs = true;
+}
+void Entity::disable_input_listening() {
+    this->listens_to_inputs = false;
+}

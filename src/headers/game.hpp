@@ -12,6 +12,7 @@
 #include "entity.hpp"
 #include "grid.hpp"
 #include "camera.hpp"
+#include "guy.hpp"
 
 class Game {
 public:
@@ -24,6 +25,7 @@ public:
     Uint64 now;
     double dt;
 
+    Entity* player = NULL;
     std::vector<Entity*> entities;
     Grid* grid = NULL;
 

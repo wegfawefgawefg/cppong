@@ -28,7 +28,9 @@ public:
     glm::vec2 acc;
     glm::vec2 size;
 
-    ////    "transient" entities die after a while
+    bool listens_to_inputs = false;
+
+    //    "transient" entities die after a while
     bool transient = false;
     float lifespan = 0.0;
     float age = 0.0;
@@ -53,6 +55,10 @@ public:
     void bounce_away_from(Entity* b);
     void bounce_away_from_position(glm::vec2 p);
     void set_sprite(Sprite* sprite);
+    void enable_input_listening();
+    void disable_input_listening();
+    //virtual void control();
+
 
     //  animation
     void animate_four_way_walk();

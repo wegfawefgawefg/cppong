@@ -32,7 +32,8 @@ executable('main',
         'src/test_entity.cpp',
         'src/sequencer.cpp',
         'src/camera.cpp',
-        'src/sprite_assets.cpp'
+        'src/sprite_assets.cpp',
+        'src/guy.cpp'
     ],
     include_directories: [
         'src/headers',

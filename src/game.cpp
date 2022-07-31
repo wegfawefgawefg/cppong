@@ -16,6 +16,7 @@
 #include "sequencer.hpp"
 #include "camera.hpp"
 #include "sprite.hpp"
+#include "guy.hpp"
 
 Game::Game() {
     this->graphics = new Graphics();
@@ -113,6 +114,16 @@ void Game::setup_game() {
     );
     player_score_zone->disable_physics();
     add_entity(player_score_zone);
+
+
+    Guy* player = new Guy(this->graphics->get_center());
+    SpriteResource* guy_sprite_resource = this->graphics->sprite_resources[1];
+    Sprite* sprite = new Sprite(guy_sprite_resource);
+    sprite->set_size(player->size * 10.0f);
+    player->set_sprite(sprite);
+
+    this->player = player;
+    this->add_entity(this->player);
 
 }
 
@@ -261,6 +272,9 @@ void Game::update() {
     clear_inactive_entities();
     for (auto& entity : entities) {
         entity->step(*this);
+        if (entity->listens_to_inputs) {
+            // entity->control(inputs);
+        }
         if (entity->sprite != NULL) {
             entity->sprite->step(this->dt);
             entity->animate_four_way_walk();
