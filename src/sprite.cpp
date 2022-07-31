@@ -4,7 +4,6 @@
 #include <stdlib.h>
 
 
-
 #include "sprite.hpp"
 
 Sprite::Sprite(SpriteResource* resource) {
@@ -17,14 +16,15 @@ Sprite::Sprite(SpriteResource* resource) {
 }
 
 Sprite::~Sprite() {
-    //  lol you should be closing the resource here idiot
+    /*  DO NOT closing the sprite resource here,
+      many sprites will be sharing the same resource*/
 }
 
-Sprite::reset_speed() {
+void Sprite::reset_speed() {
     this->speed = 1.0;
 }
 
-Sprite::randomize_timer() {
+void Sprite::randomize_timer() {
     this->timer = fmodf(rand(), this->resource->frame_duration);
 }
 
@@ -51,7 +51,7 @@ void Sprite::set_anim(int anim_index) {
     this->anim_index = anim_index;
     // if the animation is invalid, set it to the first animation
     //  //  EMERGENCY TO PREVENT CRASHING BUT IF THIS HAPPENS YOU HAVE A BUG
-    if (anim_index >= this->resource->num_anims) {
+    if (anim_index >= this->resource->get_num_anims()) {
         this->anim_index = 0;
     }
     this->rollover_to_begining_of_anim();

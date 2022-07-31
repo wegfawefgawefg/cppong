@@ -22,6 +22,7 @@ executable('main',
         'src/entity.cpp',
         'src/random.cpp',
         'src/audio.cpp',
+        'src/sprite.cpp',
         'src/sprite_resource.cpp',
         'src/grid.cpp',
         'src/utils.cpp',
@@ -30,7 +31,8 @@ executable('main',
         'src/score_zone.cpp',
         'src/test_entity.cpp',
         'src/sequencer.cpp',
-        'src/camera.cpp'
+        'src/camera.cpp',
+        'src/sprite_assets.cpp'
     ],
     include_directories: [
         'src/headers',

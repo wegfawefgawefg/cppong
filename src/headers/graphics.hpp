@@ -3,14 +3,16 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
 
+#include <iostream>
+
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>
 #include <glm/glm.hpp>
+#include "sprite_resource.hpp"
 
 class Game;
-class SpriteResource;
 class Graphics
 {
 public:
@@ -28,7 +30,7 @@ public:
     SDL_Renderer* renderer;
     TTF_Font* font;
 
-    std::vector<SpriteResource> sprite_resources;
+    std::vector<SpriteResource*> sprite_resources;
 
     Graphics();
     ~Graphics();
@@ -40,7 +42,12 @@ public:
     void draw_entity_count(int num_entities);
     void draw_scores(Game& game);
     void render(Game& game);
-    void load_sprite_resources(Graphics* graphics);
+    void load_sprite_resources();
+    void add_sprite_resource(
+        std::string path,
+        int width, int height,
+        std::vector<int> anims_num_frames,
+        float frame_duration);
     void render_collision_flags(Game& game);
     glm::vec2 get_center();
 

@@ -62,14 +62,14 @@ void Audio::audio_pan(int channel, float pan) {
     pan = std::min(std::max(pan, 0.0f), 1.0f);
     int pan_int = int(pan * 255.0);
     Mix_SetPanning(channel, 255 - pan_int, pan_int);
-};
+}
 
 void Audio::sound_play_at(int sound, float x, float y) {
     //x in range 0 to 1
     int channel = Mix_PlayChannel(-1, sounds[sound], 0);
     audio_pan(channel, x);
-};
+}
 
 int Audio::sound_play(int sound) {
     return Mix_PlayChannel(-1, sounds[sound], 0);
-};
+}

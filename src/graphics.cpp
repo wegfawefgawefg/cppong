@@ -6,7 +6,7 @@
 #include "game.hpp"
 #include "graphics.hpp"
 #include "sprite_resource.hpp"
-
+#include "sprite_assets.hpp"
 
 Graphics::Graphics() {
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 16);
@@ -35,7 +35,7 @@ Graphics::Graphics() {
         exit(1);
     }
 
-    load_sprite_resources(this);
+    this->load_sprite_resources();
 }
 
 Graphics::~Graphics() {
@@ -238,28 +238,16 @@ void Graphics::draw_scores(Game& game) {
     }
 }
 
-
-void Graphics::load_sprite_resources(
-    Graphics* graphics
-) {
-    // // load in human sprite
-    // int human_sprite_num_anims = 4;
-    // int * human_sprite_anim_lengths = malloc(sizeof(int) * 4);
-    // human_sprite_anim_lengths[0] = 4;
-    // human_sprite_anim_lengths[1] = 4;
-    // human_sprite_anim_lengths[2] = 4;
-    // human_sprite_anim_lengths[3] = 4;
-    // struct Sprite_resource *human_sprite_resource = sprite_resource_new(
-    //     game.renderer, 
-    //     "assets/images/Minifantasy_Dungeon_Assets/Animations/Human/Minifantasy_CreaturesHumanBaseWalk.png"
-    //     128, 128, human_sprite_num_anims, human_sprite_anim_lengths, 0.2);
-
-    SpriteResource reticle_sprite_resource = SpriteResource(
-        graphics->renderer,
-        "assets/images/crosshair025.png",
-        64, 64,
-        std::vector<int>{1},
-        0.2);
-
-    graphics->sprite_resources.push_back(reticle_sprite_resource);
+void Graphics::add_sprite_resource(
+        std::string path,
+        int width, int height,
+        std::vector<int> anims_num_frames,
+        float frame_duration) {
+    SpriteResource* new_sprite_resource = new SpriteResource(
+            this->renderer,
+            path,
+            width, height,
+            anims_num_frames,
+            frame_duration);
+    this->sprite_resources.push_back(new_sprite_resource);
 }

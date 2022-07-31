@@ -5,8 +5,9 @@
 
 #include <glm/glm.hpp>
 
+#include "sprite.hpp"
+
 class Game;
-class Sprite;
 class Entity {
 public:
     int id;
@@ -25,16 +26,15 @@ public:
     float lifespan = 0.0;
     float age = 0.0;
 
-    // Sprite& sprite;
+    Sprite* sprite;
 
     Entity();
     Entity(glm::vec2 pos, glm::vec2 size);
     Entity(glm::vec2 pos, glm::vec2 size, glm::vec2 vel);
     virtual ~Entity();
     virtual void step(Game& game);
-    void bounce(Game* game, Entity* against);
     virtual void step_physics(Game& game);
-    void set_inactive(Game& game);
+    void set_inactive();
     void set_transient(float lifespan);
     void disable_physics();
     void enable_physics();
@@ -45,9 +45,7 @@ public:
     bool intersects(Entity* b);
     void bounce_away_from(Entity* b);
     void bounce_away_from_position(glm::vec2 p);
-
-
-
+    void set_sprite(Sprite* sprite);
 
     // friend bool operator< (const Entity& left, const Point2D& right);
 };

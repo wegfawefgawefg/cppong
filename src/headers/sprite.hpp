@@ -8,7 +8,7 @@
 
 #include <SDL.h>
 
-class SpriteResource;
+#include "sprite_resource.hpp"
 
 class Sprite
 {

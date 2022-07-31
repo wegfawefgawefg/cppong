@@ -5,7 +5,7 @@
 #include "utils.hpp"
 
 Sequencer::Sequencer() {
-    this->beats.push_back(new Beat(14, 19.3, 0.0)); // the horrible song
+    // this->beats.push_back(new Beat(14, 19.3, 0.0)); // the horrible song
     // this->set_speed(4.0);
     // this->beats.push_back(new Beat(7, 4.0, 0.0));
     // this->beats.push_back(new Beat(8, 3.0, 0.0));

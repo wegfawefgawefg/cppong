@@ -29,6 +29,8 @@ public:
         std::vector<int> anims_num_frames,
         float frame_duration);
     ~SpriteResource();
+
+    int get_num_anims();
 };
 
 #endif

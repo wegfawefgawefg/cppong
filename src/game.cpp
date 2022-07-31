@@ -15,6 +15,7 @@
 #include "test_entity.hpp"
 #include "sequencer.hpp"
 #include "camera.hpp"
+#include "sprite.hpp"
 
 Game::Game() {
     this->graphics = new Graphics();
@@ -208,6 +209,10 @@ void Game::process_events() {
                 glm::vec2(5.0f, 5.0f),
                 glm::circularRand(200.0f)
             );
+
+            SpriteResource* ball_sprite_resource = this->graphics->sprite_resources[0];
+            Sprite* sprite = new Sprite(ball_sprite_resource);
+            new_entity->set_sprite(sprite);
             // float lifespan = frand(0.1, 2);
             // new_entity->set_transient(lifespan);
             entities.push_back(new_entity);
@@ -255,6 +260,10 @@ void Game::update() {
     clear_inactive_entities();
     for (auto& entity : entities) {
         entity->step(*this);
+        // step sprites
+        // if (entity->sprite) {
+        //     entity->sprite->step(this->dt);
+        // }
     }
     this->camera->step(*this);
     sequencer->step(*this);

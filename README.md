@@ -16,6 +16,8 @@ architecting and compilation exercise
 
 ### look into
 
+https://soundimage.org
+
 https://apt.llvm.org/
 clang static analyzer
 clang tidy

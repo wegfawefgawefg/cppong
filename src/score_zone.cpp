@@ -19,14 +19,14 @@ void ScoreZone::collide(Game& game, Entity* entity) {
     // }
     Ball* ball = dynamic_cast<Ball*>(entity);
     if (ball) {
-        ball->set_inactive(game);
+        ball->set_inactive();
         if (this->team == 0) {
             game.player_score += 1;
         }
         else if (this->team == 1) {
             game.enemy_score += 1;
         }
-        entity->set_inactive(game);
+        entity->set_inactive();
 
 
         float pan = entity->pos.x / float(game.graphics->dims.x);

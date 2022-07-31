@@ -19,10 +19,8 @@ Entity::Entity(glm::vec2 pos, glm::vec2 size, glm::vec2 vel) : Entity(pos, size)
     this->vel = vel;
 }
 
-Entity::~Entity() {}
-
-void Entity::bounce(Game* game, Entity* against) {
-
+Entity::~Entity() {
+    delete this->sprite;
 }
 
 void Entity::step_physics(Game& game) {
@@ -43,12 +41,12 @@ void Entity::step(Game& game) {
     if (this->transient) {
         age += game.dt;
         if (age > lifespan) {
-            Entity::set_inactive(game);
+            Entity::set_inactive();
         }
     }
 }
 
-void Entity::set_inactive(Game& game) {
+void Entity::set_inactive() {
     active = false;
 }
 
@@ -138,4 +136,8 @@ void Entity::bounce_away_from_position(glm::vec2 p) {
 
 void Entity::add_force(glm::vec2 force) {
     this->acc += force;
+}
+
+void Entity::set_sprite(Sprite* sprite) {
+    this->sprite = sprite;
 }

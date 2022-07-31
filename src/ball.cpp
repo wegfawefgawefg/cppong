@@ -51,7 +51,7 @@ void Ball::step(Game& game) {
         this->pos.y < -too_far ||
         this->pos.y > game.graphics->dims.y + too_far
     ) {
-        this->set_inactive(game);
+        this->set_inactive();
     }
 }
 void Ball::collide(Game& game, Entity* entity) {

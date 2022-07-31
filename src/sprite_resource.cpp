@@ -38,4 +38,7 @@ SpriteResource::SpriteResource(
 
 SpriteResource::~SpriteResource() {}
 
+int SpriteResource::get_num_anims() {
+    return this->anims_num_frames.size();
+}
 
