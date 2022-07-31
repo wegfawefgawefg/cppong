@@ -18,7 +18,7 @@ SpriteResource::SpriteResource(
         printf("Failed to load texture: %s\n", SDL_GetError());
         exit(1);
     }
-    SDL_QueryTexture(texture, NULL, NULL, &base_width, &base_height);
+    SDL_QueryTexture(texture, NULL, NULL, &(this->base_width), &(this->base_height));
 
     this->width = width;
     this->height = height;

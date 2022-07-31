@@ -7,6 +7,13 @@
 
 #include "sprite.hpp"
 
+enum sprite_animation_four_way_walk_states {
+    DOWN_RIGHT,
+    DOWN_LEFT,
+    UP_RIGHT,
+    UP_LEFT,
+};
+
 class Game;
 class Entity {
 public:
@@ -46,6 +53,9 @@ public:
     void bounce_away_from(Entity* b);
     void bounce_away_from_position(glm::vec2 p);
     void set_sprite(Sprite* sprite);
+
+    //  animation
+    void animate_four_way_walk();
 
     // friend bool operator< (const Entity& left, const Point2D& right);
 };

@@ -13,12 +13,12 @@ class SpriteResource
 {
 public:
     SDL_Texture* texture = nullptr;
-    int base_width;
-    int base_height;
-    int width;
-    int height;
-    int zone_width;
-    int zone_height;
+    int base_width = 0;
+    int base_height = 0;
+    int width = 0;
+    int height = 0;
+    int zone_width = 0;
+    int zone_height = 0;
     std::vector<int> anims_num_frames;
     float frame_duration;
 

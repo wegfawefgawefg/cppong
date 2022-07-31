@@ -210,8 +210,9 @@ void Game::process_events() {
                 glm::circularRand(200.0f)
             );
 
-            SpriteResource* ball_sprite_resource = this->graphics->sprite_resources[0];
+            SpriteResource* ball_sprite_resource = this->graphics->sprite_resources[1];
             Sprite* sprite = new Sprite(ball_sprite_resource);
+            sprite->set_size(new_entity->size * 25.0f);
             new_entity->set_sprite(sprite);
             // float lifespan = frand(0.1, 2);
             // new_entity->set_transient(lifespan);
@@ -260,10 +261,10 @@ void Game::update() {
     clear_inactive_entities();
     for (auto& entity : entities) {
         entity->step(*this);
-        // step sprites
-        // if (entity->sprite) {
-        //     entity->sprite->step(this->dt);
-        // }
+        if (entity->sprite != NULL) {
+            entity->sprite->step(this->dt);
+            entity->animate_four_way_walk();
+        }
     }
     this->camera->step(*this);
     sequencer->step(*this);

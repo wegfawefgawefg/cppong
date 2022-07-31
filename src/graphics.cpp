@@ -1,4 +1,6 @@
 #include <iostream>
+#include <algorithm>
+#include <vector>
 
 // #include <glm/ext/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale
 #include <glm/gtx/rotate_vector.hpp>
@@ -75,6 +77,10 @@ glm::vec2 Graphics::get_center() {
     return this->dims / 2.0f;
 }
 
+bool compare_entity_heights(Entity* a, Entity* b) {
+    return (a->pos.y < b->pos.y);
+}
+
 void Graphics::render(Game& game) {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
@@ -114,10 +120,11 @@ void Graphics::render(Game& game) {
     // }
     // render all the entities here
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    std::sort(game.entities.begin(), game.entities.end(), compare_entity_heights);
     for (auto& entity : game.entities) {
         if (entity->sprite != NULL) {
             this->draw_sprite(entity->sprite, entity->get_center() - cam_offset);
-            this->draw_rect(entity->pos - cam_offset, entity->size);
+            // this->draw_rect(entity->pos - cam_offset, entity->size);
         }
         else {
             this->draw_rect(entity->pos - cam_offset, entity->size);
@@ -266,10 +273,10 @@ void Graphics::draw_sprite(Sprite* sprite, glm::vec2 pos) {
         sprite->resource->zone_height
     };
     SDL_Rect dst_rect = {
-        pos.x - sprite->resource->width / 2,
-        pos.y - sprite->resource->height / 2,
-        sprite->resource->width,
-        sprite->resource->height
+        int(pos.x - int(float((sprite->resource->width / 2)) * sprite->scale.x)),
+        int(pos.y - int(float((sprite->resource->height / 2)) * sprite->scale.y)),
+        int(float((sprite->resource->width)) * sprite->scale.x),
+        int(float((sprite->resource->height)) * sprite->scale.y),
     };
     SDL_RenderCopy(renderer, sprite->resource->texture, &src_rect, &dst_rect);
 }

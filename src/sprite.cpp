@@ -57,6 +57,19 @@ void Sprite::set_anim(int anim_index) {
     this->rollover_to_begining_of_anim();
 }
 
+void Sprite::set_scale(glm::vec2 scale) {
+    this->scale = scale;
+}
+
+void Sprite::set_size(glm::vec2 size) {
+    glm::vec2 resource_size = glm::vec2(this->resource->width, this->resource->height);
+    this->scale = size / resource_size;
+}
+
+void Sprite::multiply_scale(glm::vec2 scale) {
+    this->scale *= scale;
+}
+
 void Sprite::step(float dt) {
     this->timer += dt * this->speed;
     if (this->timer >= this->resource->frame_duration) {

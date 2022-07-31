@@ -141,3 +141,57 @@ void Entity::add_force(glm::vec2 force) {
 void Entity::set_sprite(Sprite* sprite) {
     this->sprite = sprite;
 }
+
+void Entity::animate_four_way_walk() {
+    if (this->vel.x == 0 && this->vel.y == 0) {
+        this->sprite->set_anim_frame_index(0);
+        this->sprite->set_speed(0.0);
+    }
+    else {    // moving
+        // just left or right
+        if (this->vel.y == 0) {
+            if (this->vel.x > 0) {
+                this->sprite->set_anim(DOWN_RIGHT);
+                this->sprite->reset_speed();
+            }
+            else {
+                this->sprite->set_anim(DOWN_LEFT);
+                this->sprite->reset_speed();
+            }
+        }
+        // just up or down
+        else if (this->vel.x == 0) {
+            if (this->vel.y > 0) {
+                this->sprite->set_anim(DOWN_RIGHT);
+                this->sprite->reset_speed();
+            }
+            else {
+                this->sprite->set_anim(UP_RIGHT);
+                this->sprite->reset_speed();
+            }
+        }
+        // diagonals
+        else {
+            if (this->vel.x > 0) {
+                if (this->vel.y > 0) {
+                    this->sprite->set_anim(DOWN_RIGHT);
+                    this->sprite->reset_speed();
+                }
+                else {
+                    this->sprite->set_anim(UP_RIGHT);
+                    this->sprite->reset_speed();
+                }
+            }
+            else {
+                if (this->vel.y > 0) {
+                    this->sprite->set_anim(DOWN_LEFT);
+                    this->sprite->reset_speed();
+                }
+                else {
+                    this->sprite->set_anim(UP_LEFT);
+                    this->sprite->reset_speed();
+                }
+            }
+        }
+    }
+}
