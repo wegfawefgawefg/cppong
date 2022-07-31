@@ -15,17 +15,17 @@
 
 class Game {
 public:
-    Graphics* graphics;
-    Audio* audio;
-    Sequencer* sequencer;
-    Camera* camera;
+    Graphics* graphics = NULL;
+    Audio* audio = NULL;
+    Sequencer* sequencer = NULL;
+    Camera* camera = NULL;
 
     bool running = false;
     Uint64 now;
     double dt;
 
     std::vector<Entity*> entities;
-    Grid* grid;
+    Grid* grid = NULL;
 
     int player_score = 0;
     int enemy_score = 0;

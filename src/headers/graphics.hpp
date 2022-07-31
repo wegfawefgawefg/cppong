@@ -26,9 +26,9 @@ public:
     // glm::vec2 dims = window_dims; // native
     glm::vec2 dims = window_dims / 2.0f; // half native
 
-    SDL_Window* window;
-    SDL_Renderer* renderer;
-    TTF_Font* font;
+    SDL_Window* window = NULL;
+    SDL_Renderer* renderer = NULL;
+    TTF_Font* font = NULL;
 
     std::vector<SpriteResource*> sprite_resources;
 

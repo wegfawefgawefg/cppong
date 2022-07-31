@@ -26,7 +26,7 @@ public:
     float lifespan = 0.0;
     float age = 0.0;
 
-    Sprite* sprite;
+    Sprite* sprite = NULL;
 
     Entity();
     Entity(glm::vec2 pos, glm::vec2 size);

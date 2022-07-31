@@ -12,7 +12,7 @@
 class SpriteResource
 {
 public:
-    SDL_Texture* texture;
+    SDL_Texture* texture = nullptr;
     int base_width;
     int base_height;
     int width;

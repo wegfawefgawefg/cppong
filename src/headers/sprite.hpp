@@ -13,7 +13,7 @@
 class Sprite
 {
 public:
-    SpriteResource* resource;
+    SpriteResource* resource = NULL;
 
     int anim_index;
     int frame_index;
