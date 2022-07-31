@@ -10,7 +10,9 @@
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>
 #include <glm/glm.hpp>
+
 #include "sprite_resource.hpp"
+#include "sprite.hpp"
 
 class Game;
 class Graphics
@@ -34,28 +36,33 @@ public:
 
     Graphics();
     ~Graphics();
-    void draw_text(
-        const char* text,
-        const SDL_Color color,
-        const int x, const int y);
+
+    void render(Game& game);
+
+    //  drawing
     void draw_frame_rate(float dt);
     void draw_entity_count(int num_entities);
     void draw_scores(Game& game);
-    void render(Game& game);
+    void render_collision_flags(Game& game);
+
+    glm::vec2 get_center();
     void load_sprite_resources();
     void add_sprite_resource(
         std::string path,
         int width, int height,
         std::vector<int> anims_num_frames,
         float frame_duration);
-    void render_collision_flags(Game& game);
-    glm::vec2 get_center();
 
     //  primitives
+    void draw_text(
+        const char* text,
+        const SDL_Color color,
+        const int x, const int y);
     void draw_plane(glm::vec2 p, glm::vec2 dir);
     void draw_rect(glm::vec2 pos, glm::vec2 size);
     void draw_centered_rect(glm::vec2 pos, glm::vec2 size);
     void draw_line(glm::vec2 p1, glm::vec2 p2);
+    void draw_sprite(Sprite* sprite, glm::vec2 pos);
 
 };
 

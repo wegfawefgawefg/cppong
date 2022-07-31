@@ -105,17 +105,23 @@ void Graphics::render(Game& game) {
         cursor.y += cell_size;
     }
 
-    //  render entity shadows
-    int bright = 100;
-    SDL_SetRenderDrawColor(renderer, bright, bright, bright, 255);
-    for (auto& entity : game.entities) {
-        glm::vec2 shadow_offset = -glm::normalize(entity->vel) * 3.0f;//* (entity->size / 4.0f);
-        this->draw_rect(entity->pos - cam_offset + shadow_offset, entity->size);
-    }
+    // //  render entity shadows
+    // int bright = 100;
+    // SDL_SetRenderDrawColor(renderer, bright, bright, bright, 255);
+    // for (auto& entity : game.entities) {
+    //     glm::vec2 shadow_offset = -glm::normalize(entity->vel) * 3.0f;//* (entity->size / 4.0f);
+    //     this->draw_rect(entity->pos - cam_offset + shadow_offset, entity->size);
+    // }
     // render all the entities here
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     for (auto& entity : game.entities) {
-        this->draw_rect(entity->pos - cam_offset, entity->size);
+        if (entity->sprite != NULL) {
+            this->draw_sprite(entity->sprite, entity->get_center() - cam_offset);
+            this->draw_rect(entity->pos - cam_offset, entity->size);
+        }
+        else {
+            this->draw_rect(entity->pos - cam_offset, entity->size);
+        }
     }
 
     // this->render_collision_flags(game);
@@ -250,4 +256,20 @@ void Graphics::add_sprite_resource(
             anims_num_frames,
             frame_duration);
     this->sprite_resources.push_back(new_sprite_resource);
+}
+
+void Graphics::draw_sprite(Sprite* sprite, glm::vec2 pos) {
+    SDL_Rect src_rect = {
+        sprite->frame_index * sprite->resource->zone_width,
+        sprite->anim_index * sprite->resource->zone_height,
+        sprite->resource->zone_width,
+        sprite->resource->zone_height
+    };
+    SDL_Rect dst_rect = {
+        pos.x - sprite->resource->width / 2,
+        pos.y - sprite->resource->height / 2,
+        sprite->resource->width,
+        sprite->resource->height
+    };
+    SDL_RenderCopy(renderer, sprite->resource->texture, &src_rect, &dst_rect);
 }
