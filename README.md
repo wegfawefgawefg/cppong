@@ -8,11 +8,19 @@ architecting and compilation exercise
 - fixed time step?
 - controls or some shit lel
 - main menu
-- sprites
-- sprite animations
 - couple different types of ballzzz
 - add a bounce for square colliding somehow, like bounce at the intersection point?
   |- i think likely done with some line point intersection shit
+
+- press and depress input stream
+- menus of any sort
+- some tile rendering
+- tile collisions
+- controllable character
+- shooting gun
+- bullets hit a thing
+- thing attacks character
+- other thing flees somehow
 
 ### look into
 
